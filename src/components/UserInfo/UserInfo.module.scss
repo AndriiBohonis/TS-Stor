@@ -1,0 +1,36 @@
+.container {
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+
+.logo_user {
+	margin-right: 5px;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border: solid 2px #fd7114;
+	background-color: #dedee0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.logo_user_text {
+	color: #110f21;
+	text-transform: uppercase;
+}
+.user {
+	text-transform: capitalize;
+	margin-right: 20px;
+	color: white;
+}
+.arrow {
+	position: relative;
+	margin-right: 5px;
+	color: white;
+	cursor: pointer;
+}
+.rote {
+	transform: rotate(180deg);
+}

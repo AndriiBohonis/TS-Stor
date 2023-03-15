@@ -1,0 +1,13 @@
+.container {
+	padding-left: 10px;
+	width: 250px;
+	height: 30px;
+	font-size: 12px;
+	line-height: 26px;
+	color: #707070;
+	cursor: pointer;
+	&:hover {
+		font-size: 13px;
+		color: black;
+	}
+}

@@ -1,0 +1,62 @@
+.button {
+	height: 36px;
+	background: #fd7114;
+	border-radius: 4px;
+	border: none;
+	display: flex;
+	flex-grow: inherit;
+	align-items: center;
+	justify-content: center;
+
+	margin: 50px 20px 29px 20px;
+}
+
+.button_text {
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 24px;
+	color: aliceblue;
+}
+.form {
+	width: 362px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.input_login {
+	position: relative;
+	padding-left: 10px;
+	height: 40px;
+	margin: 40px 20px 5px 20px;
+}
+.error {
+	padding-left: 10px;
+	font-size: 12px;
+	margin: 0px 20px 0px 20px;
+	color: red;
+}
+.elem {
+	width: 40px;
+	height: 10px;
+	display: flex;
+	justify-content: center;
+	position: relative;
+	top: 43px;
+	left: 30px;
+	z-index: 100;
+	background-color: white;
+	margin: 0 3px 0 3px;
+}
+
+.elem_text {
+	font-size: 12px;
+	color: #707070;
+	opacity: 50%;
+}
+.input_password {
+	position: relative;
+	padding-left: 10px;
+	height: 40px;
+	margin: 15px 20px 5px 20px;
+}
