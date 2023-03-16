@@ -4,7 +4,9 @@
 	display: flex;
 	justify-content: center;
 	position: relative;
+
 	z-index: 11;
+	position: fixed;
 }
 .logo {
 	padding: 10px;

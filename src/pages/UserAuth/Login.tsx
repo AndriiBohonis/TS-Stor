@@ -1,8 +1,9 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import s from './UserAuth.module.scss'
 
-import { LoginForm } from '../../components/Form/Login/LoginForm'
+import { AiOutlineClose } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
+import { LoginForm } from '../../components/Form/Login/LoginForm'
 
 export const Login: FC = () => {
 	return (
@@ -10,7 +11,7 @@ export const Login: FC = () => {
 			<div className={s.modal__container}>
 				<div className={s.modal__content}>
 					<Link className={s.delete} to='/'>
-						x
+						<AiOutlineClose />
 					</Link>
 					<h2 className={s.modal__title}>Login</h2>
 					<LoginForm />

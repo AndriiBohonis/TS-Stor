@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { AiOutlineClose } from 'react-icons/ai'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
 import { addProductCart } from '../../store/addProductCart'
@@ -42,13 +43,13 @@ const ProductPage = () => {
 		<div className={s.modal}>
 			<div className={s.container}>
 				<div className={s.close} onClick={handlerClick}>
-					X
+					<AiOutlineClose />
 				</div>
 				{isLoading ? (
 					<h2>loading...</h2>
 				) : (
 					<div className={s.product__info}>
-						<div>
+						<div className={s.img_block}>
 							<img className={s.img} src={cart?.picture}></img>
 						</div>
 						<div className={s.info}>
@@ -58,8 +59,10 @@ const ProductPage = () => {
 								<div className={s.price_t}>Price</div>
 								<div className={s.prise}>${cart?.price}</div>
 							</div>
-							<button onClick={addCart}>ADD TO CART</button>
-							<button onClick={addFavorite}>ADD TO FAVORITES</button>
+							<div className={s.button_block}>
+								<button onClick={addCart}>ADD TO CART</button>
+								<button onClick={addFavorite}>ADD TO FAVORITES</button>
+							</div>
 						</div>
 					</div>
 				)}

@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { AiOutlineClose } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom'
 import { RegisterForm } from '../../components/Form/Register/RegisterForm'
 import s from './UserAuth.module.scss'
@@ -8,7 +9,7 @@ export const RegisterNewUser: FC = () => {
 			<div className={s.modal__container}>
 				<div className={s.modal__content}>
 					<Link className={s.delete} to='/'>
-						x
+						<AiOutlineClose />
 					</Link>
 					<h2 className={s.modal__title}>Register</h2>
 					<RegisterForm />
