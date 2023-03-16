@@ -17,7 +17,6 @@ export const App = () => {
 			<div className={s.content}>
 				<Header />
 				<main className={s.main}>
-					<SearchBar />
 					<Routes>
 						<Route path='/' element={<HomePage />}>
 							<Route path='/product/:id' element={<ProductPage />} />

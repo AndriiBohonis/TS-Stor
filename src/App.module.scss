@@ -1,16 +1,15 @@
 .container {
-	height: 100%;
+	height: 100vh;
 }
 .content {
 	min-height: 100%;
 	display: flex;
 	flex-direction: column;
 	overflow: auto;
+	background-color: #e5e5e5;
 }
 .main {
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
+	margin: 0 auto;
 	flex: 1 1 auto;
-	background-color: #e5e5e5;
 }

@@ -26,7 +26,7 @@ export const Header: FC = () => {
 			<div className={s.wrapper_header}>
 				<div>
 					<Link onClick={window.location.reload} className={s.logo} to='/'>
-						Logo
+						Staff
 					</Link>
 				</div>
 

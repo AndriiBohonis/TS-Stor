@@ -13,7 +13,7 @@ export const Sort = () => {
 		}
 	}
 	return (
-		<div>
+		<div className={s.wrapper}>
 			<select className={s.container} onChange={handlerClick}>
 				<option value='popular'>Popular</option>
 				<option value='latest'>Latest</option>

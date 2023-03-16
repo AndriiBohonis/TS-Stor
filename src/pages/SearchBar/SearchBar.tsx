@@ -13,10 +13,12 @@ export const SearchBar = () => {
 	}, [])
 
 	return (
-		<div className={s.container}>
-			<SearchProduct />
-			<Categories />
-			<Sort />
-		</div>
+		<section className={s.wrapper}>
+			<div className={s.container}>
+				<SearchProduct />
+				<Categories />
+				<Sort />
+			</div>
+		</section>
 	)
 }

@@ -14,6 +14,10 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	cursor: pointer;
+	&:hover {
+		border: solid 4px #e85f03;
+	}
 }
 
 .logo_user_text {
@@ -29,7 +33,6 @@
 	position: relative;
 	margin-right: 5px;
 	color: white;
-	cursor: pointer;
 }
 .rote {
 	transform: rotate(180deg);

@@ -1,15 +1,14 @@
 .wrapper {
+	margin: 0 10px;
+	max-width: 869px;
+}
+.button_pos {
 	display: flex;
-	flex-direction: column;
 	justify-content: center;
-	min-height: 600px;
 }
 
-.container_button {
-	display: block;
-}
 .button {
-	margin: 15px auto;
+	margin: 15px -150px;
 	width: 150px;
 	height: 40px;
 	background-color: #148dfd;

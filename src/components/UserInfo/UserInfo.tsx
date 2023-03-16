@@ -33,13 +33,10 @@ export const UserInfo: FC = () => {
 	return (
 		<div className={s.container}>
 			<div className={s.user}>Welcome, {nameUser}!</div>
-			<div className={s.logo_user}>
+			<div onClick={() => setPopup(!popup)} className={s.logo_user}>
 				<div className={s.logo_user_text}>{logoName}</div>
 			</div>
-			<div
-				onClick={() => setPopup(!popup)}
-				className={!popup ? s.arrow : [s.rote, s.arrow].join(' ')}
-			>
+			<div className={!popup ? s.arrow : [s.rote, s.arrow].join(' ')}>
 				{<MdOutlineKeyboardArrowDown />}
 			</div>
 			{popup && <UserPopup user={user} />}
