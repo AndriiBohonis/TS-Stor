@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
 import { addProductCart } from '../../store/addProductCart'
 import { favoriteProduct } from '../../store/favoriteSlice'
-import { asyncGetProductCart } from '../../store/getProductCart'
+import { asyncGetProductCart, setScroll } from '../../store/getProductCart'
 import s from './ProductPage.module.scss'
 const ProductPage = () => {
 	const navigate = useNavigate()
@@ -12,10 +12,16 @@ const ProductPage = () => {
 	const isLoading = useAppSelector(state => state.productCart.loading)
 	const { id } = useParams()
 
+	if (cart) {
+	}
+
 	useEffect(() => {
 		if (id) {
 			let num = id?.slice(1)
 			dispatch(asyncGetProductCart(+num))
+		}
+		return () => {
+			dispatch(setScroll())
 		}
 	}, [id])
 	const handlerClick: React.MouseEventHandler<HTMLDivElement> = event => {

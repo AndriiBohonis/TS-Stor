@@ -1,6 +1,11 @@
 .container {
 	height: 100vh;
 }
+.scroll {
+	height: 100vh;
+	overflow-y: hidden;
+}
+
 .content {
 	min-height: 100%;
 	display: flex;

@@ -7,15 +7,17 @@ import s from './App.module.scss'
 import { Footer } from './components/Footer/Footer'
 import { CartPage } from './pages/CartPage/CartPage'
 
+import { useAppSelector } from './hook/reduxHook'
 import { HomePage } from './pages/Home/HomePage'
 import ProductPage from './pages/ProductPage/ProductPage'
-import { SearchBar } from './pages/SearchBar/SearchBar'
 
 export const App = () => {
+	const isScroll = useAppSelector(state => state.productCart.scroll)
+
 	return (
-		<div className={s.container}>
+		<div className={isScroll ? s.container : s.scroll}>
 			<div className={s.content}>
-				<Header />
+				<Header />.
 				<main className={s.main}>
 					<Routes>
 						<Route path='/' element={<HomePage />}>

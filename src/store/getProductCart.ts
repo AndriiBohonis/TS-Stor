@@ -18,18 +18,24 @@ interface IInitialState {
 	products: null | ProductResponse
 	loading: boolean
 	error: null | any
+	scroll: boolean
 }
 
 const initialState: IInitialState = {
 	products: null,
 	loading: false,
 	error: null,
+	scroll: true,
 }
 
 const getProductCartSlice = createSlice({
 	name: 'getProductCart',
 	initialState,
-	reducers: {},
+	reducers: {
+		setScroll(state) {
+			state.scroll = true
+		},
+	},
 	extraReducers(builder) {
 		builder
 			.addCase(asyncGetProductCart.pending, state => {
@@ -40,6 +46,7 @@ const getProductCartSlice = createSlice({
 				state.error = null
 				state.loading = false
 				state.products = action.payload
+				state.scroll = false
 			})
 			.addCase(asyncGetProductCart.rejected, (state, action) => {
 				state.loading = false
@@ -47,5 +54,5 @@ const getProductCartSlice = createSlice({
 			})
 	},
 })
-
+export const { setScroll } = getProductCartSlice.actions
 export default getProductCartSlice.reducer

@@ -9,21 +9,20 @@ import { SearchBar } from '../SearchBar/SearchBar'
 
 export const HomePage = () => {
 	const dispatch = useAppDispatch()
-	const b = useAppSelector(state => state.product.products)
-	// const id = useAppSelector(state => state.cartProduct.id)
-	// const cartProd = useAppSelector(state => state.cartProduct.products)
-	// console.log(cartProd)
-	// useEffect(() => {
-	// 	dispatch(getProductCart(id))
-	// }, [id])
+	const size = useAppSelector(state => state.product.products.length)
+
+	const handelClick = () => {
+		window.scrollTo(0, 0)
+		dispatch(offset())
+	}
 	return (
 		<section className={s.wrapper}>
 			<SearchBar />
 			<ProductBar />
 			<Outlet />
 			<div className={s.button_pos}>
-				{(b.length % 12 === 0 && b.length === 0) || (
-					<button className={s.button} onClick={() => dispatch(offset())}>
+				{size % 12 === 0 && size !== 0 && (
+					<button className={s.button} onClick={handelClick}>
 						Moore
 					</button>
 				)}
