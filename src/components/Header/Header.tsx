@@ -32,10 +32,9 @@ export const Header: FC = () => {
 
 				<div className={s.product_container}>
 					{
-						<AiFillHeart
-							className={s.selectedProduct}
-							onClick={() => dispatch(favoriteProducts(''))}
-						/>
+						<div onClick={() => dispatch(favoriteProducts(''))}>
+							<AiFillHeart className={s.selectedProduct} />
+						</div>
 					}
 					<MdShoppingCart className={s.cart} />
 
