@@ -3,3 +3,18 @@
 	justify-content: center;
 	flex-wrap: wrap;
 }
+.button_pos {
+	display: flex;
+	justify-content: center;
+}
+
+.button {
+	margin: 15px -150px;
+	width: 150px;
+	height: 40px;
+	background-color: #148dfd;
+	color: white;
+	border-radius: 4%;
+	cursor: pointer;
+	border: none;
+}

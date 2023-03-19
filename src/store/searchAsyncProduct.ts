@@ -24,7 +24,7 @@ export const searchGetProducts = createAsyncThunk<
 )
 
 interface IInitialState {
-	searchProducts: null | ProductResponse[]
+	searchProducts: ProductResponse[]
 	loading: boolean
 	error: null | any
 	isSearch: boolean
@@ -32,7 +32,7 @@ interface IInitialState {
 }
 
 const initialState: IInitialState = {
-	searchProducts: null,
+	searchProducts: [],
 	loading: false,
 	error: null,
 	isSearch: false,

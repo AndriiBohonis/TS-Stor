@@ -84,12 +84,22 @@
 	margin-left: 15px;
 	display: flex;
 	button {
-		color: white;
-		background-color: #fd7114;
-		border-radius: 4%;
-		border: none;
+		background: white;
 		margin: 5px;
 		padding: 5px;
 		font-size: 12px;
+		color: #fd7114;
+		border: solid 2px #fd7114;
+		border-radius: 4px;
+		&:hover {
+			background: #fd7114;
+			color: white;
+			transition: 0, s;
+		}
+		&:active {
+			background-color: #fd7114;
+			box-shadow: 0 3px #666;
+			transform: translateY(2px);
+		}
 	}
 }

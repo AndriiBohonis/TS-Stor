@@ -1,32 +1,30 @@
 import { Outlet } from 'react-router-dom'
 import s from './HomePage.module.scss'
 
-import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
-
-import { offset } from '../../store/QuerySlice'
+import { useEffect } from 'react'
+import { useAppDispatch } from '../../hook/reduxHook'
+import { addProductCart } from '../../store/addProductCart'
 import { ProductBar } from '../ProguctBar/ProductBar'
 import { SearchBar } from '../SearchBar/SearchBar'
 
 export const HomePage = () => {
 	const dispatch = useAppDispatch()
-	const size = useAppSelector(state => state.product.products.length)
+	useEffect(() => {
+		const ids = localStorage.getItem('ids')
 
-	const handelClick = () => {
-		window.scrollTo(0, 0)
-		dispatch(offset())
-	}
+		if (ids) {
+			const arruniq = new Set(ids.split(','))
+			console.log(Array.from(arruniq))
+			//@ts-ignore
+			dispatch(addProductCart(Array.from(arruniq).toString()))
+		}
+	}, [])
+
 	return (
 		<section className={s.wrapper}>
 			<SearchBar />
 			<ProductBar />
 			<Outlet />
-			<div className={s.button_pos}>
-				{size % 12 === 0 && size !== 0 && (
-					<button className={s.button} onClick={handelClick}>
-						Moore
-					</button>
-				)}
-			</div>
 		</section>
 	)
 }

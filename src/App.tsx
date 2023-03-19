@@ -17,7 +17,7 @@ export const App = () => {
 	return (
 		<div className={isScroll ? s.container : s.scroll}>
 			<div className={s.content}>
-				<Header />.
+				<Header />
 				<main className={s.main}>
 					<Routes>
 						<Route path='/' element={<HomePage />}>

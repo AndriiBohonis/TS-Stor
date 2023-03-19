@@ -1,0 +1,37 @@
+.container {
+	margin: 10px;
+	display: flex;
+
+	width: 559px;
+	height: 160px;
+	border: solid 1px #eceef0;
+	border-radius: 4px;
+	box-shadow: 14px 0 4px rgba(121, 121, 121, 0.0527);
+}
+.block_info {
+	display: flex;
+	flex-direction: column;
+}
+.block_icons {
+	margin-top: 25px;
+	color: #707070;
+}
+.title {
+	width: 200px;
+	height: 24px;
+	line-height: 25px;
+	font-size: 14px;
+	overflow: hidden;
+}
+.img {
+	margin: 15px;
+	width: 125px;
+	height: 123px;
+}
+.block_prise {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	flex: 1 1 auto;
+}

@@ -1,15 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { Products } from '../api/Api'
+import { ProductResponse } from './Type'
 
 export const getProductCart = createAsyncThunk<any, any, { rejectValue: string }>(
 	'addProduct/cart',
 	async function (ids: any, { rejectWithValue }) {
 		try {
-			console.log(ids)
-			let qweristr = ids.join('')
-			localStorage.setItem('ids', qweristr)
-
-			const response = await Products.getCartProduct(qweristr)
+			const response = await Products.getCartProduct(ids)
 			return response.data
 		} catch (e) {
 			//@ts-ignore
@@ -29,21 +26,32 @@ export const getProductCart = createAsyncThunk<any, any, { rejectValue: string }
 // 		}
 // 	}
 // )
+interface IInitialState {
+	id: string[]
+	products: ProductResponse[]
+	loading: boolean
+	error: any
+}
 
-const initialState = {
+const initialState: IInitialState = {
 	id: [],
 	products: [],
 	loading: false,
-	error: '' as any,
+	error: '',
 }
 
 const cartProduct = createSlice({
 	name: 'favorite',
 	initialState,
 	reducers: {
-		addProductCart(stare, action: any) {
-			//@ts-ignore
-			stare.id.push(`id=${action.payload}&`)
+		addProductCart(state, action: any) {
+			state.id.push(action.payload)
+			localStorage.setItem('ids', state.id.join(','))
+		},
+		deleteProductCart(state, action) {
+			state.id = state.id.filter(id => id != action.payload)
+			state.products = state.products.filter(product => product.id != action.payload)
+			localStorage.setItem('ids', state.id.join(','))
 		},
 	},
 	extraReducers(builder) {
@@ -63,5 +71,5 @@ const cartProduct = createSlice({
 			})
 	},
 })
-export const { addProductCart } = cartProduct.actions
+export const { addProductCart, deleteProductCart } = cartProduct.actions
 export default cartProduct.reducer
