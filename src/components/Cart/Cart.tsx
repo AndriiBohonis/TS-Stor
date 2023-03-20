@@ -21,16 +21,22 @@ export const Cart: FC<Props> = ({ data }) => {
 
 	return (
 		<section className={s.container}>
-			<div>
+			<div className={s.block_img}>
 				<img className={s.img} src={data.picture}></img>
 			</div>
 			<div className={s.block_info}>
 				<h2 className={s.title}>{data.title}</h2>
 				<div className={s.block_icons}>
-					<RiDeleteBin6Fill onClick={() => setCount(0)} />
-					<IoIosAddCircleOutline onClick={() => setCount(prev => prev + 1)} />
-					<span>{count}</span>
-					<AiOutlineMinusCircle onClick={() => setCount(prev => prev - 1)} />
+					<RiDeleteBin6Fill className={s.delete_icon} onClick={() => setCount(0)} />
+					<IoIosAddCircleOutline
+						className={s.plus_icon}
+						onClick={() => setCount(prev => prev + 1)}
+					/>
+					<span className={s.count}>{count}</span>
+					<AiOutlineMinusCircle
+						className={s.minus_icon}
+						onClick={() => setCount(prev => prev - 1)}
+					/>
 				</div>
 			</div>
 			<div className={s.block_prise}>

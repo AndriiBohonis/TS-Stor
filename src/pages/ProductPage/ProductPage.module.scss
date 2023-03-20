@@ -94,12 +94,15 @@
 		&:hover {
 			background: #fd7114;
 			color: white;
-			transition: 0, s;
 		}
-		&:active {
-			background-color: #fd7114;
+		&:visited {
+			background-color: #1d1510;
 			box-shadow: 0 3px #666;
 			transform: translateY(2px);
 		}
+	}
+	.active {
+		background: #fd7114;
+		color: white;
 	}
 }

@@ -61,7 +61,9 @@ const ProductPage = () => {
 							</div>
 							<div className={s.button_block}>
 								<button onClick={addCart}>ADD TO CART</button>
-								<button onClick={addFavorite}>ADD TO FAVORITES</button>
+								<button className={cart?.favorite ? s.active : ''} onClick={addFavorite}>
+									ADD TO FAVORITES
+								</button>
 							</div>
 						</div>
 					</div>
