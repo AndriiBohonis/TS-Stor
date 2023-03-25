@@ -1,7 +1,7 @@
-import { ProductCart } from '../../components/ProductCart/ProductCart'
 import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
 import { offset } from '../../store/QuerySlice'
 import { ProductResponse } from '../../store/Type'
+import { ProductCart } from '../ProductCart/ProductCart'
 
 import s from './PriductBar.module.scss'
 

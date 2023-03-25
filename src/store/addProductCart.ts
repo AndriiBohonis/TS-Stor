@@ -14,18 +14,7 @@ export const getProductCart = createAsyncThunk<any, any, { rejectValue: string }
 		}
 	}
 )
-// export const deleteProductCart = createAsyncThunk<any, number, { rejectValue: string }>(
-// 	'product/favoriteDelete',
-// 	async function (id, { rejectWithValue }) {
-// 		try {
-// 			const response = await Products.favoriteProductDelete(id)
-// 			return response.data
-// 		} catch (e) {
-// 			//@ts-ignore
-// 			return rejectWithValue(e.message)
-// 		}
-// 	}
-// )
+
 interface IInitialState {
 	id: string[]
 	products: ProductResponse[]

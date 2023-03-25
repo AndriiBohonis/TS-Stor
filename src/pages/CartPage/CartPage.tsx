@@ -7,8 +7,6 @@ import s from './CartPage.module.scss'
 export const CartPage = () => {
 	const dispatch = useAppDispatch()
 	const { products, error, loading } = useAppSelector(state => state.cartProduct)
-	const ids = useAppSelector(state => state.cartProduct.id)
-
 	useEffect(() => {
 		const gepStor = localStorage.getItem('ids')?.split(',')
 

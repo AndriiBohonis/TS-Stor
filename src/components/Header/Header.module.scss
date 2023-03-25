@@ -35,3 +35,19 @@
 	margin-right: 25px;
 	color: white;
 }
+.cart_counter {
+	color: white;
+	display: flex;
+	font-size: 13px;
+
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	top: 23px;
+
+	z-index: 100;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: rgb(227, 84, 84);
+}

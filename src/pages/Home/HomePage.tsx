@@ -2,10 +2,10 @@ import { Outlet } from 'react-router-dom'
 import s from './HomePage.module.scss'
 
 import { useEffect } from 'react'
+import { ProductBar } from '../../components/ProguctBar/ProductBar'
+import { SearchBar } from '../../components/SearchBar/SearchBar'
 import { useAppDispatch } from '../../hook/reduxHook'
-import { addProductCart } from '../../store/addProductCart'
-import { ProductBar } from '../ProguctBar/ProductBar'
-import { SearchBar } from '../SearchBar/SearchBar'
+import { addProductCart, getProductCart } from '../../store/addProductCart'
 
 export const HomePage = () => {
 	const dispatch = useAppDispatch()
@@ -13,10 +13,10 @@ export const HomePage = () => {
 		const ids = localStorage.getItem('ids')
 
 		if (ids) {
-			const arruniq = new Set(ids.split(','))
-			console.log(Array.from(arruniq))
-			//@ts-ignore
-			dispatch(addProductCart(Array.from(arruniq).toString()))
+			const arrUniq = new Set(ids.split(','))
+			console.log(Array.from(arrUniq))
+
+			dispatch(addProductCart(Array.from(arrUniq).toString()))
 		}
 	}, [])
 

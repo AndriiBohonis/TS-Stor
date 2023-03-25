@@ -17,6 +17,7 @@ export const Header: FC = () => {
 	const isUser = useAppSelector(state => state.login.isUser)
 	const isRegisterUser = useAppSelector(state => state.register.isUser)
 	const dispatch = useAppDispatch()
+	const products = useAppSelector(state => state.cartProduct.products.length)
 
 	useEffect(() => {
 		dispatch(asyncViewer(''))
@@ -40,6 +41,8 @@ export const Header: FC = () => {
 					}
 					<Link to='/cart'>
 						<MdShoppingCart className={s.cart} />
+
+						{products ? <div className={s.cart_counter}>{products}</div> : ''}
 					</Link>
 
 					{viewer ? <UserInfo /> : <Logouts />}
