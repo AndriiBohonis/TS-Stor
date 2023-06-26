@@ -8,18 +8,6 @@ import { useAppDispatch } from '../../hook/reduxHook'
 import { addProductCart, getProductCart } from '../../store/addProductCart'
 
 export const HomePage = () => {
-	const dispatch = useAppDispatch()
-	useEffect(() => {
-		const ids = localStorage.getItem('ids')
-
-		if (ids) {
-			const arrUniq = new Set(ids.split(','))
-			console.log(Array.from(arrUniq))
-
-			dispatch(addProductCart(Array.from(arrUniq).toString()))
-		}
-	}, [])
-
 	return (
 		<section className={s.wrapper}>
 			<SearchBar />

@@ -9,6 +9,7 @@ import { UserInfo } from '../UserInfo/UserInfo'
 
 import { AiFillHeart } from 'react-icons/ai'
 import { MdShoppingCart } from 'react-icons/md'
+import { addProductCart } from '../../store/addProductCart'
 import { favoriteProducts } from '../../store/getFavoriteProduct'
 import { asyncViewer } from '../../store/viewerSlice'
 
@@ -18,6 +19,17 @@ export const Header: FC = () => {
 	const isRegisterUser = useAppSelector(state => state.register.isUser)
 	const dispatch = useAppDispatch()
 	const products = useAppSelector(state => state.cartProduct.products.length)
+
+	useEffect(() => {
+		const ids = localStorage.getItem('ids')
+
+		if (ids) {
+			const arrUniq = new Set(ids.split(','))
+			console.log(Array.from(arrUniq))
+
+			dispatch(addProductCart(Array.from(arrUniq).toString()))
+		}
+	}, [])
 
 	useEffect(() => {
 		dispatch(asyncViewer(''))
