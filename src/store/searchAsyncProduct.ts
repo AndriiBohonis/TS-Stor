@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { Products } from '../api/Api'
-import { addProd } from './prod'
 import { ProductResponse } from './Type'
+import { addProduct } from './loadingProduct'
 
 export type SearchType = {
 	keywords: string
@@ -15,7 +15,7 @@ export const searchGetProducts = createAsyncThunk<
 	async function ({ keywords }, { rejectWithValue, dispatch }) {
 		try {
 			const response = await Products.searchProduct(keywords)
-			dispatch(addProd(response.data))
+			dispatch(addProduct(response.data))
 			return response.data
 		} catch (error) {
 			return rejectWithValue(error)
@@ -47,12 +47,10 @@ const getSearchProducts = createSlice({
 		builder
 			.addCase(searchGetProducts.pending, state => {
 				state.loading = true
-				state.error = null
 				state.isSearch = true
 			})
 			.addCase(searchGetProducts.fulfilled, (state, action) => {
 				state.isSearch = true
-				state.error = null
 				state.loading = false
 			})
 			.addCase(searchGetProducts.rejected, (state, action) => {

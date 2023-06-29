@@ -17,6 +17,9 @@ export const ProductBar = () => {
 		window.scrollTo(0, 0)
 		dispatch(offset())
 	}
+	if (!products.length) {
+		return <h2>Product not found</h2>
+	}
 
 	return (
 		<section>

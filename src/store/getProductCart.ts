@@ -15,7 +15,7 @@ export const asyncGetProductCart = createAsyncThunk<ProductResponse, any, { reje
 )
 
 interface IInitialState {
-	products: null | ProductResponse
+	products: any
 	loading: boolean
 	error: null | any
 	scroll: boolean
@@ -34,6 +34,9 @@ const getProductCartSlice = createSlice({
 	reducers: {
 		setScroll(state) {
 			state.scroll = true
+		},
+		favorite(state) {
+			state.products.favorite = !state.products.favorite
 		},
 	},
 	extraReducers(builder) {
@@ -54,5 +57,5 @@ const getProductCartSlice = createSlice({
 			})
 	},
 })
-export const { setScroll } = getProductCartSlice.actions
+export const { setScroll, favorite } = getProductCartSlice.actions
 export default getProductCartSlice.reducer

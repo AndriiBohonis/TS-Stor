@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { Products } from '../api/Api'
-import { addProd } from './prod'
 import { ProductResponse } from './Type'
+import { addProduct } from './loadingProduct'
 
 export type ParametersType = {
 	category: number
@@ -19,7 +19,7 @@ export const getCategoryProducts = createAsyncThunk<
 	async function ({ category, offset, limit, sortBy }, { rejectWithValue, dispatch }) {
 		try {
 			const response = await Products.filter(category, limit, sortBy, offset)
-			dispatch(addProd(response.data))
+			dispatch(addProduct(response.data))
 			return response.data
 
 			return response.data

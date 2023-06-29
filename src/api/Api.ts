@@ -35,7 +35,6 @@ export const Account = {
 	},
 }
 
-//api/categories/1/products?offset=10&limit=10&sortBy=latest
 export const Products = {
 	getProducts(offset = 1, limit = 12, sortBy = 'popular') {
 		return axios.get(`api/products?offset=${offset}&limit=${limit}&sortBy=${sortBy}`)

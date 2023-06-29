@@ -1,14 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
+import querySlice from './QuerySlice'
 import cartProduct from './addProductCart'
 import favoriteSlice from './favoriteSlice'
 import getCategoriesSlice from './getCategories'
 import getFavoriteProductSlice from './getFavoriteProduct'
 import getProductSlice from './getProductCart'
 import getProductsSlice from './getProducts'
+import loadingProduct from './loadingProduct'
 import loginSlice from './loginSlice'
-import prodSlice from './prod'
 import getCategoryProductsSlice from './productInCategory'
-import querySlice from './QuerySlice'
 import registerSlice from './registerSlice'
 import getSearchProducts from './searchAsyncProduct'
 import viewerSlice from './viewerSlice'
@@ -27,7 +27,7 @@ export const store = configureStore({
 		favoriteProduct: favoriteSlice,
 		getFavoriteProduct: getFavoriteProductSlice,
 		queryString: querySlice,
-		product: prodSlice,
+		product: loadingProduct,
 		cartProduct: cartProduct,
 	},
 })

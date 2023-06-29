@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { Products } from '../api/Api'
-import { addProd } from './prod'
 import { ProductResponse } from './Type'
+import { addProduct } from './loadingProduct'
 
 export const favoriteProducts = createAsyncThunk<any, any, { rejectValue: any }>(
 	'getFavorite/favoriteProducts',
@@ -9,7 +9,7 @@ export const favoriteProducts = createAsyncThunk<any, any, { rejectValue: any }>
 		try {
 			const response = await Products.getFavoriteProduct()
 
-			dispatch(addProd(response.data))
+			dispatch(addProduct(response.data))
 			return response.data
 		} catch (error) {
 			return rejectWithValue(error)

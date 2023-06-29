@@ -17,8 +17,9 @@ export const Header: FC = () => {
 	const viewer = useAppSelector(state => state.viewer.isUser)
 	const isUser = useAppSelector(state => state.login.isUser)
 	const isRegisterUser = useAppSelector(state => state.register.isUser)
+	const products = useAppSelector(state => state.cartProduct.id.length)
+
 	const dispatch = useAppDispatch()
-	const products = useAppSelector(state => state.cartProduct.products.length)
 
 	useEffect(() => {
 		const ids = localStorage.getItem('ids')
@@ -38,7 +39,7 @@ export const Header: FC = () => {
 		<div className={s.wrapper}>
 			<div className={s.wrapper_header}>
 				<div>
-					<Link onClick={window.location.reload} className={s.logo} to='/'>
+					<Link className={s.logo} to='/'>
 						Staff
 					</Link>
 				</div>

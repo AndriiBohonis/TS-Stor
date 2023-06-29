@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
+import { offsetDelete } from '../../store/QuerySlice'
 import { asyncGetProducts } from '../../store/getProducts'
 import { getCategoryProducts } from '../../store/productInCategory'
-import { offsetDelete } from '../../store/QuerySlice'
 import s from './Categories.module.scss'
 export const Categories = () => {
 	const [categoriesId, setCategoriesId] = useState(0)
@@ -28,19 +28,9 @@ export const Categories = () => {
 	useEffect(() => {
 		if (categoriesId) {
 			dispatch(getCategoryProducts(params))
-			// setSearchParams({
-			// 	offset: offset.toString(),
-			// 	sort: sortBy,
-			// 	category: categoriesId.toString(),
-			// })
 		}
 		if (categoriesId == 0) {
 			dispatch(asyncGetProducts(productParam))
-			// setSearchParams({
-			// 	offset: offset.toString(),
-			// 	sort: sortBy,
-			// 	category: categoriesId.toString(),
-			// })
 		}
 	}, [offset, sortBy, categoriesId])
 

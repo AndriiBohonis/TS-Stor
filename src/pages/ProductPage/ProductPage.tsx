@@ -3,8 +3,8 @@ import { AiOutlineClose } from 'react-icons/ai'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
 import { addProductCart } from '../../store/addProductCart'
-import { favoriteProduct } from '../../store/favoriteSlice'
-import { asyncGetProductCart, setScroll } from '../../store/getProductCart'
+import { favoriteProduct, favoriteProductDelete } from '../../store/favoriteSlice'
+import { asyncGetProductCart, favorite, setScroll } from '../../store/getProductCart'
 import s from './ProductPage.module.scss'
 const ProductPage = () => {
 	const navigate = useNavigate()
@@ -12,9 +12,6 @@ const ProductPage = () => {
 	const cart = useAppSelector(state => state.productCart.products)
 	const isLoading = useAppSelector(state => state.productCart.loading)
 	const { id } = useParams()
-
-	if (cart) {
-	}
 
 	useEffect(() => {
 		if (id) {
@@ -29,8 +26,12 @@ const ProductPage = () => {
 		navigate(-1)
 	}
 	const addFavorite = () => {
-		if (cart?.id) {
+		if (cart?.id || !cart.favorite) {
+			dispatch(favorite())
 			dispatch(favoriteProduct(cart.id))
+		}
+		if (cart?.id || cart.favorite) {
+			dispatch(favoriteProductDelete(cart.id))
 		}
 	}
 	const addCart = () => {

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { Auth } from '../api/Api'
-import { IInitialState } from './loginSlice'
 import { UserResponse } from './Type'
+import { IInitialState } from './loginSlice'
 
 type User = {
 	fullName: string
@@ -38,12 +38,10 @@ const registerSlice = createSlice({
 		builder
 			.addCase(asyncRegisterUser.pending, state => {
 				state.loading = true
-				state.error = null
 			})
 			.addCase(asyncRegisterUser.fulfilled, (state, action) => {
 				state.user = action.payload
 				state.loading = false
-				state.error = null
 				state.isUser = true
 				localStorage.setItem('token', action.payload.token)
 			})

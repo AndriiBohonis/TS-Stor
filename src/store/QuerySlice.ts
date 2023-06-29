@@ -13,7 +13,6 @@ const querySlice = createSlice({
 		offset(state) {
 			state.offset += 12
 		},
-		limit(state, action) {},
 		sortBy(state, action) {
 			state.sortBy = action.payload
 		},
@@ -25,5 +24,5 @@ const querySlice = createSlice({
 		},
 	},
 })
-export const { offset, limit, sortBy, category, offsetDelete } = querySlice.actions
+export const { offset, sortBy, category, offsetDelete } = querySlice.actions
 export default querySlice.reducer
