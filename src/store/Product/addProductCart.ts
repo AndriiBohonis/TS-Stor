@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { Products } from '../api/Api'
-import { ProductResponse } from './Type'
+import { Products } from '../../api/Api'
+import { ProductResponse } from '../Type'
 
 export const getProductCart = createAsyncThunk<any, any, { rejectValue: string }>(
 	'addProduct/cart',

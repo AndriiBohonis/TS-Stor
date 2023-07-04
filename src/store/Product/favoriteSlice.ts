@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { Products } from '../api/Api'
+import { Products } from '../../api/Api'
 
 export const favoriteProduct = createAsyncThunk<any, number, { rejectValue: string }>(
 	'product/favorite',

@@ -1,24 +1,23 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { Account, Auth } from '../api/Api'
-import { User } from './Type'
+import { Account, Auth } from '../../api/Api'
+import { User } from '../Type'
 
-export const asyncViewer = createAsyncThunk<
-	User,
-	unknown,
-	{ rejectValue: string }
->('login/asyncViewer', async function (_, { rejectWithValue }) {
-	try {
-		const token = localStorage.getItem('token')
+export const asyncViewer = createAsyncThunk<User, unknown, { rejectValue: string }>(
+	'login/asyncViewer',
+	async function (_, { rejectWithValue }) {
+		try {
+			const token = localStorage.getItem('token')
 
-		Auth.setToken(token)
+			Auth.setToken(token)
 
-		const response = await Account.getUser()
-		return response.data
-	} catch (e) {
-		//@ts-ignore
-		return rejectWithValue(e.message)
+			const response = await Account.getUser()
+			return response.data
+		} catch (e) {
+			//@ts-ignore
+			return rejectWithValue(e.message)
+		}
 	}
-})
+)
 interface IInitialState {
 	user: null | User
 	loading: boolean
@@ -40,12 +39,10 @@ const viewerSlice = createSlice({
 		builder
 			.addCase(asyncViewer.pending, state => {
 				state.loading = true
-				state.error = false
 			})
 			.addCase(asyncViewer.fulfilled, (state, action) => {
 				state.user = action.payload
 				state.loading = false
-				state.error = false
 				state.isUser = true
 			})
 			.addCase(asyncViewer.rejected, (state, action) => {

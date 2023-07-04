@@ -48,7 +48,7 @@ export const Products = {
 		)
 	},
 	searchProduct(search: string) {
-		return axios.get(`api/products/search?keywords=${search}&offset=0&limit=50`)
+		return axios.get(`api/products/search?keywords=${search}&offset=0&limit=20`)
 	},
 	favoriteProduct(id: number) {
 		return axios.post(`api/products/${id}/favorite`)

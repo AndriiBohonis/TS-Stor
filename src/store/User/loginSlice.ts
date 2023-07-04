@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { Auth } from '../api/Api'
-import { UserResponse } from './Type'
+import { Auth } from '../../api/Api'
+import { UserResponse } from '../Type'
 
 type UserLogin = {
 	email: string

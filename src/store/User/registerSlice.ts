@@ -1,16 +1,16 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { Auth } from '../api/Api'
-import { UserResponse } from './Type'
+import { Auth } from '../../api/Api'
+import { UserResponse } from '../Type'
 import { IInitialState } from './loginSlice'
 
-type User = {
+interface IUser {
 	fullName: string
 	email: string
 	password: string
 	phone: string
 }
 
-export const asyncRegisterUser = createAsyncThunk<UserResponse, User, { rejectValue: any }>(
+export const asyncRegisterUser = createAsyncThunk<UserResponse, IUser, { rejectValue: any }>(
 	'register/asyncRegisterUser',
 	async function ({ fullName, email, password, phone }, { rejectWithValue }) {
 		try {

@@ -1,33 +1,24 @@
 import { configureStore } from '@reduxjs/toolkit'
-import querySlice from './QuerySlice'
-import cartProduct from './addProductCart'
-import favoriteSlice from './favoriteSlice'
-import getCategoriesSlice from './getCategories'
-import getFavoriteProductSlice from './getFavoriteProduct'
-import getProductSlice from './getProductCart'
-import getProductsSlice from './getProducts'
-import loadingProduct from './loadingProduct'
-import loginSlice from './loginSlice'
-import getCategoryProductsSlice from './productInCategory'
-import registerSlice from './registerSlice'
-import getSearchProducts from './searchAsyncProduct'
-import viewerSlice from './viewerSlice'
+import querySlice from './Product/QuerySlice'
+import cartProduct from './Product/addProductCart'
+import favoriteSlice from './Product/favoriteSlice'
+import getCategoriesSlice from './Product/getCategories'
+import getProductSlice from './Product/getProductCart'
+import getProductsSlice from './Product/getProducts'
+import loginSlice from './User/loginSlice'
+import registerSlice from './User/registerSlice'
+import viewerSlice from './User/viewerSlice'
 
 export const store = configureStore({
 	reducer: {
 		login: loginSlice,
 		register: registerSlice,
 		viewer: viewerSlice,
-
 		products: getProductsSlice,
 		productCart: getProductSlice,
 		categories: getCategoriesSlice,
-		asyncSearch: getSearchProducts,
-		productCategory: getCategoryProductsSlice,
 		favoriteProduct: favoriteSlice,
-		getFavoriteProduct: getFavoriteProductSlice,
 		queryString: querySlice,
-		product: loadingProduct,
 		cartProduct: cartProduct,
 	},
 })
