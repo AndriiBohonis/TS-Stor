@@ -3,7 +3,7 @@ import { AiOutlineMinusCircle } from 'react-icons/ai'
 import { IoIosAddCircleOutline } from 'react-icons/io'
 import { RiDeleteBin6Fill } from 'react-icons/ri'
 import { useAppDispatch } from '../../hook/reduxHook'
-import { deleteProductCart } from '../../store/addProductCart'
+import { deleteProductCart } from '../../store/Product/addProductCart'
 import { ProductResponse } from '../../store/Type'
 import s from './Cart.module.scss'
 type Props = {

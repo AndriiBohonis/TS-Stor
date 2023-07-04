@@ -2,9 +2,9 @@ import { FC } from 'react'
 import { AiOutlineHeart } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { useAppDispatch } from '../../hook/reduxHook'
+import { favoriteProduct, favoriteProductDelete } from '../../store/Product/favoriteSlice'
+import { favorite } from '../../store/Product/getProducts'
 import { ProductResponse } from '../../store/Type'
-import { favoriteProduct, favoriteProductDelete } from '../../store/favoriteSlice'
-import { favorite } from '../../store/loadingProduct'
 import s from './ProductCart.module.scss'
 type Props = {
 	data: ProductResponse

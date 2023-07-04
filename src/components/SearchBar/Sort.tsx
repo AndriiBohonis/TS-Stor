@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAppDispatch } from '../../hook/reduxHook'
-import { offsetDelete, sortBy } from '../../store/QuerySlice'
+import { offsetDelete, sortBy } from '../../store/Product/QuerySlice'
 import s from './Popular.module.scss'
 
 export const Sort = () => {

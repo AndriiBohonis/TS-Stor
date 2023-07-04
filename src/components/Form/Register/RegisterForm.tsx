@@ -2,7 +2,7 @@ import { Field, Form, Formik } from 'formik'
 import { FC, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
-import { asyncRegisterUser } from '../../../store/registerSlice'
+import { asyncRegisterUser } from '../../../store/User/registerSlice'
 
 import { useAppDispatch, useAppSelector } from '../../../hook/reduxHook'
 
@@ -20,7 +20,6 @@ export const RegisterForm: FC = () => {
 		}
 	}, [isUser])
 
-	console.log(isEmailInvalid)
 	const dispatch = useAppDispatch()
 	const validateSchema = Yup.object().shape({
 		fullName: Yup.string()

@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
-import { offsetDelete } from '../../store/QuerySlice'
-import { asyncGetProducts } from '../../store/getProducts'
-import { getCategoryProducts } from '../../store/productInCategory'
+import { offsetDelete } from '../../store/Product/QuerySlice'
+import { asyncGetProducts, getCategoryProducts } from '../../store/Product/getProducts'
 import s from './Categories.module.scss'
 export const Categories = () => {
 	const [categoriesId, setCategoriesId] = useState(0)

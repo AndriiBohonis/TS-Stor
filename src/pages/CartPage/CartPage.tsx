@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { Cart } from '../../components/Cart/Cart'
 import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
+import { getProductCart } from '../../store/Product/addProductCart'
 import { ProductResponse } from '../../store/Type'
-import { getProductCart } from '../../store/addProductCart'
 import s from './CartPage.module.scss'
 export const CartPage = () => {
 	const dispatch = useAppDispatch()

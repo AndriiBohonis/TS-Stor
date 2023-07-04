@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useAppDispatch } from '../../hook/reduxHook'
-import { asyncGetCategories } from '../../store/getCategories'
+import { asyncGetCategories } from '../../store/Product/getCategories'
 import { Categories } from './Categorise'
 import { Sort } from './Sort'
 

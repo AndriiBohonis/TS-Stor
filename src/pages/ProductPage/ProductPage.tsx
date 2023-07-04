@@ -1,16 +1,18 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
-import { addProductCart } from '../../store/addProductCart'
-import { favoriteProduct, favoriteProductDelete } from '../../store/favoriteSlice'
-import { asyncGetProductCart, favorite, setScroll } from '../../store/getProductCart'
+import { addProductCart } from '../../store/Product/addProductCart'
+import { favoriteProduct, favoriteProductDelete } from '../../store/Product/favoriteSlice'
+import { asyncGetProductCart, setScroll } from '../../store/Product/getProductCart'
+import { favorite } from '../../store/Product/getProducts'
 import s from './ProductPage.module.scss'
 const ProductPage = () => {
 	const navigate = useNavigate()
 	const dispatch = useAppDispatch()
 	const cart = useAppSelector(state => state.productCart.products)
 	const isLoading = useAppSelector(state => state.productCart.loading)
+
 	const { id } = useParams()
 
 	useEffect(() => {
@@ -22,16 +24,17 @@ const ProductPage = () => {
 			dispatch(setScroll())
 		}
 	}, [id])
-	const handlerClick: React.MouseEventHandler<HTMLDivElement> = event => {
-		navigate(-1)
-	}
+
 	const addFavorite = () => {
-		if (cart?.id || !cart.favorite) {
-			dispatch(favorite())
-			dispatch(favoriteProduct(cart.id))
-		}
-		if (cart?.id || cart.favorite) {
-			dispatch(favoriteProductDelete(cart.id))
+		if (cart?.id) {
+			if (!cart.favorite) {
+				dispatch(favorite(cart.id))
+				dispatch(favoriteProduct(cart.id))
+			}
+			if (cart.favorite) {
+				dispatch(favoriteProductDelete(cart.id))
+				dispatch(favorite(cart.id))
+			}
 		}
 	}
 	const addCart = () => {
@@ -43,7 +46,7 @@ const ProductPage = () => {
 	return (
 		<div className={s.modal}>
 			<div className={s.container}>
-				<div className={s.close} onClick={handlerClick}>
+				<div className={s.close} onClick={() => navigate(-1)}>
 					<AiOutlineClose />
 				</div>
 				{isLoading ? (

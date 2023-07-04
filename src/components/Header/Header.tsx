@@ -2,38 +2,35 @@ import { FC, useEffect } from 'react'
 
 import s from './Header.module.scss'
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
 import { Logouts } from '../UserAuthBar/UserAuthBar'
 import { UserInfo } from '../UserInfo/UserInfo'
 
 import { AiFillHeart } from 'react-icons/ai'
 import { MdShoppingCart } from 'react-icons/md'
-import { favoriteProducts } from '../../store/getFavoriteProduct'
-import { asyncViewer } from '../../store/viewerSlice'
+import { favoriteProducts } from '../../store/Product/getProducts'
+import { asyncViewer } from '../../store/User/viewerSlice'
 
 export const Header: FC = () => {
 	const viewer = useAppSelector(state => state.viewer.isUser)
 	const isUser = useAppSelector(state => state.login.isUser)
 	const isRegisterUser = useAppSelector(state => state.register.isUser)
 	const products = useAppSelector(state => state.cartProduct.id.length)
+	const navigate = useNavigate()
 
 	const dispatch = useAppDispatch()
-
-	// useEffect(() => {
-	// 	const ids = localStorage.getItem('ids')
-
-	// 	if (ids) {
-	// 		const arrUniq = new Set(ids.split(','))
-	// 		console.log(Array.from(arrUniq))
-
-	// 		dispatch(addProductCart(Array.from(arrUniq).toString()))
-	// 	}
-	// }, [])
 
 	useEffect(() => {
 		dispatch(asyncViewer(''))
 	}, [isUser, isRegisterUser])
+	const favoriteHandler: React.MouseEventHandler<HTMLDivElement> = () => {
+		if (viewer) {
+			dispatch(favoriteProducts(''))
+		} else {
+			alert('First log in')
+		}
+	}
 	return (
 		<div className={s.wrapper}>
 			<div className={s.wrapper_header}>
@@ -46,7 +43,7 @@ export const Header: FC = () => {
 				<div className={s.product_container}>
 					{
 						<Link to='/'>
-							<div onClick={() => dispatch(favoriteProducts(''))}>
+							<div onClick={favoriteHandler}>
 								<AiFillHeart className={s.selectedProduct} />
 							</div>
 						</Link>

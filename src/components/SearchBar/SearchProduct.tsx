@@ -1,8 +1,7 @@
 import { debounce } from 'lodash'
 import React, { useMemo } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
-import { asyncGetProducts } from '../../store/getProducts'
-import { searchGetProducts } from '../../store/searchAsyncProduct'
+import { asyncGetProducts, searchGetProducts } from '../../store/Product/getProducts'
 import s from './SearchProduct.module.scss'
 export const SearchProduct = () => {
 	const dispatch = useAppDispatch()

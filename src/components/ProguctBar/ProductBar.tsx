@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
-import { offset } from '../../store/QuerySlice'
+import { offset } from '../../store/Product/QuerySlice'
 import { ProductResponse } from '../../store/Type'
 import { ProductCart } from '../ProductCart/ProductCart'
 
@@ -7,12 +7,12 @@ import s from './PriductBar.module.scss'
 
 export const ProductBar = () => {
 	const dispatch = useAppDispatch()
-	const products = useAppSelector(state => state.product.products)
-	const SearchLoading = useAppSelector(state => state.asyncSearch.loading)
-	const loading = useAppSelector(state => state.products.loading)
-	const categoryLoading = useAppSelector(state => state.productCategory.loading)
-	const size = useAppSelector(state => state.product.products.length)
-
+	const { products, loading } = useAppSelector(state => state.products)
+	// const SearchLoading = useAppSelector(state => state.asyncSearch.loading)
+	// const loading = useAppSelector(state => state.products.loading)
+	// const categoryLoading = useAppSelector(state => state.productCategory.loading)
+	// const size = useAppSelector(state => state.product.products.length)
+	let size = products.length
 	const handelClick = () => {
 		window.scrollTo(0, 0)
 		dispatch(offset())
@@ -24,7 +24,7 @@ export const ProductBar = () => {
 	return (
 		<section>
 			<div className={s.home_container}>
-				{loading || SearchLoading || categoryLoading ? (
+				{loading ? (
 					<p>Loading...</p>
 				) : (
 					products.map((product: ProductResponse) => (
