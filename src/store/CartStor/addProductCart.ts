@@ -64,6 +64,7 @@ const cartProduct = createSlice({
 				currentItem.quantity++
 				currentItem.totalPrice = currentItem.quantity * currentItem.price
 			}
+			state.totalQuantity++
 		},
 		decrementItemFromCart(state, action: PayloadAction<number>) {
 			const id = action.payload
@@ -83,22 +84,6 @@ const cartProduct = createSlice({
 			state.products = state.products.filter(item => item.id !== id)
 		},
 	},
-	// extraReducers(builder) {
-	// 	builder
-	// 		.addCase(getProductCart.pending, state => {
-	// 			state.loading = true
-	// 			state.error = null
-	// 		})
-	// 		.addCase(getProductCart.fulfilled, (state, action) => {
-	// 			state.loading = false
-	// 			state.error = null
-	// 			state.products = action.payload
-	// 		})
-	// 		.addCase(getProductCart.rejected, (state, action) => {
-	// 			state.loading = false
-	// 			state.error = action.error
-	// 		})
-	// },
 })
 export const { addItemToCart, decrementItemFromCart, deleteProductFromCart, incrementProduct } =
 	cartProduct.actions

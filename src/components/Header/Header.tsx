@@ -2,7 +2,7 @@ import { FC, useEffect } from 'react'
 
 import s from './Header.module.scss'
 
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
 import { Logouts } from '../UserAuthBar/UserAuthBar'
 import { UserInfo } from '../UserInfo/UserInfo'
@@ -16,7 +16,7 @@ export const Header: FC = () => {
 	const viewer = useAppSelector(state => state.viewer.isUser)
 	const isUser = useAppSelector(state => state.login.isUser)
 	const isRegisterUser = useAppSelector(state => state.register.isUser)
-	const products = useAppSelector(state => state.cartProduct.id.length)
+	const products = useAppSelector(state => state.cartProduct.totalQuantity)
 
 	const dispatch = useAppDispatch()
 
