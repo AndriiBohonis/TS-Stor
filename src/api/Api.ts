@@ -63,6 +63,12 @@ export const Products = {
 		return axios.get<ProductResponse>(`/api/products/ids?${arr}`)
 	},
 }
+
+export const orders = {
+	getOrders() {
+		return axios.get('/api/orders?offset=0&limit=20')
+	},
+}
 export const ProductsCategories = {
 	getCategories() {
 		return axios.get('api/categories')

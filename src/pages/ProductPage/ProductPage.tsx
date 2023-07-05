@@ -1,8 +1,14 @@
 import { useEffect } from 'react'
-import { AiOutlineClose } from 'react-icons/ai'
+import { AiOutlineClose, AiOutlineMinusCircle } from 'react-icons/ai'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
-import { addProductCart } from '../../store/Product/addProductCart'
+// import { addItemToCart } from '../../store/CartStor/addProductCart'
+import { IoIosAddCircleOutline } from 'react-icons/io'
+import {
+	addItemToCart,
+	decrementItemFromCart,
+	incrementProduct,
+} from '../../store/CartStor/addProductCart'
 import { favoriteProduct, favoriteProductDelete } from '../../store/Product/favoriteSlice'
 import { asyncGetProductCart, setScroll } from '../../store/Product/getProductCart'
 import { favorite } from '../../store/Product/getProducts'
@@ -12,12 +18,13 @@ const ProductPage = () => {
 	const dispatch = useAppDispatch()
 	const cart = useAppSelector(state => state.productCart.products)
 	const isLoading = useAppSelector(state => state.productCart.loading)
+	const count = useAppSelector(state => state.cartProduct.totalQuantity)
 
 	const { id } = useParams()
 
 	useEffect(() => {
 		if (id) {
-			let num = id?.slice(1)
+			const num = id?.slice(1)
 			dispatch(asyncGetProductCart(+num))
 		}
 		return () => {
@@ -38,8 +45,8 @@ const ProductPage = () => {
 		}
 	}
 	const addCart = () => {
-		if (cart?.id) {
-			dispatch(addProductCart(cart.id))
+		if (cart) {
+			dispatch(addItemToCart(cart))
 		}
 	}
 
@@ -63,15 +70,27 @@ const ProductPage = () => {
 								<div className={s.price_t}>Price</div>
 								<div className={s.prise}>${cart?.price}</div>
 							</div>
-							<div className={s.button_block}>
-								<button onClick={addCart}>ADD TO CART</button>
-								<button className={cart?.favorite ? s.active : ''} onClick={addFavorite}>
-									ADD TO FAVORITES
-								</button>
+							<div>
+								<IoIosAddCircleOutline
+									className={s.plus_icon}
+									onClick={() => dispatch(incrementProduct(cart.id))}
+								/>
+								<span>{count}</span>
+								<AiOutlineMinusCircle
+									className={s.minus_icon}
+									onClick={() => dispatch(decrementItemFromCart(cart.id))}
+								/>
 							</div>
 						</div>
 					</div>
 				)}
+				<div className={s.button_block}>
+					<button onClick={addCart}>ADD TO CART</button>
+					<button className={cart?.favorite ? s.active : ''} onClick={addFavorite}>
+						ADD TO FAVORITES
+					</button>
+					<button onClick={addCart}>BUY NOW</button>
+				</div>
 			</div>
 		</div>
 	)

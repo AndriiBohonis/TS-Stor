@@ -17,7 +17,6 @@ export const Header: FC = () => {
 	const isUser = useAppSelector(state => state.login.isUser)
 	const isRegisterUser = useAppSelector(state => state.register.isUser)
 	const products = useAppSelector(state => state.cartProduct.id.length)
-	const navigate = useNavigate()
 
 	const dispatch = useAppDispatch()
 

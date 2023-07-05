@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
+import cartProduct from './CartStor/addProductCart'
+
 import querySlice from './Product/QuerySlice'
-import cartProduct from './Product/addProductCart'
 import favoriteSlice from './Product/favoriteSlice'
 import getCategoriesSlice from './Product/getCategories'
 import getProductSlice from './Product/getProductCart'
