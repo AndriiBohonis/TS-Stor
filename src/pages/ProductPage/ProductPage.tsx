@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import { AiOutlineClose, AiOutlineMinusCircle } from 'react-icons/ai'
+import { IoIosAddCircleOutline } from 'react-icons/io'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
-import { IoIosAddCircleOutline } from 'react-icons/io'
 import { addItemToCart, decrementItemFromCart } from '../../store/CartStor/addProductCart'
 import { favoriteProduct, favoriteProductDelete } from '../../store/Product/favoriteSlice'
-import { asyncGetProductCart, setScroll } from '../../store/Product/getProductCart'
+import { asyncGetProductCart } from '../../store/Product/getProductCart'
 import { favorite } from '../../store/Product/getProducts'
+import { setScroll } from '../../store/Ui_Slice'
 import s from './ProductPage.module.scss'
 const ProductPage = () => {
 	const cart = useAppSelector(state => state.productCart.products)
@@ -26,6 +27,7 @@ const ProductPage = () => {
 	}, [productFromCart])
 	useEffect(() => {
 		if (id) {
+			dispatch(setScroll())
 			const num = id.slice(1)
 			dispatch(asyncGetProductCart(+num))
 		}
@@ -51,11 +53,13 @@ const ProductPage = () => {
 			dispatch(addItemToCart(cart))
 		}
 	}
-
+	const modalClick = () => {
+		navigate('/')
+	}
 	return (
-		<div className={s.modal}>
-			<div className={s.container}>
-				<div className={s.close} onClick={() => navigate(-1)}>
+		<div onClick={modalClick} className={s.modal}>
+			<div onClick={e => e.stopPropagation()} className={s.container}>
+				<div className={s.close} onClick={modalClick}>
 					<AiOutlineClose />
 				</div>
 				{isLoading ? (

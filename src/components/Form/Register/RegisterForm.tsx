@@ -58,6 +58,7 @@ export const RegisterForm: FC = () => {
 				{({ errors, touched }) => (
 					<Form className={s.form}>
 						<Field
+							autocomplete='off'
 							innerRef={fieldRef}
 							className={s.input}
 							type='text'

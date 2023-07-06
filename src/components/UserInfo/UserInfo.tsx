@@ -1,12 +1,9 @@
 import { FC, useEffect, useState } from 'react'
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
 import { useAppSelector } from '../../hook/reduxHook'
-import { UserResponse } from '../../store/Type'
 import { UserPopup } from '../UserPopup/UserPopap'
 import s from './UserInfo.module.scss'
-type Props = {
-	user: UserResponse
-}
+
 export const UserInfo: FC = () => {
 	const [popup, setPopup] = useState(false)
 	const [nameUser, setNameUser] = useState('')
@@ -29,11 +26,18 @@ export const UserInfo: FC = () => {
 		}
 		getName(fullName)
 	}, [user])
+	const handelClickPopup: React.MouseEventHandler<HTMLDivElement> = event => {
+		if (event.currentTarget.className !== s.logo_user) {
+			setPopup(false)
+		}
+
+		setPopup(!popup)
+	}
 
 	return (
 		<div className={s.container}>
 			<div className={s.user}>Welcome, {nameUser}!</div>
-			<div onClick={() => setPopup(!popup)} className={s.logo_user}>
+			<div onClick={handelClickPopup} className={s.logo_user}>
 				<div className={s.logo_user_text}>{logoName}</div>
 			</div>
 			<div className={!popup ? s.arrow : [s.rote, s.arrow].join(' ')}>

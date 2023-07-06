@@ -18,23 +18,18 @@ interface IInitialState {
 	products: any
 	loading: boolean
 	error: null | any
-	scroll: boolean
 }
 
 const initialState: IInitialState = {
 	products: null,
 	loading: false,
 	error: null,
-	scroll: true,
 }
 
 const getProductCartSlice = createSlice({
 	name: 'getProductCart',
 	initialState,
 	reducers: {
-		setScroll(state) {
-			state.scroll = true
-		},
 		favorite(state) {
 			state.products.favorite = !state.products.favorite
 		},
@@ -49,7 +44,6 @@ const getProductCartSlice = createSlice({
 				state.error = null
 				state.loading = false
 				state.products = action.payload
-				state.scroll = false
 			})
 			.addCase(asyncGetProductCart.rejected, (state, action) => {
 				state.loading = false
@@ -57,5 +51,5 @@ const getProductCartSlice = createSlice({
 			})
 	},
 })
-export const { setScroll, favorite } = getProductCartSlice.actions
+export const { favorite } = getProductCartSlice.actions
 export default getProductCartSlice.reducer

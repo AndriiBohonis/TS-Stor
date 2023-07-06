@@ -6,6 +6,7 @@ import { asyncLoginUser } from '../../../store/User/loginSlice'
 import s from './LoginForm.module.scss'
 
 import { useAppDispatch, useAppSelector } from '../../../hook/reduxHook'
+import { setScroll } from '../../../store/Ui_Slice'
 
 export const LoginForm: FC = () => {
 	const isLoading = useAppSelector(state => state.login.loading)
@@ -16,7 +17,11 @@ export const LoginForm: FC = () => {
 	const navigate = useNavigate()
 
 	useEffect(() => {
+		dispatch(setScroll())
 		fieldRef.current?.focus()
+		return () => {
+			dispatch(setScroll())
+		}
 	}, [])
 	useEffect(() => {
 		if (isUser) {

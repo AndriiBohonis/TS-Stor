@@ -12,7 +12,7 @@ import { HomePage } from './pages/Home/HomePage'
 import ProductPage from './pages/ProductPage/ProductPage'
 
 export const App = () => {
-	const isScroll = useAppSelector(state => state.productCart.scroll)
+	const isScroll = useAppSelector(state => state.UI_Slice.scroll)
 
 	return (
 		<div className={isScroll ? s.container : s.scroll}>
