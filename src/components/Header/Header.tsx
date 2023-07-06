@@ -34,7 +34,7 @@ export const Header: FC = () => {
 		<div className={s.wrapper}>
 			<div className={s.wrapper_header}>
 				<div>
-					<Link className={s.logo} to='/'>
+					<Link onClick={window.location.reload} className={s.logo} to='/'>
 						Staff
 					</Link>
 				</div>

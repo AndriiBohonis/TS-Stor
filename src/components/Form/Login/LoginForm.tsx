@@ -1,5 +1,5 @@
 import { Field, Form, Formik } from 'formik'
-import { FC, useEffect } from 'react'
+import { FC, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 import { asyncLoginUser } from '../../../store/User/loginSlice'
@@ -11,9 +11,13 @@ export const LoginForm: FC = () => {
 	const isLoading = useAppSelector(state => state.login.loading)
 	const isLoadingViewer = useAppSelector(state => state.viewer.loading)
 	const isUser = useAppSelector(state => state.viewer.isUser)
+	const fieldRef = useRef<HTMLHeadingElement>(null)
 	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
 
+	useEffect(() => {
+		fieldRef.current?.focus()
+	}, [])
 	useEffect(() => {
 		if (isUser) {
 			navigate('/')
@@ -42,7 +46,7 @@ export const LoginForm: FC = () => {
 			>
 				{({ errors, touched }) => (
 					<Form className={s.form}>
-						<Field className={s.input_login} name='email' placeholder='Email' />
+						<Field innerRef={fieldRef} className={s.input_login} name='email' placeholder='Email' />
 						{errors.email && touched.email && <div className={s.error}>{errors.email}</div>}
 						<Field
 							className={s.input_password}

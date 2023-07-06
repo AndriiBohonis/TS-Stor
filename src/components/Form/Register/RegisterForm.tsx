@@ -1,5 +1,5 @@
 import { Field, Form, Formik } from 'formik'
-import { FC, useEffect } from 'react'
+import { FC, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 import { asyncRegisterUser } from '../../../store/User/registerSlice'
@@ -13,6 +13,10 @@ export const RegisterForm: FC = () => {
 	const isEmailInvalid = useAppSelector(state => state.register.error)
 	const isUser = useAppSelector(state => state.viewer.isUser)
 	const navigate = useNavigate()
+	const fieldRef = useRef<HTMLHeadingElement>(null)
+	useEffect(() => {
+		fieldRef.current?.focus()
+	}, [])
 
 	useEffect(() => {
 		if (isUser) {
@@ -53,7 +57,13 @@ export const RegisterForm: FC = () => {
 			>
 				{({ errors, touched }) => (
 					<Form className={s.form}>
-						<Field className={s.input} type='text' name='fullName' placeholder='Full Name' />
+						<Field
+							innerRef={fieldRef}
+							className={s.input}
+							type='text'
+							name='fullName'
+							placeholder='Full Name'
+						/>
 						{touched.fullName && <div className={s.error}>{errors.fullName}</div>}
 						<Field className={s.input} type='email' name='email' placeholder='Email' />
 						{isEmailInvalid === 409 && (

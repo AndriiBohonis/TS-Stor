@@ -51,11 +51,11 @@ const cartProduct = createSlice({
 					totalPrice: newItem.price,
 					picture: newItem.picture,
 				})
+				state.totalQuantity++
 			} else {
 				currentItem.quantity++
 				currentItem.totalPrice = currentItem.quantity * newItem.price
 			}
-			state.totalQuantity++
 		},
 		incrementProduct(state, action: PayloadAction<number>) {
 			const id = action.payload
@@ -64,7 +64,6 @@ const cartProduct = createSlice({
 				currentItem.quantity++
 				currentItem.totalPrice = currentItem.quantity * currentItem.price
 			}
-			state.totalQuantity++
 		},
 		decrementItemFromCart(state, action: PayloadAction<number>) {
 			const id = action.payload
@@ -82,6 +81,7 @@ const cartProduct = createSlice({
 		deleteProductFromCart(state, action: PayloadAction<number>) {
 			const id = action.payload
 			state.products = state.products.filter(item => item.id !== id)
+			state.totalQuantity--
 		},
 	},
 })
