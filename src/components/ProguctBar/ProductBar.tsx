@@ -14,8 +14,8 @@ export const ProductBar = () => {
 		window.scrollTo(0, 0)
 		dispatch(offset())
 	}
-	if (!products.length) {
-		return <h2 className={s.home_container}>Product not found</h2>
+	if (!products.length || loading) {
+		return <h2 className={s.home_centre}>Product not found</h2>
 	}
 
 	return (

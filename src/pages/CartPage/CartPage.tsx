@@ -11,7 +11,7 @@ export const CartPage = () => {
 	return (
 		<div className={s.modal}>
 			<div className={s.container}>
-				{products ? (
+				{products.length ? (
 					products.map((product: IProduct) => <Cart key={product.id} data={product} />)
 				) : (
 					<p className={s.message}>Cart Empty</p>
