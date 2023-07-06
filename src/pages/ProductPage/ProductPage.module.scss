@@ -15,17 +15,17 @@
 .container {
 	margin: 10px;
 	background-color: white;
-	width: 1003px;
-	height: 697px;
+	width: 697px;
+	height: 500px;
 	position: relative;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
 
 	align-items: center;
-	@media (width < 620px) {
+	@media (width < 669px) {
 		width: 500px;
-		height: 300px;
+		height: 400px;
 	}
 }
 .close {
@@ -45,9 +45,9 @@
 .img {
 	max-width: 401px;
 	max-height: 296px;
-	@media (width < 620px) {
-		max-width: 150px;
-		max-height: 100px;
+	@media (width < 669px) {
+		max-width: 180px;
+		max-height: 130px;
 	}
 }
 
@@ -83,11 +83,14 @@
 }
 .button_block {
 	max-width: 782px;
-
-	margin-left: 15px;
 	display: flex;
-	// flex: 0 1 auto;
 	justify-content: space-around;
+	@media (width < 669px) {
+		max-width: 500px;
+	}
+	@media (width < 530px) {
+		max-width: 300px;
+	}
 	button {
 		width: 200px;
 		background: white;
@@ -97,6 +100,9 @@
 		color: #fd7114;
 		border: solid 2px #fd7114;
 		border-radius: 4px;
+		@media (width < 669px) {
+			max-width: 150px;
+		}
 
 		&:hover {
 			background-color: #fd7114;
@@ -109,4 +115,24 @@
 		background: #fd7114;
 		color: white;
 	}
+}
+
+.delete_icon {
+	font-size: 40px;
+	margin-left: 10px;
+}
+.plus_icon {
+	font-size: 40px;
+	margin-left: 10px;
+}
+.minus_icon {
+	font-size: 40px;
+	margin-left: 10px;
+}
+.count {
+	font-size: 40px;
+
+	margin-left: 10px;
+	position: relative;
+	bottom: 7px;
 }

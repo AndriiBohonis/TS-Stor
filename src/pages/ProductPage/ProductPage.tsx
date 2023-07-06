@@ -70,12 +70,12 @@ const ProductPage = () => {
 								<div className={s.price_t}>Price</div>
 								<div className={s.prise}>${cart?.price}</div>
 							</div>
-							<div>
+							<div className={s.block_add_product}>
 								<IoIosAddCircleOutline
 									className={s.plus_icon}
 									onClick={() => dispatch(incrementProduct(cart.id))}
 								/>
-								<span>{count}</span>
+								<span className={s.count}>{count}</span>
 								<AiOutlineMinusCircle
 									className={s.minus_icon}
 									onClick={() => dispatch(decrementItemFromCart(cart.id))}
@@ -89,7 +89,7 @@ const ProductPage = () => {
 					<button className={cart?.favorite ? s.active : ''} onClick={addFavorite}>
 						ADD TO FAVORITES
 					</button>
-					<button onClick={addCart}>BUY NOW</button>
+					<button>BUY NOW</button>
 				</div>
 			</div>
 		</div>
