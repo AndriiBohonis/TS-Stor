@@ -1,7 +1,10 @@
 .home_container {
 	display: flex;
+	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
+}
+.home_centre {
 }
 .button_pos {
 	display: flex;

@@ -1,6 +1,6 @@
 .container {
 	height: auto;
-	padding: 10px 0px;
+	padding: 10px 10px;
 	width: 100%;
 	border: 4px;
 	margin: 30px auto;
@@ -8,8 +8,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-evenly;
-
 	align-items: center;
 	border-radius: 4px;
-	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }

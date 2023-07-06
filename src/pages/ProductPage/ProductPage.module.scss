@@ -75,10 +75,12 @@
 .price_t {
 	text-transform: uppercase;
 	font-weight: 500;
+	color: #707070;
 }
 .prise {
 	font-size: 18px;
 	font-weight: 700;
+	color: #707070;
 }
 .button_block {
 	max-width: 782px;
@@ -115,23 +117,11 @@
 		color: white;
 	}
 }
-
-.delete_icon {
+.block_add_product {
+	max-width: 150px;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	color: #707070;
 	font-size: 40px;
-	margin-left: 10px;
-}
-.plus_icon {
-	font-size: 40px;
-	margin-left: 10px;
-}
-.minus_icon {
-	font-size: 40px;
-	margin-left: 10px;
-}
-.count {
-	font-size: 40px;
-
-	margin-left: 10px;
-	position: relative;
-	bottom: 7px;
 }
