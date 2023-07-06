@@ -71,12 +71,12 @@ const cartProduct = createSlice({
 			if (currentItem) {
 				if (currentItem.quantity === 1) {
 					state.products = state.products.filter(item => item.id !== id)
+					state.totalQuantity--
 				} else {
 					currentItem.quantity--
 					currentItem.totalPrice = currentItem.quantity * currentItem.price
 				}
 			}
-			state.totalQuantity--
 		},
 		deleteProductFromCart(state, action: PayloadAction<number>) {
 			const id = action.payload
