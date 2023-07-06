@@ -16,19 +16,18 @@ export const CartPage = () => {
 		})
 		if (arrSum.length) {
 			setTotalSum(arrSum.reduce((acc, item) => acc + item))
+		} else {
+			setTotalSum(0)
 		}
-		setTotalSum(0)
 	}, [products])
 	return (
-		<div className={s.modal}>
-			<div className={s.container}>
-				<h2>{totalSum}</h2>
-				{products.length ? (
-					products.map((product: IProduct) => <Cart key={product.id} data={product} />)
-				) : (
-					<p className={s.message}>Cart Empty</p>
-				)}
-			</div>
+		<div className={s.container}>
+			<h2>{totalSum}</h2>
+			{products.length ? (
+				products.map((product: IProduct) => <Cart key={product.id} data={product} />)
+			) : (
+				<p className={s.message}>Cart Empty</p>
+			)}
 		</div>
 	)
 }
