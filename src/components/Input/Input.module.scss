@@ -1,0 +1,28 @@
+.wrapper_input {
+	height: 40px;
+	margin: 15px 0px;
+
+	input {
+		height: 40px;
+		padding-left: 10px;
+	}
+
+	div {
+		font-size: 14px;
+		padding-top: 4px;
+		padding-left: 10px;
+		position: relative;
+		color: rgb(254, 9, 9);
+		animation: move 1s;
+	}
+	@keyframes move {
+		from {
+			right: 100px;
+			opacity: 0;
+		}
+		to {
+			right: 0;
+			opacity: 1;
+		}
+	}
+}

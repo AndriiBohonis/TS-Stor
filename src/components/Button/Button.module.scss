@@ -1,0 +1,23 @@
+.button {
+	background: white;
+	height: 40px;
+	font-size: 19px;
+
+	color: #fd7114;
+	border: solid 1px #fd7114;
+	border-radius: 4px;
+	@media (width < 500px) {
+		max-width: 200px;
+	}
+
+	// &:hover {
+	// 	background-color: #fd7114;
+	// 	transition-duration: 0.7s;
+	// 	color: white;
+	// }
+}
+
+.button_orange {
+	background-color: #fd7114;
+	color: white;
+}
