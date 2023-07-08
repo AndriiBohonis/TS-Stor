@@ -1,0 +1,17 @@
+.form {
+	width: 220px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	button {
+		margin: 10px 0px;
+		width: 220px;
+	}
+	input {
+		width: 220px;
+	}
+	@media (width <700px) {
+		display: none;
+	}
+}
