@@ -1,12 +1,13 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { RegisterForm } from '../../components/Form/Register/RegisterForm'
+import Popup from '../../components/Popup/Popup'
 import s from './UserAuth.module.scss'
 export const RegisterNewUser: FC = () => {
 	return (
-		<div className={s.modal}>
-			<div className={s.modal__container}>
+		<Popup>
+			<div onClick={e => e.stopPropagation()} className={s.modal__container}>
 				<div className={s.modal__content}>
 					<Link className={s.delete} to='/'>
 						<AiOutlineClose />
@@ -23,6 +24,6 @@ export const RegisterNewUser: FC = () => {
 					</div>
 				</div>
 			</div>
-		</div>
+		</Popup>
 	)
 }

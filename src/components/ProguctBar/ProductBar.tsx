@@ -11,12 +11,9 @@ export const ProductBar = () => {
 
 	let size = products.length
 	const handelClick = () => {
-		window.scrollTo(0, 0)
+		// window.scrollTo(0, 0)
 		dispatch(offset())
 	}
-	// if (!products.length || loading) {
-	// 	return <h2 className={s.home_centre}>Product not found</h2>
-	// }
 
 	return (
 		<section>

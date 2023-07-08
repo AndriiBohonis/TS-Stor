@@ -1,6 +1,4 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import cartProduct from './CartStor/addProductCart'
-
 import {
 	FLUSH,
 	PAUSE,
@@ -12,7 +10,7 @@ import {
 	persistStore,
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-
+import cartProduct from './CartStor/addProductCart'
 import querySlice from './Product/QuerySlice'
 import favoriteSlice from './Product/favoriteSlice'
 import getCategoriesSlice from './Product/getCategories'
@@ -22,6 +20,7 @@ import UI_Slice from './Ui_Slice'
 import loginSlice from './User/loginSlice'
 import registerSlice from './User/registerSlice'
 import viewerSlice from './User/viewerSlice'
+import getCountrySlice from './getCountry'
 
 const rootReducer = combineReducers({
 	login: loginSlice,
@@ -34,6 +33,7 @@ const rootReducer = combineReducers({
 	queryString: querySlice,
 	cartProduct: cartProduct,
 	UI_Slice: UI_Slice,
+	getCountry: getCountrySlice,
 })
 const persistConfig = {
 	key: 'root',
@@ -48,6 +48,7 @@ const persistConfig = {
 		'categories',
 		'favoriteProduct',
 		'UI_Slice',
+		'getCountry',
 	],
 }
 const persistedReducer = persistReducer(persistConfig, rootReducer)

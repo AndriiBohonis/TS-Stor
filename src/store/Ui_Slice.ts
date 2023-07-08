@@ -8,11 +8,14 @@ const UI_Slice = createSlice({
 	name: 'UI_Slice',
 	initialState,
 	reducers: {
-		setScroll(state) {
-			state.scroll = !state.scroll
+		switchScrollOF(state) {
+			state.scroll = false
+		},
+		switchScrollON(state) {
+			state.scroll = true
 		},
 	},
 })
 
-export const { setScroll } = UI_Slice.actions
+export const { switchScrollOF, switchScrollON } = UI_Slice.actions
 export default UI_Slice.reducer

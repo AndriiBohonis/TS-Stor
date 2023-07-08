@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Cart } from '../../components/Cart/Cart'
 import { useAppSelector } from '../../hook/reduxHook'
 
+import { OrderUserForm } from '../../components/Form/OrderUsorInfo/OrderUserForm'
 import { IProduct } from '../../store/CartStor/addProductCart'
 import s from './CartPage.module.scss'
 
@@ -22,9 +23,15 @@ export const CartPage = () => {
 	}, [products])
 	return (
 		<div className={s.container}>
-			<h2>{totalSum}</h2>
 			{products.length ? (
-				products.map((product: IProduct) => <Cart key={product.id} data={product} />)
+				<div className={s.wrapper}>
+					<div className={s.wrapper_product}>
+						{products.map((product: IProduct) => (
+							<Cart key={product.id} data={product} />
+						))}
+					</div>
+					<OrderUserForm />
+				</div>
 			) : (
 				<p className={s.message}>Cart Empty</p>
 			)}

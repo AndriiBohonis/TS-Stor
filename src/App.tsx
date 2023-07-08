@@ -20,9 +20,9 @@ export const App = () => {
 				<main className={s.main}>
 					<Routes>
 						<Route path='/' element={<HomePage />}>
-							<Route path='/product/:id' element={<ProductPage />} />
 							<Route path='/login' element={<Login />} />
 							<Route path='/register' element={<RegisterNewUser />} />
+							<Route path='/product/:id' element={<ProductPage />} />
 						</Route>
 						<Route path='/cart' element={<CartPage />} />
 					</Routes>

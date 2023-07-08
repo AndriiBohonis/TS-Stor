@@ -6,6 +6,10 @@ import { asyncRegisterUser } from '../../../store/User/registerSlice'
 
 import { useAppDispatch, useAppSelector } from '../../../hook/reduxHook'
 
+import { switchScrollOF, switchScrollON } from '../../../store/Ui_Slice'
+import { Button } from '../../Button/Button'
+import { Input } from '../../Input/Input'
+import { Spinner } from '../../Spinners/Spinners'
 import s from './RegisterForm.module.scss'
 
 export const RegisterForm: FC = () => {
@@ -14,13 +18,18 @@ export const RegisterForm: FC = () => {
 	const isUser = useAppSelector(state => state.viewer.isUser)
 	const navigate = useNavigate()
 	const fieldRef = useRef<HTMLHeadingElement>(null)
+
 	useEffect(() => {
+		dispatch(switchScrollOF())
 		fieldRef.current?.focus()
+		return () => {
+			dispatch(switchScrollON())
+		}
 	}, [])
 
 	useEffect(() => {
 		if (isUser) {
-			navigate('/')
+			navigate(-1)
 		}
 	}, [isUser])
 
@@ -57,30 +66,40 @@ export const RegisterForm: FC = () => {
 			>
 				{({ errors, touched }) => (
 					<Form className={s.form}>
-						<Field
-							autocomplete='off'
-							innerRef={fieldRef}
-							className={s.input}
-							type='text'
-							name='fullName'
-							placeholder='Full Name'
-						/>
-						{touched.fullName && <div className={s.error}>{errors.fullName}</div>}
-						<Field className={s.input} type='email' name='email' placeholder='Email' />
-						{isEmailInvalid === 409 && (
-							<div className={s.error}>A user with this email address or password exists</div>
-						)}
-						{touched.email && <div className={s.error}>{errors.email}</div>}
-						<Field className={s.input} type='phone' name='phone' placeholder='Phone Number' />
-						{touched.phone && <div className={s.error}>{errors.phone}</div>}
-						<Field className={s.input} type='password' name='password' placeholder='Password' />
-						{isEmailInvalid === 409 && (
-							<div className={s.error}>A user with this email address or password exists</div>
-						)}
-						{touched.password && <div className={s.error}>{errors.password}</div>}
-						<button className={s.button} type='submit'>
-							<samp className={s.button_text}>{isLoading ? 'Loading...' : 'Register'}</samp>
-						</button>
+						<Input>
+							<Field
+								autoComplete='off'
+								innerRef={fieldRef}
+								type='text'
+								name='fullName'
+								placeholder='Full Name'
+							/>
+							{touched.fullName && <div>{errors.fullName}</div>}
+						</Input>
+
+						<Input>
+							<Field type='email' name='email' placeholder='Email' />
+							{isEmailInvalid === 409 && (
+								<div>A user with this email address or password exists</div>
+							)}
+							{touched.email && <div>{errors.email}</div>}
+						</Input>
+
+						<Input>
+							<Field type='phone' name='phone' placeholder='Phone Number' />
+							{touched.phone && <div>{errors.phone}</div>}
+						</Input>
+
+						<Input>
+							<Field type='password' name='password' placeholder='Password' />
+							{isEmailInvalid === 409 && (
+								<div>A user with this email address or password exists</div>
+							)}
+							{touched.password && <div>{errors.password}</div>}
+						</Input>
+						<Button or={true}>
+							<span>{isLoading ? <Spinner /> : 'Register'}</span>
+						</Button>
 					</Form>
 				)}
 			</Formik>

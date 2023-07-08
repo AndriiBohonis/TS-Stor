@@ -4,11 +4,12 @@ import s from './UserAuth.module.scss'
 import { AiOutlineClose } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { LoginForm } from '../../components/Form/Login/LoginForm'
+import Popup from '../../components/Popup/Popup'
 
 export const Login: FC = () => {
 	return (
-		<div className={s.modal}>
-			<div className={s.modal__container}>
+		<Popup>
+			<div onClick={e => e.stopPropagation()} className={s.modal__container}>
 				<div className={s.modal__content}>
 					<Link className={s.delete} to='/'>
 						<AiOutlineClose />
@@ -23,6 +24,6 @@ export const Login: FC = () => {
 					</Link>
 				</div>
 			</div>
-		</div>
+		</Popup>
 	)
 }

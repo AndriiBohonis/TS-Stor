@@ -64,6 +64,12 @@ export const Products = {
 	},
 }
 
+export const country = {
+	getCountry() {
+		return axios.get('api/locations/countries')
+	},
+}
+
 export const orders = {
 	getOrders() {
 		return axios.get('/api/orders?offset=0&limit=20')

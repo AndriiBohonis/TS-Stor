@@ -42,3 +42,8 @@ export type Categories = {
 	id: number
 	name: string
 }
+
+export type Country = {
+	value: string
+	label: string
+}

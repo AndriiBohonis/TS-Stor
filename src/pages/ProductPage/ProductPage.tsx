@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react'
 import { AiOutlineClose, AiOutlineMinusCircle } from 'react-icons/ai'
 import { IoIosAddCircleOutline } from 'react-icons/io'
 import { useNavigate, useParams } from 'react-router-dom'
+import { Button } from '../../components/Button/Button'
+import Popup from '../../components/Popup/Popup'
+import { Spinner } from '../../components/Spinners/Spinners'
 import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
 import { addItemToCart, decrementItemFromCart } from '../../store/CartStor/addProductCart'
 import { favoriteProduct, favoriteProductDelete } from '../../store/Product/favoriteSlice'
 import { asyncGetProductCart } from '../../store/Product/getProductCart'
 import { favorite } from '../../store/Product/getProducts'
-import { setScroll } from '../../store/Ui_Slice'
 import s from './ProductPage.module.scss'
 const ProductPage = () => {
 	const cart = useAppSelector(state => state.productCart.products)
@@ -27,12 +29,8 @@ const ProductPage = () => {
 	}, [productFromCart])
 	useEffect(() => {
 		if (id) {
-			dispatch(setScroll())
 			const num = id.slice(1)
 			dispatch(asyncGetProductCart(+num))
-		}
-		return () => {
-			dispatch(setScroll())
 		}
 	}, [id])
 
@@ -53,19 +51,22 @@ const ProductPage = () => {
 			dispatch(addItemToCart(cart))
 		}
 	}
-	const modalClick = () => {
-		navigate('/')
+
+	const click = () => {
+		console.log('hello')
 	}
+
 	return (
-		<div onClick={modalClick} className={s.modal}>
+		<Popup>
 			<div onClick={e => e.stopPropagation()} className={s.container}>
-				<div className={s.close} onClick={modalClick}>
+				<div className={s.close} onClick={() => navigate(-1)}>
 					<AiOutlineClose />
 				</div>
 				{isLoading ? (
 					<h2>loading...</h2>
 				) : (
 					<div className={s.product__info}>
+						<Spinner />
 						<div className={s.img_block}>
 							<img className={s.img} src={cart?.picture}></img>
 						</div>
@@ -92,14 +93,18 @@ const ProductPage = () => {
 					</div>
 				)}
 				<div className={s.button_block}>
-					<button onClick={addCart}>ADD TO CART</button>
-					<button className={cart?.favorite ? s.active : ''} onClick={addFavorite}>
-						ADD TO FAVORITES
-					</button>
-					<button>BUY NOW</button>
+					<Button click={addCart}>
+						<span>ADD TO CART</span>
+					</Button>
+					<Button click={addFavorite}>
+						<span>ADD TO FAVORITES</span>
+					</Button>
+					<Button>
+						<span>BUY NOW</span>
+					</Button>
 				</div>
 			</div>
-		</div>
+		</Popup>
 	)
 }
 export default ProductPage

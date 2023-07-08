@@ -6,7 +6,10 @@ import { asyncLoginUser } from '../../../store/User/loginSlice'
 import s from './LoginForm.module.scss'
 
 import { useAppDispatch, useAppSelector } from '../../../hook/reduxHook'
-import { setScroll } from '../../../store/Ui_Slice'
+import { switchScrollOF, switchScrollON } from '../../../store/Ui_Slice'
+import { Button } from '../../Button/Button'
+import { Input } from '../../Input/Input'
+import { Spinner } from '../../Spinners/Spinners'
 
 export const LoginForm: FC = () => {
 	const isLoading = useAppSelector(state => state.login.loading)
@@ -17,10 +20,10 @@ export const LoginForm: FC = () => {
 	const navigate = useNavigate()
 
 	useEffect(() => {
-		dispatch(setScroll())
-		fieldRef.current?.focus()
+		dispatch(switchScrollOF())
+		// fieldRef.current?.focus()
 		return () => {
-			dispatch(setScroll())
+			dispatch(switchScrollON())
 		}
 	}, [])
 	useEffect(() => {
@@ -51,22 +54,18 @@ export const LoginForm: FC = () => {
 			>
 				{({ errors, touched }) => (
 					<Form className={s.form}>
-						<Field innerRef={fieldRef} className={s.input_login} name='email' placeholder='Email' />
-						{errors.email && touched.email && <div className={s.error}>{errors.email}</div>}
-						<Field
-							className={s.input_password}
-							type='password'
-							name='password'
-							placeholder='Password'
-						/>
-						{errors.password && touched.password && (
-							<div className={s.error}>{errors.password}</div>
-						)}
-						<button className={s.button} type='submit'>
-							<div className={s.button_text}>
-								{isLoading || isLoadingViewer ? 'Loading...' : 'Login'}
-							</div>
-						</button>
+						<Input>
+							<Field innerRef={fieldRef} name='email' placeholder='Email' />
+							{errors.email && touched.email && <div>{errors.email}</div>}
+						</Input>
+
+						<Input>
+							<Field type='password' name='password' placeholder='Password' />
+							{errors.password && touched.password && <div>{errors.password}</div>}
+						</Input>
+						<Button or={true}>
+							<span>{isLoading ? <Spinner /> : 'Login'}</span>
+						</Button>
 					</Form>
 				)}
 			</Formik>
