@@ -1,22 +1,28 @@
 import { Field, Form, Formik } from 'formik'
-import { FC, useRef } from 'react'
+import { FC, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 
-import { useAppDispatch, useAppSelector } from '../../../hook/reduxHook'
+import { useAppSelector } from '../../../hook/reduxHook'
 
 import { Button } from '../../Button/Button'
 import { Input } from '../../Input/Input'
+import { MySelect } from '../../Select/Select'
 import s from './OrderUserForm.module.scss'
+interface IProps {
+	open: boolean
+	setOpen?: (nll: any) => void
+}
+export const OrderUserForm: FC<IProps> = ({ open, setOpen }) => {
+	// const isLoading = useAppSelector(state => state.register.loading)
+	// const isEmailInvalid = useAppSelector(state => state.register.error)
+	// const isUser = useAppSelector(state => state.viewer)
+	const country = useAppSelector(state => state.getCountry.country)
+	const [selectValue, setSelectValue] = useState('')
 
-export const OrderUserForm: FC = () => {
-	const isLoading = useAppSelector(state => state.register.loading)
-	const isEmailInvalid = useAppSelector(state => state.register.error)
-	const isUser = useAppSelector(state => state.viewer)
 	const navigate = useNavigate()
 	const fieldRef = useRef<HTMLHeadingElement>(null)
 
-	const dispatch = useAppDispatch()
 	const validateSchema = Yup.object().shape({
 		fullName: Yup.string()
 			.trim()
@@ -31,8 +37,14 @@ export const OrderUserForm: FC = () => {
 
 		address: Yup.string().trim().required('Address is required'),
 	})
+	const handlerClick = () => {
+		if (setOpen) {
+			setOpen(!open)
+		}
+	}
 	return (
-		<div>
+		<div onClick={e => e.stopPropagation()}>
+			{open && <div onClick={handlerClick} className={s.open_modal}></div>}
 			<Formik
 				initialValues={{
 					fullName: '',
@@ -42,11 +54,12 @@ export const OrderUserForm: FC = () => {
 				}}
 				validationSchema={validateSchema}
 				onSubmit={values => {
+					console.log({ ...values, country: selectValue })
 					// dispatch(asyncRegisterUser(values))
 				}}
 			>
 				{({ errors, touched }) => (
-					<Form className={s.form}>
+					<Form className={open ? [s.form, s.open].join(' ') : s.form}>
 						<Input>
 							<Field
 								autoComplete='off'
@@ -62,6 +75,8 @@ export const OrderUserForm: FC = () => {
 							{touched.phone && <div>{errors.phone}</div>}
 						</Input>
 
+						<MySelect selectValue={setSelectValue} data={country} />
+
 						<Input>
 							<Field type='text' name='city' placeholder='City' />
 							{touched.city && <div>{errors.city}</div>}
@@ -70,6 +85,11 @@ export const OrderUserForm: FC = () => {
 							<Field type='text' name='address' placeholder='Address' />
 							{touched.address && <div>{errors.address}</div>}
 						</Input>
+
+						<div className={s.price_block}>
+							<div></div>
+							<div></div>
+						</div>
 						<Button or={true}>
 							<span>Confirms the purchase</span>
 						</Button>

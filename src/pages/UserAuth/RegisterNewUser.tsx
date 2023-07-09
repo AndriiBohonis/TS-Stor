@@ -6,7 +6,7 @@ import Popup from '../../components/Popup/Popup'
 import s from './UserAuth.module.scss'
 export const RegisterNewUser: FC = () => {
 	return (
-		<Popup>
+		<Popup path={'/'}>
 			<div onClick={e => e.stopPropagation()} className={s.modal__container}>
 				<div className={s.modal__content}>
 					<Link className={s.delete} to='/'>

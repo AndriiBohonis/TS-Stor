@@ -3,7 +3,7 @@ import { country } from '../api/Api'
 import { Country } from './Type'
 // import { Categories } from '../Type'
 
-export const getCountry = createAsyncThunk<string[], unknown, { rejectValue: any }>(
+export const asyncGetCountry = createAsyncThunk<string[], unknown, { rejectValue: any }>(
 	'getCountry',
 	async function (_, { rejectWithValue }) {
 		try {
@@ -15,12 +15,12 @@ export const getCountry = createAsyncThunk<string[], unknown, { rejectValue: any
 	}
 )
 interface IInitialState {
-	categories: Country[]
+	country: Country[]
 	loading: boolean
 	error: null | any
 }
 const initialState: IInitialState = {
-	categories: [],
+	country: [],
 	loading: false,
 	error: null,
 }
@@ -30,17 +30,17 @@ const getCountrySlice = createSlice({
 	reducers: {},
 	extraReducers(builder) {
 		builder
-			.addCase(getCountry.pending, state => {
+			.addCase(asyncGetCountry.pending, state => {
 				state.loading = true
 			})
-			.addCase(getCountry.fulfilled, (state, action) => {
+			.addCase(asyncGetCountry.fulfilled, (state, action) => {
 				state.loading = false
 				const arrCountry = action.payload.map(item => {
 					return { value: item, label: item }
 				})
-				state.categories = arrCountry
+				state.country = arrCountry
 			})
-			.addCase(getCountry.rejected, (state, action) => {
+			.addCase(asyncGetCountry.rejected, (state, action) => {
 				state.loading = false
 				state.error = action.error
 			})
