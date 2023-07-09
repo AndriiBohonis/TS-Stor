@@ -1,41 +1,52 @@
 .container {
+	width: 100%;
 	margin-top: 60px;
-	padding: 30px;
-	display: flex;
-	flex-wrap: wrap;
+	padding: 70px 20px;
 
 	background-color: white;
 }
 
 .wrapper {
+	max-width: 1000px;
 	display: flex;
+	flex: 1 1;
+
+	justify-content: space-between;
+}
+.divorce {
+	border: solid 1px #dedee0;
 }
 .wrapper_product {
-	margin-right: 50px;
 	display: flex;
 	flex-direction: column;
 }
 .message {
+	width: 800px;
 	font-size: 30px;
 	position: relative;
+	left: 25vw;
 	top: 25vh;
 }
 .open_modal {
+	position: relative;
+	right: 20px;
+	height: 30px;
+	top: 10px;
+	color: #fd7114;
+	font-size: 40px;
+	// writing-mode: vertical-lr;
+	// text-orientation: upright;
+	animation: 0.7s linear 1s infinite alternate move;
 	@media (width >=700px) {
 		display: none;
 	}
-	// &:active {
-	// 	position: relative;
-	// 	left: 38px;
-	// 	top: -60px;
+}
 
-	// 	animation: move 1s;
-	// }
-	// @keyframes move {
-	// from {
-	// 	left: 200px;
-	// }
-	// to {
-	// 	left: 38px;
-	// }
+@keyframes move {
+	from {
+		right: 15px;
+	}
+	to {
+		right: 20px;
+	}
 }

@@ -22,26 +22,26 @@ export const Cart: FC<Props> = ({ data }) => {
 				<img className={s.img} src={data.picture}></img>
 			</div>
 			<div className={s.block_info}>
-				<h2 className={s.title}>{data.title}</h2>
+				<span className={s.title}>{data.title}</span>
 				<div className={s.block_icons}>
 					<RiDeleteBin6Fill
-						className={s.delete_icon}
+						className={s.icon}
 						onClick={() => dispatch(deleteProductFromCart(data.id))}
 					/>
 					<IoIosAddCircleOutline
-						className={s.plus_icon}
+						className={s.icon}
 						onClick={() => dispatch(incrementProduct(data.id))}
 					/>
 					<span className={s.count}>{data.quantity}</span>
 					<AiOutlineMinusCircle
-						className={s.minus_icon}
+						className={s.icon}
 						onClick={() => dispatch(decrementItemFromCart(data.id))}
 					/>
 				</div>
 			</div>
 			<div className={s.block_prise}>
 				<h3>Price:</h3>
-				<p>{data.totalPrice}</p>
+				<p>${data.totalPrice}</p>
 			</div>
 		</section>
 	)

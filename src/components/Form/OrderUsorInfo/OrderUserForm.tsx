@@ -5,6 +5,7 @@ import * as Yup from 'yup'
 
 import { useAppSelector } from '../../../hook/reduxHook'
 
+import { User } from '../../../store/Type'
 import { Button } from '../../Button/Button'
 import { Input } from '../../Input/Input'
 import { MySelect } from '../../Select/Select'
@@ -12,16 +13,21 @@ import s from './OrderUserForm.module.scss'
 interface IProps {
 	open: boolean
 	setOpen?: (nll: any) => void
+	totalSum: number
+	totalQuantity: number
 }
-export const OrderUserForm: FC<IProps> = ({ open, setOpen }) => {
+export const OrderUserForm: FC<IProps> = ({ open, setOpen, totalQuantity, totalSum }) => {
 	// const isLoading = useAppSelector(state => state.register.loading)
 	// const isEmailInvalid = useAppSelector(state => state.register.error)
-	// const isUser = useAppSelector(state => state.viewer)
+	const isUser = useAppSelector(state => state.viewer.user)
 	const country = useAppSelector(state => state.getCountry.country)
+	const [user, setUser] = useState<User>()
 	const [selectValue, setSelectValue] = useState('')
 
 	const navigate = useNavigate()
 	const fieldRef = useRef<HTMLHeadingElement>(null)
+
+	console.log(user)
 
 	const validateSchema = Yup.object().shape({
 		fullName: Yup.string()
@@ -47,10 +53,10 @@ export const OrderUserForm: FC<IProps> = ({ open, setOpen }) => {
 			{open && <div onClick={handlerClick} className={s.open_modal}></div>}
 			<Formik
 				initialValues={{
-					fullName: '',
-					phone: '',
-					city: '',
-					address: '',
+					fullName: isUser?.fullName ? isUser?.fullName : '',
+					phone: isUser?.phone ? isUser?.phone : '',
+					city: isUser?.city ? isUser?.city : '',
+					address: isUser?.address ? isUser?.address : '',
 				}}
 				validationSchema={validateSchema}
 				onSubmit={values => {
@@ -87,8 +93,14 @@ export const OrderUserForm: FC<IProps> = ({ open, setOpen }) => {
 						</Input>
 
 						<div className={s.price_block}>
-							<div></div>
-							<div></div>
+							<div className={s.price_order}>
+								<span>Items</span>
+								<span>{totalQuantity}</span>
+							</div>
+							<div className={s.price_order}>
+								<span>Total</span>
+								<span>${totalSum}</span>
+							</div>
 						</div>
 						<Button or={true}>
 							<span>Confirms the purchase</span>

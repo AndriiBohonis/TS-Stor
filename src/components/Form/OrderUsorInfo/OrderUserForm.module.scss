@@ -1,12 +1,8 @@
-.container {
-	position: relative;
-}
 .form {
 	width: 220px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	position: relative;
 
 	button {
 		margin: 10px 0px;
@@ -19,8 +15,15 @@
 		display: none;
 	}
 	.price_block {
-		width: 220px;
+		width: 150px;
 		height: 50px;
+	}
+	.price_order {
+		display: flex;
+		justify-content: space-between;
+		span {
+			color: #707070;
+		}
 	}
 }
 .open {
@@ -47,23 +50,3 @@
 		right: 0px;
 	}
 }
-
-.open_modal {
-	position: absolute;
-	top: 100px;
-}
-// // .move {
-// 	position: absolute;
-// 	z-index: 100;
-// 	right: 280px;
-// 	top: 60px;
-// 	animation: moveButton 1s;
-// }
-// @keyframes moveButton {
-// 	from {
-// 		right: 0px;
-// 	}
-// 	to {
-// 		right: 280px;
-// 	}
-// }
