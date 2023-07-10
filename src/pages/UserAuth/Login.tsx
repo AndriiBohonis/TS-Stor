@@ -19,7 +19,7 @@ export const Login: FC = () => {
 				</div>
 				<div className={s.modal__footer}>
 					<span>I have no account,</span>
-					<Link className={s.span_a} to='/register'>
+					<Link className={s.span_a} to='register'>
 						Register now
 					</Link>
 				</div>

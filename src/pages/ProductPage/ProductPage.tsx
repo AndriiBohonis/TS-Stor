@@ -48,7 +48,7 @@ const ProductPage = () => {
 				}
 			}
 		} else {
-			navigate('/alert')
+			navigate('alert')
 		}
 	}
 	const addCart = () => {

@@ -1,5 +1,5 @@
 import { Field, Form, Formik } from 'formik'
-import { FC, useEffect, useRef, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 
@@ -20,7 +20,6 @@ export const OrderUserForm: FC<IProps> = ({ open, setOpen }) => {
 	const country = useAppSelector(state => state.getCountry.country)
 	const [selectValue, setSelectValue] = useState(() => isUser?.country || '')
 	const navigate = useNavigate()
-	const fieldRef = useRef<HTMLHeadingElement>(null)
 	const [totalSum, setTotalSum] = useState(0)
 	const [items, setItems] = useState<any>()
 
@@ -78,13 +77,7 @@ export const OrderUserForm: FC<IProps> = ({ open, setOpen }) => {
 				{({ errors, touched }) => (
 					<Form className={open ? [s.form, s.open].join(' ') : s.form}>
 						<Input>
-							<Field
-								autoComplete='off'
-								innerRef={fieldRef}
-								type='text'
-								name='fullName'
-								placeholder='Full Name'
-							/>
+							<Field autoComplete='off' type='text' name='fullName' placeholder='Full Name' />
 							{touched.fullName && <div>{errors.fullName}</div>}
 						</Input>
 						<Input>
@@ -93,6 +86,8 @@ export const OrderUserForm: FC<IProps> = ({ open, setOpen }) => {
 						</Input>
 
 						<MySelect defaultValue={isUser?.country} selectValue={setSelectValue} data={country} />
+
+						{selectValue ? <></> : <div>Country is required </div>}
 
 						<Input>
 							<Field type='text' name='city' placeholder='City' />

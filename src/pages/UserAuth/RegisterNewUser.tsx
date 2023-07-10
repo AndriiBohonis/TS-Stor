@@ -18,7 +18,7 @@ export const RegisterNewUser: FC = () => {
 				<div>
 					<div className={s.modal__footer}>
 						<span>I already have an account,</span>
-						<Link className={s.span_a} to='/login'>
+						<Link className={s.span_a} to='login'>
 							Log In
 						</Link>
 					</div>

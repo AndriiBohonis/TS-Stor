@@ -22,13 +22,13 @@ export const App = () => {
 				<main className={s.main}>
 					<Routes>
 						<Route path='/' element={<HomePage />}>
-							<Route path='/alert' element={<AlertLogin />} />
-							<Route path='/login' element={<Login />} />
-							<Route path='/register' element={<RegisterNewUser />} />
-							<Route path='/product/:id' element={<ProductPage />} />
+							<Route path='alert' element={<AlertLogin />} />
+							<Route path='login' element={<Login />} />
+							<Route path='register' element={<RegisterNewUser />} />
+							<Route path='product/:id' element={<ProductPage />} />
 						</Route>
-						<Route path='/cart' element={<CartPage />} />
-						<Route path='/settings' element={<Settings />} />
+						<Route path='cart' element={<CartPage />} />
+						<Route path='settings' element={<Settings />} />
 					</Routes>
 				</main>
 				<Footer />

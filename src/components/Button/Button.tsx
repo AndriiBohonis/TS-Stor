@@ -1,4 +1,4 @@
-import { FC, ReactNode, useState } from 'react'
+import { FC, ReactNode } from 'react'
 import s from './Button.module.scss'
 interface IProps {
 	children: ReactNode
@@ -6,9 +6,9 @@ interface IProps {
 	or?: boolean
 }
 export const Button: FC<IProps> = ({ children, click, or }) => {
-	const [isLoading, setIsLoading] = useState<boolean>()
-	const [active, setActive] = useState<boolean>()
-	const [orang, setOrang] = useState<boolean | undefined>(or)
+	// const [isLoading, setIsLoading] = useState<boolean>()
+	// const [active, setActive] = useState<boolean>()
+	// const [orang, setOrang] = useState<boolean | undefined>(or)
 	const handlerClick = () => {
 		if (click) {
 			click()
@@ -16,9 +16,9 @@ export const Button: FC<IProps> = ({ children, click, or }) => {
 	}
 	return (
 		<button
-			type={orang ? 'submit' : 'button'}
+			type={or ? 'submit' : 'button'}
 			onClick={handlerClick}
-			className={orang ? [s.button, s.button_orange].join(' ') : s.button}
+			className={or ? [s.button, s.button_orange].join(' ') : s.button}
 		>
 			{children}
 		</button>
