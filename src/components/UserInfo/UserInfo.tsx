@@ -27,11 +27,8 @@ export const UserInfo: FC = () => {
 		getName(fullName)
 	}, [user])
 	const handelClickPopup: React.MouseEventHandler<HTMLDivElement> = event => {
-		if (event.currentTarget.className !== s.logo_user) {
-			setPopup(false)
-		}
-
 		setPopup(!popup)
+		event.stopPropagation()
 	}
 
 	return (

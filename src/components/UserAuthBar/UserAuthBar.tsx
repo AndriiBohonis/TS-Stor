@@ -6,13 +6,13 @@ export const Logouts: FC = () => {
 	return (
 		<div className={s.container}>
 			<div>
-				<Link className={s.register} to='/register'>
+				<Link className={s.register} to='register'>
 					REGISTER
 				</Link>
 			</div>
 			<div className={s.line}></div>
 			<div>
-				<Link className={s.login} to='/login'>
+				<Link className={s.login} to='login'>
 					LOG IN
 				</Link>
 			</div>
