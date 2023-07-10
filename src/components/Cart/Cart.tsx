@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useRef } from 'react'
 import { AiOutlineMinusCircle } from 'react-icons/ai'
 import { IoIosAddCircleOutline } from 'react-icons/io'
 import { RiDeleteBin6Fill } from 'react-icons/ri'
@@ -16,17 +16,37 @@ type Props = {
 export const Cart: FC<Props> = ({ data }) => {
 	const dispatch = useAppDispatch()
 
+	const ref = useRef<HTMLHeadingElement>(null)
+	const handlerClick = () => {
+		const wrapper = ref.current
+		if (wrapper) {
+			wrapper.classList.toggle(s.anime)
+			setTimeout(() => dispatch(deleteProductFromCart(data.id)), 500)
+		}
+	}
+
 	return (
-		<section className={s.container}>
+		<section ref={ref} className={s.container}>
 			<div className={s.block_img}>
-				<img className={s.img} src={data.picture}></img>
+				{/* <img className={s.img} src={data.picture}></img> */}
+				<div
+					style={{
+						backgroundImage: `url(${data.picture})`,
+						backgroundSize: 'contain',
+						backgroundPositionX: 'center',
+						backgroundPositionY: 'center',
+						backgroundRepeat: 'no-repeat',
+					}}
+					className={s.cart__img}
+				></div>
 			</div>
 			<div className={s.block_info}>
 				<span className={s.title}>{data.title}</span>
 				<div className={s.block_icons}>
 					<RiDeleteBin6Fill
 						className={s.icon}
-						onClick={() => dispatch(deleteProductFromCart(data.id))}
+						// onClick={() => dispatch(deleteProductFromCart(data.id))}
+						onClick={handlerClick}
 					/>
 					<IoIosAddCircleOutline
 						className={s.icon}

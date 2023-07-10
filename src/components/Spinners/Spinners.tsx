@@ -1,4 +1,4 @@
-import { CSSProperties, useState } from 'react'
+import { CSSProperties, FC } from 'react'
 import ClipLoader from 'react-spinners/ClipLoader'
 
 const override: CSSProperties = {
@@ -6,16 +6,17 @@ const override: CSSProperties = {
 	margin: '0 auto',
 	borderColor: 'bleak',
 }
-
-export const Spinner = () => {
-	let [loading, setLoading] = useState(true)
-
+interface IProps {
+	size: number
+	color: string
+}
+export const Spinner: FC<IProps> = ({ size, color }) => {
 	return (
 		<ClipLoader
-			color={'white'}
-			loading={loading}
+			color={color}
+			loading={true}
 			cssOverride={override}
-			size={20}
+			size={size}
 			aria-label='Loading Spinner'
 		/>
 	)

@@ -2,8 +2,9 @@ import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
 import { offset } from '../../store/Product/QuerySlice'
 import { ProductResponse } from '../../store/Type'
 import { ProductCart } from '../ProductCart/ProductCart'
+import { Spinner } from '../Spinners/Spinners'
 
-import s from './PriductBar.module.scss'
+import s from './ProductBar.module.scss'
 
 export const ProductBar = () => {
 	const dispatch = useAppDispatch()
@@ -11,7 +12,6 @@ export const ProductBar = () => {
 
 	let size = products.length
 	const handelClick = () => {
-		// window.scrollTo(0, 0)
 		dispatch(offset())
 	}
 
@@ -19,7 +19,7 @@ export const ProductBar = () => {
 		<section>
 			<div className={s.home_container}>
 				{loading ? (
-					<p>Loading...</p>
+					<Spinner size={300} color='#fd7114' />
 				) : (
 					products.map((product: ProductResponse) => (
 						<ProductCart key={product.id} data={product} />

@@ -43,7 +43,7 @@ export const UserInfo: FC = () => {
 			<div className={!popup ? s.arrow : [s.rote, s.arrow].join(' ')}>
 				{<MdOutlineKeyboardArrowDown />}
 			</div>
-			{popup && <UserPopup user={user} />}
+			{popup && <UserPopup popup={popup} setPopup={setPopup} user={user} />}
 		</div>
 	)
 }

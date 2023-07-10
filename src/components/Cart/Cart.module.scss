@@ -7,7 +7,33 @@
 	border: solid 1px #eceef0;
 	border-radius: 4px;
 	box-shadow: 14px 0 4px rgba(121, 121, 121, 0.0527);
+	animation: exist 1s;
 }
+
+@keyframes exist {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+.anime {
+	animation: move 1s;
+	position: relative;
+	opacity: 1;
+}
+@keyframes move {
+	from {
+		right: 0;
+		opacity: 1;
+	}
+	to {
+		right: 100px;
+		opacity: 0;
+	}
+}
+
 .block_info {
 	position: relative;
 	display: flex;
@@ -30,18 +56,20 @@
 	font-size: 14px;
 	overflow: hidden;
 }
+.cart__img {
+	background-color: white;
+	width: 100px;
+	height: 130px;
 
-.img {
-	display: block;
-	margin: 5px;
-	width: 125px;
+	border-radius: 4px;
 }
+
 .block_prise {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	flex: 1 1 auto;
+	// flex: 1 1 auto;
 	padding: 20px;
 
 	p {

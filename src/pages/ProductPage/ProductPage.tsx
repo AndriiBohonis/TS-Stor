@@ -15,6 +15,7 @@ const ProductPage = () => {
 	const cart = useAppSelector(state => state.productCart.products)
 	const isLoading = useAppSelector(state => state.productCart.loading)
 	const productFromCart = useAppSelector(state => state.cartProduct.products)
+	const isUserLogin = useAppSelector(state => state.viewer.user)
 	const navigate = useNavigate()
 	const dispatch = useAppDispatch()
 	const { id } = useParams()
@@ -35,15 +36,19 @@ const ProductPage = () => {
 	}, [id])
 
 	const addFavorite = () => {
-		if (cart?.id) {
-			if (!cart.favorite) {
-				dispatch(favorite(cart.id))
-				dispatch(favoriteProduct(cart.id))
+		if (isUserLogin) {
+			if (cart?.id) {
+				if (!cart.favorite) {
+					dispatch(favorite(cart.id))
+					dispatch(favoriteProduct(cart.id))
+				}
+				if (cart.favorite) {
+					dispatch(favoriteProductDelete(cart.id))
+					dispatch(favorite(cart.id))
+				}
 			}
-			if (cart.favorite) {
-				dispatch(favoriteProductDelete(cart.id))
-				dispatch(favorite(cart.id))
-			}
+		} else {
+			navigate('/alert')
 		}
 	}
 	const addCart = () => {
@@ -52,21 +57,16 @@ const ProductPage = () => {
 		}
 	}
 
-	const click = () => {
-		console.log('hello')
-	}
-
 	return (
-		<Popup>
+		<Popup path={-1}>
 			<div onClick={e => e.stopPropagation()} className={s.container}>
 				<div className={s.close} onClick={() => navigate(-1)}>
 					<AiOutlineClose />
 				</div>
 				{isLoading ? (
-					<h2>loading...</h2>
+					<Spinner size={200} color='#fd7114' />
 				) : (
 					<div className={s.product__info}>
-						<Spinner />
 						<div className={s.img_block}>
 							<img className={s.img} src={cart?.picture}></img>
 						</div>
@@ -104,6 +104,7 @@ const ProductPage = () => {
 					</Button>
 				</div>
 			</div>
+			)
 		</Popup>
 	)
 }

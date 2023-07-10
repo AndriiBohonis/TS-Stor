@@ -52,6 +52,7 @@ const viewerSlice = createSlice({
 	reducers: {
 		removeUser(state) {
 			state.isUser = false
+			state.user = null
 			localStorage.removeItem('token')
 		},
 	},

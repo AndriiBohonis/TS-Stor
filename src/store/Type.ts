@@ -1,18 +1,4 @@
-export type UserResponse = {
-	token: string
-	account: {
-		id: number
-		fullName: string
-		createdAt: string
-		updatedAt: string
-		email: string
-		phone: string
-		country: string | null
-		city: string | null
-		address: string | null
-	}
-}
-export type User = {
+export interface User {
 	id: number
 	fullName: string
 	createdAt: string
@@ -23,11 +9,12 @@ export type User = {
 	city: string | null
 	address: string | null
 }
+export interface UserResponse {
+	token: string
+	account: User
+}
 export type ProductResponse = {
-	category: {
-		id: number
-		name: string
-	}
+	category: Categories
 	createdAt: string
 	description: null
 	favorite: boolean
@@ -46,4 +33,31 @@ export type Categories = {
 export type Country = {
 	value: string
 	label: string
+}
+
+interface IShipment {
+	fullName: string
+	phone: string
+	country: string
+	city: string
+	address: string
+}
+export interface ICreateOrders {
+	items: [
+		{
+			productId: number
+			quantity: number
+		}
+	]
+	shipment: IShipment
+}
+
+export interface IAllOrders {
+	id: number
+	ownerId: number
+	product: ProductResponse
+	shipment: IShipment
+	totalPrice: number
+	createdAt: string
+	updatedAt: string
 }

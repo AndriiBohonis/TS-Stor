@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ProductResponse, User, UserResponse } from '../store/Type'
+import { ICreateOrders, ProductResponse, User, UserResponse } from '../store/Type'
 
 axios.defaults.baseURL = 'https://demo-api.apiko.academy/'
 export const Auth = {
@@ -26,6 +26,16 @@ export const Auth = {
 			email,
 			password,
 			phone,
+		})
+	},
+	updateUserAccount(body: any) {
+		return axios.put('api/account', {
+			...body,
+		})
+	},
+	changePassword(body: any) {
+		return axios.put('api/account/password', {
+			...body,
 		})
 	},
 }
@@ -70,9 +80,17 @@ export const country = {
 	},
 }
 
-export const orders = {
+export const Orders = {
 	getOrders() {
 		return axios.get('/api/orders?offset=0&limit=20')
+	},
+	createOrders(body: ICreateOrders) {
+		return axios.post('api/orders', {
+			...body,
+		})
+	},
+	getCurrentOrders(id: number) {
+		return axios.get(`api/orders/${id}`)
 	},
 }
 export const ProductsCategories = {

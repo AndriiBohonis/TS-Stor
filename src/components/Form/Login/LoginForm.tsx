@@ -64,7 +64,7 @@ export const LoginForm: FC = () => {
 							{errors.password && touched.password && <div>{errors.password}</div>}
 						</Input>
 						<Button or={true}>
-							<span>{isLoading ? <Spinner /> : 'Login'}</span>
+							<span>{isLoading ? <Spinner size={20} color='white' /> : 'Login'}</span>
 						</Button>
 					</Form>
 				)}

@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { AiOutlineHeart } from 'react-icons/ai'
-import { Link } from 'react-router-dom'
-import { useAppDispatch } from '../../hook/reduxHook'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
 import { favoriteProduct, favoriteProductDelete } from '../../store/Product/favoriteSlice'
 import { favorite } from '../../store/Product/getProducts'
 import { ProductResponse } from '../../store/Type'
@@ -11,14 +11,21 @@ type Props = {
 }
 
 export const ProductCart: FC<Props> = ({ data }) => {
+	const isUser = useAppSelector(state => state.viewer.user)
+	const navigate = useNavigate()
 	const dispatch = useAppDispatch()
+
 	const handleProduct = (id: number) => {
-		if (data.favorite) {
-			dispatch(favoriteProductDelete(id))
-			dispatch(favorite(id))
+		if (isUser) {
+			if (data.favorite) {
+				dispatch(favoriteProductDelete(id))
+				dispatch(favorite(id))
+			} else {
+				dispatch(favoriteProduct(id))
+				dispatch(favorite(id))
+			}
 		} else {
-			dispatch(favoriteProduct(id))
-			dispatch(favorite(id))
+			navigate('alert')
 		}
 	}
 	return (

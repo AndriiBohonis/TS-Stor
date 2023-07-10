@@ -1,50 +1,27 @@
 import { Field, Form, Formik } from 'formik'
-import { FC, useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { FC, useState } from 'react'
 import * as Yup from 'yup'
 
 import { useAppSelector } from '../../../hook/reduxHook'
 
-import { Orders } from '../../../api/Api'
+import { Auth } from '../../../api/Api'
 import { Button } from '../../Button/Button'
 import { Input } from '../../Input/Input'
 import { MySelect } from '../../Select/Select'
-import s from './OrderUserForm.module.scss'
-interface IProps {
-	open: boolean
-	setOpen?: (nll: any) => void
-}
-export const OrderUserForm: FC<IProps> = ({ open, setOpen }) => {
-	const { products, totalQuantity } = useAppSelector(state => state.cartProduct)
+import s from './MainInfo.module.scss'
+
+export const MainInfo: FC = () => {
 	const isUser = useAppSelector(state => state.viewer.user)
 	const country = useAppSelector(state => state.getCountry.country)
 	const [selectValue, setSelectValue] = useState(() => isUser?.country || '')
-	const navigate = useNavigate()
-	const fieldRef = useRef<HTMLHeadingElement>(null)
-	const [totalSum, setTotalSum] = useState(0)
-	const [items, setItems] = useState<any>()
-
-	useEffect(() => {
-		const arrSum: number[] = []
-		const arrItems: any = []
-		products.forEach(item => {
-			arrSum.push(item.totalPrice)
-			arrItems.push({ productId: item.id, quantity: item.quantity })
-		})
-		setItems(arrItems)
-
-		if (arrSum.length) {
-			setTotalSum(arrSum.reduce((acc, item) => acc + item))
-		} else {
-			setTotalSum(0)
-		}
-	}, [products])
 
 	const validateSchema = Yup.object().shape({
 		fullName: Yup.string()
 			.trim()
 			.required('Full name is required')
 			.matches(/^[a-zA-Z\s]+$/, 'Invalid full name'),
+
+		email: Yup.string().email('Invalid email').required('Email is required'),
 
 		phone: Yup.string()
 			.required('Phone is required')
@@ -54,38 +31,33 @@ export const OrderUserForm: FC<IProps> = ({ open, setOpen }) => {
 
 		address: Yup.string().trim().required('Address is required'),
 	})
-	const handlerClick = () => {
-		if (setOpen) {
-			setOpen(!open)
-		}
-	}
+
 	return (
-		<div onClick={e => e.stopPropagation()}>
-			{open && <div onClick={handlerClick} className={s.open_modal}></div>}
+		<div>
 			<Formik
 				initialValues={{
 					fullName: isUser?.fullName ? isUser?.fullName : '',
+					email: isUser?.email ? isUser.email : '',
 					phone: isUser?.phone ? isUser?.phone : '',
 					city: isUser?.city ? isUser?.city : '',
 					address: isUser?.address ? isUser?.address : '',
 				}}
 				validationSchema={validateSchema}
 				onSubmit={values => {
-					const shipment = { ...values, country: selectValue }
-					Orders.createOrders({ items, shipment })
+					const data = { ...values, country: selectValue }
+
+					Auth.updateUserAccount(data)
 				}}
 			>
 				{({ errors, touched }) => (
-					<Form className={open ? [s.form, s.open].join(' ') : s.form}>
+					<Form className={s.form}>
 						<Input>
-							<Field
-								autoComplete='off'
-								innerRef={fieldRef}
-								type='text'
-								name='fullName'
-								placeholder='Full Name'
-							/>
+							<Field autoComplete='off' type='text' name='fullName' placeholder='Full Name' />
 							{touched.fullName && <div>{errors.fullName}</div>}
+						</Input>
+						<Input>
+							<Field name='email' placeholder='Email' />
+							{errors.email && touched.email && <div>{errors.email}</div>}
 						</Input>
 						<Input>
 							<Field type='phone' name='phone' placeholder='Phone Number' />
@@ -102,23 +74,8 @@ export const OrderUserForm: FC<IProps> = ({ open, setOpen }) => {
 							<Field type='text' name='address' placeholder='Address' />
 							{touched.address && <div>{errors.address}</div>}
 						</Input>
-
-						<div className={s.price_block}>
-							<div className={s.price_order}>
-								<span>Items</span>
-								<span>{totalQuantity}</span>
-							</div>
-							<div className={s.price_order}>
-								<span>Total</span>
-								<span>${totalSum}</span>
-							</div>
-						</div>
 						<Button or={true}>
-							<span>Confirms the purchase</span>
-						</Button>
-
-						<Button click={() => navigate('/')}>
-							<span>Confirms the purchase</span>
+							<span>Save</span>
 						</Button>
 					</Form>
 				)}

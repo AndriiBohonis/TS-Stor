@@ -1,0 +1,33 @@
+.container {
+	padding: 30px;
+	width: 370px;
+	height: 397px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	background-color: white;
+	position: relative;
+	span {
+		display: block;
+		width: 200px;
+		font-weight: 400;
+	}
+	h2 {
+		max-width: 220px;
+		font-size: 25px;
+		color: #373738;
+	}
+	@media (width < 400px) {
+		width: 350px;
+	}
+}
+.delete {
+	position: absolute;
+	top: 22px;
+	right: 22px;
+	z-index: 2;
+	cursor: pointer;
+	font-size: 22px;
+	text-decoration: none;
+}

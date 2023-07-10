@@ -98,7 +98,7 @@ export const RegisterForm: FC = () => {
 							{touched.password && <div>{errors.password}</div>}
 						</Input>
 						<Button or={true}>
-							<span>{isLoading ? <Spinner /> : 'Register'}</span>
+							<span>{isLoading ? <Spinner size={20} color='white' /> : 'Register'}</span>
 						</Button>
 					</Form>
 				)}
