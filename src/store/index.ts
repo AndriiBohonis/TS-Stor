@@ -11,6 +11,9 @@ import {
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import cartProduct from './CartStor/addProductCart'
+import createOrderSlice from './Orders/createOrdersSlice'
+import currentOrderSlice from './Orders/getCurrentOrdersSlice'
+import orderListSlice from './Orders/getOrdersListSlice'
 import querySlice from './Product/QuerySlice'
 import favoriteSlice from './Product/favoriteSlice'
 import getCategoriesSlice from './Product/getCategories'
@@ -34,6 +37,9 @@ const rootReducer = combineReducers({
 	cartProduct: cartProduct,
 	UI_Slice: UI_Slice,
 	getCountry: getCountrySlice,
+	createOrderSlice: createOrderSlice,
+	orderListSlice: orderListSlice,
+	currentOrderSlice: currentOrderSlice,
 })
 const persistConfig = {
 	key: 'root',
