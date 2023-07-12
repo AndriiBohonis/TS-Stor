@@ -3,25 +3,26 @@ import { Products } from '../../api/Api'
 import { ProductResponse } from '../Type'
 
 export type ParametersType = {
-	category: number
+	category?: number
 	offset: number
 	limit: number
 	sortBy: string
 }
 
-export const asyncGetProducts = createAsyncThunk<ProductResponse[], any, { rejectValue: any }>(
-	'getProducts/asyncProducts',
-	async function ({ offset, limit, sortBy }, { rejectWithValue }) {
-		try {
-			const response = await Products.getProducts(offset, limit, sortBy)
+export const asyncGetProducts = createAsyncThunk<
+	ProductResponse[],
+	ParametersType,
+	{ rejectValue: any }
+>('getProducts/asyncProducts', async function ({ offset, limit, sortBy }, { rejectWithValue }) {
+	try {
+		const response = await Products.getProducts(offset, limit, sortBy)
 
-			return response.data
-		} catch (error) {
-			return rejectWithValue(error)
-		}
+		return response.data
+	} catch (error) {
+		return rejectWithValue(error)
 	}
-)
-export const favoriteProducts = createAsyncThunk<any, any, { rejectValue: any }>(
+})
+export const favoriteProducts = createAsyncThunk<ProductResponse[], unknown, { rejectValue: any }>(
 	'getFavorite/favoriteProducts',
 	async function (_, { rejectWithValue }) {
 		try {
@@ -48,22 +49,19 @@ export const getCategoryProducts = createAsyncThunk<
 		}
 	}
 )
-export type SearchType = {
-	keywords: string
-}
-export const searchGetProducts = createAsyncThunk<
-	ProductResponse[],
-	SearchType,
-	{ rejectValue: any }
->('getSearchProducts/SearchAsyncProducts', async function ({ keywords }, { rejectWithValue }) {
-	try {
-		const response = await Products.searchProduct(keywords)
 
-		return response.data
-	} catch (error) {
-		return rejectWithValue(error)
+export const searchGetProducts = createAsyncThunk<ProductResponse[], string, { rejectValue: any }>(
+	'getSearchProducts/SearchAsyncProducts',
+	async function (keywords, { rejectWithValue }) {
+		try {
+			const response = await Products.searchProduct(keywords)
+
+			return response.data
+		} catch (error) {
+			return rejectWithValue(error)
+		}
 	}
-})
+)
 
 interface IInitialState {
 	loading: boolean
@@ -122,7 +120,7 @@ const getProductsSlice = createSlice({
 			.addCase(getCategoryProducts.fulfilled, (state, action) => {
 				state.error = null
 				state.loading = false
-				state.products = action.payload
+				state.products.concat(action.payload)
 			})
 			.addCase(getCategoryProducts.rejected, (state, action) => {
 				state.loading = false

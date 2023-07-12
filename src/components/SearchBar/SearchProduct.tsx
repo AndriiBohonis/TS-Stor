@@ -11,7 +11,7 @@ export const SearchProduct = () => {
 	const changeHandler: React.ChangeEventHandler<HTMLInputElement> = event => {
 		const value = event.target.value
 		if (value.length >= 3) {
-			dispatch(searchGetProducts({ keywords: value }))
+			dispatch(searchGetProducts(value))
 		}
 		if (value.length == 0) {
 			dispatch(asyncGetProducts(productParam))

@@ -52,7 +52,7 @@ export interface ICreateOrders {
 	shipment: IShipment
 }
 
-export interface IAllOrders {
+export interface IResponseOrders {
 	id: number
 	ownerId: number
 	product: ProductResponse

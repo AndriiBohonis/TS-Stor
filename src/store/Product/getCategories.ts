@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { ProductsCategories } from '../../api/Api'
 import { Categories } from '../Type'
 
-export const asyncGetCategories = createAsyncThunk<Categories[], unknown, { rejectValue: any }>(
+export const asyncGetCategories = createAsyncThunk<any, unknown, { rejectValue: any }>(
 	'getCategories/asyncCategories',
 	async function (_, { rejectWithValue }) {
 		try {

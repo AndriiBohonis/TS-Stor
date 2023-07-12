@@ -1,5 +1,12 @@
 import axios from 'axios'
-import { ICreateOrders, ProductResponse, User, UserResponse } from '../store/Type'
+import {
+	Categories,
+	ICreateOrders,
+	IResponseOrders,
+	ProductResponse,
+	User,
+	UserResponse,
+} from '../store/Type'
 
 axios.defaults.baseURL = 'https://demo-api.apiko.academy/'
 export const Auth = {
@@ -47,27 +54,31 @@ export const Account = {
 
 export const Products = {
 	getProducts(offset = 1, limit = 12, sortBy = 'popular') {
-		return axios.get(`api/products?offset=${offset}&limit=${limit}&sortBy=${sortBy}`)
+		return axios.get<ProductResponse[]>(
+			`api/products?offset=${offset}&limit=${limit}&sortBy=${sortBy}`
+		)
 	},
 	getProduct(id: number) {
-		return axios.get(`api/products/${id}`)
+		return axios.get<ProductResponse>(`api/products/${id}`)
 	},
-	filter(category: number, limit: number, sortBy: string, offset: number) {
-		return axios.get(
+	filter(category: number = 1, limit: number, sortBy: string, offset: number) {
+		return axios.get<ProductResponse[]>(
 			`/api/categories/${category}/products?offset=${offset}&limit=${limit}&sortBy=${sortBy}`
 		)
 	},
-	searchProduct(search: string) {
-		return axios.get(`api/products/search?keywords=${search}&offset=0&limit=20`)
+	searchProduct(keywords: string) {
+		return axios.get<ProductResponse[]>(
+			`api/products/search?keywords=${keywords}&offset=0&limit=20`
+		)
 	},
 	favoriteProduct(id: number) {
-		return axios.post(`api/products/${id}/favorite`)
+		return axios.post<ProductResponse>(`api/products/${id}/favorite`)
 	},
 	favoriteProductDelete(id: number) {
 		return axios.delete(`api/products/${id}/favorite`)
 	},
 	getFavoriteProduct() {
-		return axios.get<ProductResponse>('/api/products/favorites?offset=0&limit=30')
+		return axios.get<ProductResponse[]>('/api/products/favorites?offset=0&limit=30')
 	},
 	getCartProduct(arr: any) {
 		return axios.get<ProductResponse>(`/api/products/ids?${arr}`)
@@ -82,7 +93,7 @@ export const country = {
 
 export const Orders = {
 	getOrders() {
-		return axios.get('/api/orders?offset=0&limit=20')
+		return axios.get<IResponseOrders[]>('/api/orders?offset=1&limit=20')
 	},
 	createOrders(body: ICreateOrders) {
 		return axios.post('api/orders', {
@@ -90,11 +101,11 @@ export const Orders = {
 		})
 	},
 	getCurrentOrders(id: number) {
-		return axios.get(`api/orders/${id}`)
+		return axios.get<IResponseOrders[]>(`api/orders/${id}`)
 	},
 }
 export const ProductsCategories = {
 	getCategories() {
-		return axios.get('api/categories')
+		return axios.get<Categories[]>('api/categories')
 	},
 }

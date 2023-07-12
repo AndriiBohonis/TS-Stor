@@ -11,7 +11,6 @@ import {
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import cartProduct from './CartStor/addProductCart'
-import getCountrySlice from './Orders/getCountry'
 import querySlice from './Product/QuerySlice'
 import favoriteSlice from './Product/favoriteSlice'
 import getCategoriesSlice from './Product/getCategories'
@@ -21,6 +20,7 @@ import UI_Slice from './Ui_Slice'
 import loginSlice from './User/loginSlice'
 import registerSlice from './User/registerSlice'
 import viewerSlice from './User/viewerSlice'
+import getCountrySlice from './getCountry'
 
 const rootReducer = combineReducers({
 	login: loginSlice,
