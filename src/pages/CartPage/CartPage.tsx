@@ -12,31 +12,35 @@ export const CartPage = () => {
 	const [open, setOpen] = useState(false)
 
 	return (
-		<div className={s.container}>
-			<h2>My Cart</h2>
-			{products.length ? (
-				<div className={s.wrapper}>
-					<div className={s.wrapper_product}>
-						{products.map((product: IProduct) => (
-							<Cart key={product.id} data={product} />
-						))}
-					</div>
-					{!open && (
-						<div onClick={() => setOpen(!open)} className={s.open_modal}>
-							<BsArrowLeftSquare />
+		<div className={s.wrapper}>
+			<div className={s.container}>
+				<h2 className={s.title}>My Cart</h2>
+				{products.length ? (
+					<div className={s.content}>
+						<div className={s.wrapper_product}>
+							{products.map((product: IProduct) => (
+								<Cart key={product.id} data={product} />
+							))}
 						</div>
-					)}
+						{!open && (
+							<div onClick={() => setOpen(!open)} className={s.open_modal}>
+								<BsArrowLeftSquare />
+							</div>
+						)}
 
-					<OrderUserForm open={open} />
-					{open && (
-						<Popup onMove={() => setOpen(!open)}>
-							<OrderUserForm setOpen={setOpen} open={open} />
-						</Popup>
-					)}
-				</div>
-			) : (
-				<p className={s.message}>Cart Empty</p>
-			)}
+						<OrderUserForm open={open} />
+						{open && (
+							<Popup onMove={() => setOpen(!open)}>
+								<OrderUserForm setOpen={setOpen} open={open} />
+							</Popup>
+						)}
+					</div>
+				) : (
+					<div className={s.message}>
+						<p>Cart Empty</p>
+					</div>
+				)}
+			</div>
 		</div>
 	)
 }

@@ -27,41 +27,41 @@ export const Cart: FC<Props> = ({ data }) => {
 
 	return (
 		<section ref={ref} className={s.container}>
-			<div className={s.block_img}>
-				{/* <img className={s.img} src={data.picture}></img> */}
-				<div
-					style={{
-						backgroundImage: `url(${data.picture})`,
-						backgroundSize: 'contain',
-						backgroundPositionX: 'center',
-						backgroundPositionY: 'center',
-						backgroundRepeat: 'no-repeat',
-					}}
-					className={s.cart__img}
-				></div>
-			</div>
-			<div className={s.block_info}>
-				<span className={s.title}>{data.title}</span>
-				<div className={s.block_icons}>
-					<RiDeleteBin6Fill
-						className={s.icon}
-						// onClick={() => dispatch(deleteProductFromCart(data.id))}
-						onClick={handlerClick}
-					/>
-					<IoIosAddCircleOutline
-						className={s.icon}
-						onClick={() => dispatch(incrementProduct(data.id))}
-					/>
-					<span className={s.count}>{data.quantity}</span>
-					<AiOutlineMinusCircle
-						className={s.icon}
-						onClick={() => dispatch(decrementItemFromCart(data.id))}
-					/>
+			<div className={s.left_block}>
+				<div className={s.block_img}>
+					<div
+						style={{
+							backgroundImage: `url(${data.picture})`,
+							backgroundSize: 'contain',
+							backgroundPositionX: 'center',
+							backgroundPositionY: 'center',
+							backgroundRepeat: 'no-repeat',
+						}}
+						className={s.cart__img}
+					></div>
+				</div>
+				<div className={s.block_info}>
+					<span className={s.title}>{data.title}</span>
+					<div className={s.block_icons}>
+						<RiDeleteBin6Fill className={s.icon} onClick={handlerClick} />
+						<IoIosAddCircleOutline
+							className={s.icon}
+							onClick={() => dispatch(incrementProduct(data.id))}
+						/>
+						<span className={s.count}>{data.quantity}</span>
+						<AiOutlineMinusCircle
+							className={s.icon}
+							onClick={() => dispatch(decrementItemFromCart(data.id))}
+						/>
+					</div>
 				</div>
 			</div>
-			<div className={s.block_prise}>
-				<h3>Price:</h3>
-				<p>${data.totalPrice}</p>
+			<div className={s.right_block}>
+				<div className={s.divorce}></div>
+				<div className={s.block_prise}>
+					<h3>Price:</h3>
+					<p>${data.totalPrice}</p>
+				</div>
 			</div>
 		</section>
 	)
