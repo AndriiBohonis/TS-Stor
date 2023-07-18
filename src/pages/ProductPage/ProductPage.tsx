@@ -24,14 +24,13 @@ const ProductPage = () => {
 
 	useEffect(() => {
 		if (id) {
-			const element = productFromCart.filter(item => item.id === +id.slice(1))
+			const element = productFromCart.filter(item => item.id === +id)
 			setCount(element[0]?.quantity)
 		}
 	}, [productFromCart])
 	useEffect(() => {
 		if (id) {
-			const num = id.slice(1)
-			dispatch(asyncGetProductCart(+num))
+			dispatch(asyncGetProductCart(+id))
 		}
 	}, [id])
 

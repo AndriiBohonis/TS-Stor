@@ -1,5 +1,5 @@
 import { ChangePassword } from '../../components/Form/ChengPassword/ChangePassword'
-import { MainInfo } from '../../components/Form/MainInfo/MainInfo'
+import { MainInfo } from '../../components/Form/ChengPassword/MainInfo'
 import s from './UserInfoPage.module.scss'
 function UserInfoPage() {
 	return (

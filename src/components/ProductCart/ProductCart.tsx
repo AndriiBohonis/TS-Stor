@@ -28,6 +28,7 @@ export const ProductCart: FC<Props> = ({ data }) => {
 			navigate('alert')
 		}
 	}
+
 	return (
 		<div className={s.wrapper}>
 			<div className={s.cart__container}>
@@ -48,7 +49,7 @@ export const ProductCart: FC<Props> = ({ data }) => {
 				</div>
 				<h2 className={s.cart__title}>
 					{
-						<Link className={s.text} to={`${data.id}`}>
+						<Link className={s.text} to={`/${data.id}`}>
 							{' '}
 							{data.title}
 						</Link>

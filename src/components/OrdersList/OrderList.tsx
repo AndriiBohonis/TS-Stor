@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { formatDate } from '../../Helpers/Helpers'
 import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
 import { asyncGetOrderList } from '../../store/Orders/getOrdersListSlice'
 import { IResponseOrders } from '../../store/Type'
@@ -29,12 +30,12 @@ export const OrderList = () => {
 								</div>
 								<div>
 									<span>Data:</span>
-									<span className={s.mod}>{order.createdAt}</span>
+									<span className={s.mod}>{formatDate(order.createdAt)}</span>
 								</div>
 							</div>
 							<div className={s.right_block}>
 								<div>
-									<span>Price:</span> <span className={s.mod}>${order.totalPrice}</span>
+									<span>Price</span> <span className={s.mod}>${order.totalPrice}</span>
 								</div>
 							</div>
 						</div>

@@ -1,8 +1,6 @@
 import { Field, Form, Formik } from 'formik'
 import { FC } from 'react'
 import * as Yup from 'yup'
-import s from './ChangePassword.module.scss'
-
 import { useAppDispatch, useAppSelector } from '../../../hook/reduxHook'
 import { asyncChengPassword } from '../../../store/User/chengePassword'
 import { Button } from '../../Button/Button'
@@ -10,6 +8,7 @@ import { Input } from '../../Input/Input'
 import { InputPassword } from '../../Input/InputPassword'
 import { Spinner } from '../../Spinners/Spinners'
 
+import s from './UserForm.module.scss'
 export const ChangePassword: FC = () => {
 	const loading = useAppSelector(state => state.viewer.loading)
 	const dispatch = useAppDispatch()

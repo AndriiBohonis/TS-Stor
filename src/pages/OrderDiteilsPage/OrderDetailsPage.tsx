@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useNavigate, useParams } from 'react-router-dom'
+import { formatDate } from '../../Helpers/Helpers'
 import { OrderDetailsList } from '../../components/OrderDitalseList/OrderDetailsList'
 import Popup from '../../components/Popup/Popup'
 import { Spinner } from '../../components/Spinners/Spinners'
@@ -41,7 +42,7 @@ const OrderDetailsPage = () => {
 					<div className={s.info_block}>
 						<div>
 							<span>Data:</span>
-							<span className={s.mod}>{order?.createdAt}</span>
+							<span className={s.mod}>{formatDate(order?.createdAt)}</span>
 							<div>
 								<span>Address:</span>
 								<span className={s.mod}>{address}</span>

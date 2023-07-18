@@ -1,13 +1,20 @@
+.wrapper {
+	width: 100vw;
+}
+
 .container {
-	padding-top: 100px;
-	width: 900px;
 	margin: 0 auto;
+	padding-top: 100px;
+	max-width: 900px;
+	height: 100%;
+	// display: flex;
+	// flex-direction: column;
+	// align-items: center;
 	background-color: white;
 }
 .name_block {
 	display: flex;
 	align-items: center;
-
 	flex-direction: column;
 }
 .logo {
@@ -27,22 +34,28 @@
 	font-size: 22px;
 }
 .nav_block {
-	width: 489px;
+	padding: 0 5px;
+	max-width: 700px;
 	height: 74px;
 	margin: 40px auto;
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
+	align-items: center;
 }
 .link {
 	cursor: pointer;
-	width: 100%;
+	width: 160px;
+	height: 100%;
 	border: solid 1px #dedee0;
 	text-align: center;
-	padding: 25px;
 	color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .active {
 	position: relative;
+
 	background-color: #fd7114;
 	color: white;
 	&:after {
@@ -55,7 +68,4 @@
 		border-bottom: 0;
 		border-left: 10px solid transparent;
 	}
-}
-.content_blok {
-	width: 100%;
 }

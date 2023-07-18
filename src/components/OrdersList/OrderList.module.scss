@@ -1,10 +1,13 @@
 .container {
 	margin: 10px auto;
-	width: 468px;
+	width: 500px;
 	height: 89px;
 	border: solid 1px #eceef0;
 	display: flex;
 	justify-content: space-between;
+	@media (width < 520px) {
+		width: 350px;
+	}
 
 	div {
 		margin: 10px 5px;
@@ -17,7 +20,8 @@
 }
 .right_block {
 	display: flex;
-	align-items: start;
+	justify-content: center;
+	align-items: center;
 }
 
 .mod {

@@ -11,16 +11,19 @@
 	input {
 		width: 377px;
 	}
-
-	.price_block {
-		width: 150px;
-		height: 50px;
-	}
-	.price_order {
+}
+@media (width < 440px) {
+	.form {
+		width: 300px;
 		display: flex;
-		justify-content: space-between;
-		span {
-			color: #707070;
+		flex-direction: column;
+		justify-content: center;
+		button {
+			margin: 10px 0px;
+			width: 300px;
+		}
+		input {
+			width: 300px;
 		}
 	}
 }

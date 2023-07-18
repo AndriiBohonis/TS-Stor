@@ -5,6 +5,7 @@ import * as Yup from 'yup'
 
 import { useAppDispatch, useAppSelector } from '../../../hook/reduxHook'
 
+import { AiOutlineClose } from 'react-icons/ai'
 import { asyncCreateOrder } from '../../../store/Orders/createOrdersSlice'
 import { Button } from '../../Button/Button'
 import { Input } from '../../Input/Input'
@@ -13,7 +14,7 @@ import { Spinner } from '../../Spinners/Spinners'
 import s from './OrderUserForm.module.scss'
 interface IProps {
 	open: boolean
-	setOpen?: (nll: any) => void
+	setOpen?: (e: boolean) => void
 }
 export const OrderUserForm: FC<IProps> = ({ open, setOpen }) => {
 	const { products, totalQuantity } = useAppSelector(state => state.cartProduct)
@@ -79,6 +80,7 @@ export const OrderUserForm: FC<IProps> = ({ open, setOpen }) => {
 			>
 				{({ errors, touched }) => (
 					<Form className={open ? [s.form, s.open].join(' ') : s.form}>
+						{open && <AiOutlineClose className={s.close} onClick={handlerClick} />}
 						<Input>
 							<Field autoComplete='off' type='text' name='fullName' placeholder='Full Name' />
 							{touched.fullName && <div>{errors.fullName}</div>}

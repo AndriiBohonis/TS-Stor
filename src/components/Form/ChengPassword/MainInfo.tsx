@@ -9,7 +9,7 @@ import { Button } from '../../Button/Button'
 import { Input } from '../../Input/Input'
 import { MySelect } from '../../Select/Select'
 import { Spinner } from '../../Spinners/Spinners'
-import s from './MainInfo.module.scss'
+import s from './UserForm.module.scss'
 
 export const MainInfo: FC = () => {
 	const isUser = useAppSelector(state => state.viewer.user)
