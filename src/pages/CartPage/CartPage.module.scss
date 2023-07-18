@@ -1,5 +1,5 @@
 .container {
-	max-width: 1000px;
+	width: 900px;
 	margin-top: 60px;
 	padding: 70px 20px;
 
@@ -9,6 +9,7 @@
 .wrapper {
 	max-width: 100%;
 	display: flex;
+	justify-content: space-evenly;
 }
 
 .wrapper_product {
@@ -20,7 +21,6 @@
 	}
 }
 .message {
-	width: 800px;
 	font-size: 30px;
 	position: relative;
 	left: 25vw;

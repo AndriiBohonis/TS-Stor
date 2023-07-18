@@ -1,0 +1,26 @@
+.container {
+	margin: 10px auto;
+	width: 468px;
+	height: 89px;
+	border: solid 1px #eceef0;
+	display: flex;
+	justify-content: space-between;
+
+	div {
+		margin: 10px 5px;
+	}
+	span {
+		color: #707070;
+		font-size: 15px;
+		padding-right: 10px;
+	}
+}
+.right_block {
+	display: flex;
+	align-items: start;
+}
+
+.mod {
+	font-weight: 700;
+	color: #373738;
+}

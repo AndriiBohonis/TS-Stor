@@ -38,6 +38,7 @@ const updateUserSlice = createSlice({
 			})
 			.addCase(asyncUpdateUser.fulfilled, (state, action) => {
 				state.response = action.payload
+				state.loading = false
 			})
 			.addCase(asyncUpdateUser.rejected, (state, action) => {
 				state.loading = false

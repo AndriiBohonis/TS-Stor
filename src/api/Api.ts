@@ -2,6 +2,7 @@ import axios from 'axios'
 import {
 	Categories,
 	ICreateOrders,
+	IResponseCurrentOrders,
 	IResponseOrders,
 	ProductResponse,
 	User,
@@ -92,7 +93,7 @@ export const country = {
 }
 
 export const Orders = {
-	getOrders() {
+	getOrders(limit?: number) {
 		return axios.get<IResponseOrders[]>('/api/orders?offset=1&limit=20')
 	},
 	createOrders(body: ICreateOrders) {
@@ -101,7 +102,7 @@ export const Orders = {
 		})
 	},
 	getCurrentOrders(id: number) {
-		return axios.get<IResponseOrders[]>(`api/orders/${id}`)
+		return axios.get<IResponseCurrentOrders>(`api/orders/${id}`)
 	},
 }
 export const ProductsCategories = {

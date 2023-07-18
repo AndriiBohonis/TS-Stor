@@ -55,7 +55,22 @@ export interface ICreateOrders {
 export interface IResponseOrders {
 	id: number
 	ownerId: number
+	product: ProductResponse[]
+	shipment: IShipment
+	totalPrice: number
+	createdAt: string
+	updatedAt: string
+}
+export interface IItemOrder {
 	product: ProductResponse
+	quantity: number
+	orderedPrice: number
+}
+export interface IResponseCurrentOrders {
+	id: number
+	ownerId: number
+	items: IItemOrder[]
+
 	shipment: IShipment
 	totalPrice: number
 	createdAt: string

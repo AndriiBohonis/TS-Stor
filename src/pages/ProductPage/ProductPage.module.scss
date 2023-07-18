@@ -35,13 +35,13 @@
 	width: 250px;
 	height: auto;
 	@media (width < 669px) {
-		max-width: 120px;
+		max-width: 100px;
 		height: auto;
 	}
 }
 
 .title {
-	margin: 20px 10px 10px 10px;
+	margin: 20px 10px;
 	max-width: 300px;
 	font-size: 15px;
 	height: 36px;
@@ -49,6 +49,7 @@
 	text-transform: uppercase;
 }
 .description {
+	margin-right: 10px;
 	padding: 10px;
 	font-size: 14px;
 	max-width: 300px;
@@ -57,7 +58,7 @@
 	color: #707070;
 }
 .wrapper_price {
-	margin-top: 30px;
+	margin-top: 25px;
 	max-width: 200px;
 	padding: 10px;
 	display: flex;
@@ -69,43 +70,27 @@
 	color: #707070;
 }
 .prise {
-	font-size: 18px;
+	font-size: 1rem;
 	font-weight: 700;
 	color: #707070;
 }
 .button_block {
 	max-width: 782px;
 	display: flex;
+	font-size: 15px;
 	justify-content: space-around;
 	@media (width < 669px) {
-		max-width: 500px;
+		width: 500px;
 	}
 	@media (width < 530px) {
-		max-width: 300px;
+		width: 300px;
 	}
 	button {
-		width: 200px;
-		background: white;
-		margin: 5px;
-		padding: 5px;
-		font-size: 12px;
-		color: #fd7114;
-		border: solid 2px #fd7114;
-		border-radius: 4px;
-		@media (width < 669px) {
-			max-width: 150px;
-		}
-
-		&:hover {
-			background-color: #fd7114;
-			transform: translateY(1px);
-			transition-duration: 0.3s;
-			color: white;
-		}
+		margin: 10px;
+		width: 180px;
 	}
-	.active {
-		background: #fd7114;
-		color: white;
+	span {
+		font-size: 15px;
 	}
 }
 .block_add_product {
@@ -114,7 +99,7 @@
 	align-items: center;
 	justify-content: space-around;
 	color: #707070;
-	font-size: 40px;
+	font-size: 35px;
 	animation: move 1s;
 }
 @keyframes move {

@@ -14,10 +14,10 @@ export const AlertLogin = () => {
 					<AiOutlineClose />
 				</Link>
 				<h2>To continue please register or log in</h2>
-				<Button click={() => navigate('/login')} or={true}>
+				<Button click={() => navigate('/login')} orange={true}>
 					<span>Continue to sign in</span>
 				</Button>
-				<Button click={() => navigate('/register')} or={true}>
+				<Button click={() => navigate('/register')} orange={true}>
 					<span>Continue to register</span>
 				</Button>
 				<Button click={() => navigate(-1)}>

@@ -2,10 +2,10 @@ import { FC, useEffect } from 'react'
 
 import s from './Header.module.scss'
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
 import { Logouts } from '../UserAuthBar/UserAuthBar'
-import { UserInfo } from '../UserInfo/UserInfo'
+import UserInfo from '../UserInfo/UserInfo'
 
 import { AiFillHeart } from 'react-icons/ai'
 import { MdShoppingCart } from 'react-icons/md'
@@ -17,6 +17,7 @@ export const Header: FC = () => {
 	const isUser = useAppSelector(state => state.login.isUser)
 	const isRegisterUser = useAppSelector(state => state.register.isUser)
 	const products = useAppSelector(state => state.cartProduct.totalQuantity)
+	const navigate = useNavigate()
 
 	const dispatch = useAppDispatch()
 
@@ -26,8 +27,6 @@ export const Header: FC = () => {
 	const favoriteHandler: React.MouseEventHandler<HTMLDivElement> = () => {
 		if (viewer) {
 			dispatch(favoriteProducts(''))
-		} else {
-			alert('First log in')
 		}
 	}
 	return (
@@ -41,7 +40,7 @@ export const Header: FC = () => {
 
 				<div className={s.product_container}>
 					{
-						<Link to='/'>
+						<Link to={viewer ? '/' : 'alert'}>
 							<div onClick={favoriteHandler}>
 								<AiFillHeart className={s.selectedProduct} />
 							</div>

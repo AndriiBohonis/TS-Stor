@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../../hook/reduxHook'
 import { switchScrollOF, switchScrollON } from '../../../store/Ui_Slice'
 import { Button } from '../../Button/Button'
 import { Input } from '../../Input/Input'
+import { InputPassword } from '../../Input/InputPassword'
 import { Spinner } from '../../Spinners/Spinners'
 import s from './RegisterForm.module.scss'
 
@@ -38,7 +39,7 @@ export const RegisterForm: FC = () => {
 		fullName: Yup.string()
 			.trim()
 			.required('Full name is required')
-			.matches(/^[a-zA-Z\s]+$/, 'Invalid full name'),
+			.matches(/^[a-zA-Z]+\s+[a-zA-Z]+$/, 'Invalid full name'),
 
 		email: Yup.string().email('Invalid email').required('Email is required'),
 		phone: Yup.string()
@@ -91,13 +92,13 @@ export const RegisterForm: FC = () => {
 						</Input>
 
 						<Input>
-							<Field type='password' name='password' placeholder='Password' />
+							<Field as={InputPassword} name='password' placeholder='Password' />
 							{isEmailInvalid === 409 && (
 								<div>A user with this email address or password exists</div>
 							)}
 							{touched.password && <div>{errors.password}</div>}
 						</Input>
-						<Button or={true}>
+						<Button orange={true} submit={true}>
 							<span>{isLoading ? <Spinner size={20} color='white' /> : 'Register'}</span>
 						</Button>
 					</Form>

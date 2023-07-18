@@ -48,7 +48,7 @@ export const ProductCart: FC<Props> = ({ data }) => {
 				</div>
 				<h2 className={s.cart__title}>
 					{
-						<Link className={s.text} to={`product/:${data.id}`}>
+						<Link className={s.text} to={`${data.id}`}>
 							{' '}
 							{data.title}
 						</Link>

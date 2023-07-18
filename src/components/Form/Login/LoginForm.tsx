@@ -9,19 +9,19 @@ import { useAppDispatch, useAppSelector } from '../../../hook/reduxHook'
 import { switchScrollOF, switchScrollON } from '../../../store/Ui_Slice'
 import { Button } from '../../Button/Button'
 import { Input } from '../../Input/Input'
+import { InputPassword } from '../../Input/InputPassword'
 import { Spinner } from '../../Spinners/Spinners'
 
 export const LoginForm: FC = () => {
 	const isLoading = useAppSelector(state => state.login.loading)
 	const isLoadingViewer = useAppSelector(state => state.viewer.loading)
 	const isUser = useAppSelector(state => state.viewer.isUser)
-	const fieldRef = useRef<HTMLHeadingElement>(null)
 	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
 
 	useEffect(() => {
 		dispatch(switchScrollOF())
-		// fieldRef.current?.focus()
+
 		return () => {
 			dispatch(switchScrollON())
 		}
@@ -55,15 +55,15 @@ export const LoginForm: FC = () => {
 				{({ errors, touched }) => (
 					<Form className={s.form}>
 						<Input>
-							<Field innerRef={fieldRef} name='email' placeholder='Email' />
+							<Field name='email' placeholder='Email' />
 							{errors.email && touched.email && <div>{errors.email}</div>}
 						</Input>
 
 						<Input>
-							<Field type='password' name='password' placeholder='Password' />
+							<Field as={InputPassword} name='password' placeholder='Password' />
 							{errors.password && touched.password && <div>{errors.password}</div>}
 						</Input>
-						<Button or={true}>
+						<Button orange={true} submit={true}>
 							<span>{isLoading ? <Spinner size={20} color='white' /> : 'Login'}</span>
 						</Button>
 					</Form>

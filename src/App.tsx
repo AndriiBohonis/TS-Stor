@@ -8,10 +8,14 @@ import { Login } from './pages/UserAuth/Login'
 import { RegisterNewUser } from './pages/UserAuth/RegisterNewUser'
 
 import { AlertLogin } from './components/AlertLogin/AlertLogin'
+import FavoriteProduct from './components/FavoriteProduct/FavoriteProduct'
+import { OrderList } from './components/OrdersList/OrderList'
 import { useAppSelector } from './hook/reduxHook'
 import { HomePage } from './pages/Home/HomePage'
+import OrderDetailsPage from './pages/OrderDiteilsPage/OrderDetailsPage'
 import ProductPage from './pages/ProductPage/ProductPage'
 import { Settings } from './pages/Settinds/Settings'
+import UserInfoPage from './pages/UserInfo/UserInfoPage'
 export const App = () => {
 	const isScroll = useAppSelector(state => state.UI_Slice.scroll)
 
@@ -25,10 +29,15 @@ export const App = () => {
 							<Route path='alert' element={<AlertLogin />} />
 							<Route path='login' element={<Login />} />
 							<Route path='register' element={<RegisterNewUser />} />
-							<Route path='product/:id' element={<ProductPage />} />
+							<Route path='/:id' element={<ProductPage />} />
 						</Route>
 						<Route path='cart' element={<CartPage />} />
-						<Route path='settings' element={<Settings />} />
+						<Route path='settings' element={<Settings />}>
+							<Route path='useInfo' element={<UserInfoPage />} />
+							<Route path='historyOrder' element={<OrderList />}></Route>
+							<Route path='favorite' element={<FavoriteProduct />} />
+							<Route path='/settings/historyOrder/:id' element={<OrderDetailsPage />} />
+						</Route>
 					</Routes>
 				</main>
 				<Footer />

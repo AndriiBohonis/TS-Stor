@@ -2,24 +2,29 @@ import { Field, Form, Formik } from 'formik'
 import { FC, useState } from 'react'
 import * as Yup from 'yup'
 
-import { useAppSelector } from '../../../hook/reduxHook'
+import { useAppDispatch, useAppSelector } from '../../../hook/reduxHook'
 
-import { Auth } from '../../../api/Api'
+import { asyncUpdateUser } from '../../../store/User/viewerSlice'
 import { Button } from '../../Button/Button'
 import { Input } from '../../Input/Input'
 import { MySelect } from '../../Select/Select'
+import { Spinner } from '../../Spinners/Spinners'
 import s from './MainInfo.module.scss'
 
 export const MainInfo: FC = () => {
 	const isUser = useAppSelector(state => state.viewer.user)
 	const country = useAppSelector(state => state.getCountry.country)
+	const loading = useAppSelector(state => state.viewer.loading)
 	const [selectValue, setSelectValue] = useState(() => isUser?.country || '')
+	const [select, setSelect] = useState(false)
+
+	const dispatch = useAppDispatch()
 
 	const validateSchema = Yup.object().shape({
 		fullName: Yup.string()
 			.trim()
 			.required('Full name is required')
-			.matches(/^[a-zA-Z\s]+$/, 'Invalid full name'),
+			.matches(/^[a-zA-Z]+\s+[a-zA-Z]+$/, 'Invalid full name'),
 
 		email: Yup.string().email('Invalid email').required('Email is required'),
 
@@ -45,8 +50,11 @@ export const MainInfo: FC = () => {
 				validationSchema={validateSchema}
 				onSubmit={values => {
 					const data = { ...values, country: selectValue }
-
-					Auth.updateUserAccount(data)
+					if (!selectValue) {
+						setSelect(true)
+					} else {
+						dispatch(asyncUpdateUser(data))
+					}
 				}}
 			>
 				{({ errors, touched }) => (
@@ -65,6 +73,7 @@ export const MainInfo: FC = () => {
 						</Input>
 
 						<MySelect defaultValue={isUser?.country} selectValue={setSelectValue} data={country} />
+						{select && <div>Country is required</div>}
 
 						<Input>
 							<Field type='text' name='city' placeholder='City' />
@@ -74,8 +83,8 @@ export const MainInfo: FC = () => {
 							<Field type='text' name='address' placeholder='Address' />
 							{touched.address && <div>{errors.address}</div>}
 						</Input>
-						<Button or={true}>
-							<span>Save</span>
+						<Button orange={true} submit={true}>
+							{!loading ? <span>Save</span> : <Spinner size={20} color='white' />}
 						</Button>
 					</Form>
 				)}

@@ -1,6 +1,7 @@
 .container {
 	padding-top: 100px;
 	width: 900px;
+	margin: 0 auto;
 	background-color: white;
 }
 .name_block {
@@ -10,36 +11,51 @@
 	flex-direction: column;
 }
 .logo {
+	font-size: 25px;
 	margin-right: 5px;
 	width: 80px;
 	height: 80px;
 	border-radius: 50%;
-
+	border: solid 2px #fd7114;
 	background-color: #dedee0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	// cursor: pointer;
-	// &:hover {
-	// 	border: solid 4px #e85f03;
-	// }
 }
 .name_user {
 	margin-top: 18px;
 	font-size: 22px;
 }
 .nav_block {
-	margin-top: 40px;
 	width: 489px;
 	height: 74px;
-
+	margin: 40px auto;
 	display: flex;
 	justify-content: space-between;
-	div {
-		cursor: pointer;
-		width: 100%;
-		border: solid 1px #dedee0;
-		text-align: center;
-		padding: 25px;
+}
+.link {
+	cursor: pointer;
+	width: 100%;
+	border: solid 1px #dedee0;
+	text-align: center;
+	padding: 25px;
+	color: black;
+}
+.active {
+	position: relative;
+	background-color: #fd7114;
+	color: white;
+	&:after {
+		content: '';
+		position: absolute;
+		bottom: -9px;
+		left: 45%;
+		border-top: 10px solid #fd7114;
+		border-right: 10px solid transparent;
+		border-bottom: 0;
+		border-left: 10px solid transparent;
 	}
+}
+.content_blok {
+	width: 100%;
 }

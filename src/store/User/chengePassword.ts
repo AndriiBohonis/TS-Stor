@@ -2,12 +2,12 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { Auth } from '../../api/Api'
 import { UserResponse } from '../Type'
 
-type UserLogin = {
-	email: string
-	password: string
+type Password = {
+	oldPassword: ''
+	password: ''
 }
 
-export const asyncChengPassword = createAsyncThunk<UserResponse, UserLogin, { rejectValue: any }>(
+export const asyncChengPassword = createAsyncThunk<UserResponse, any, { rejectValue: any }>(
 	'chengPassword/asyncChengPassword',
 	async function (password, { rejectWithValue }) {
 		try {
@@ -43,6 +43,7 @@ const chengPassword = createSlice({
 			})
 			.addCase(asyncChengPassword.fulfilled, (state, action) => {
 				state.response = action.payload
+				state.loading = false
 			})
 			.addCase(asyncChengPassword.rejected, (state, action) => {
 				state.loading = false

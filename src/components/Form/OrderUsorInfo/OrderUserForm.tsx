@@ -3,12 +3,13 @@ import { FC, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 
-import { useAppSelector } from '../../../hook/reduxHook'
+import { useAppDispatch, useAppSelector } from '../../../hook/reduxHook'
 
-import { Orders } from '../../../api/Api'
+import { asyncCreateOrder } from '../../../store/Orders/createOrdersSlice'
 import { Button } from '../../Button/Button'
 import { Input } from '../../Input/Input'
 import { MySelect } from '../../Select/Select'
+import { Spinner } from '../../Spinners/Spinners'
 import s from './OrderUserForm.module.scss'
 interface IProps {
 	open: boolean
@@ -18,10 +19,12 @@ export const OrderUserForm: FC<IProps> = ({ open, setOpen }) => {
 	const { products, totalQuantity } = useAppSelector(state => state.cartProduct)
 	const isUser = useAppSelector(state => state.viewer.user)
 	const country = useAppSelector(state => state.getCountry.country)
+	const { loading } = useAppSelector(state => state.createOrderSlice)
 	const [selectValue, setSelectValue] = useState(() => isUser?.country || '')
 	const navigate = useNavigate()
 	const [totalSum, setTotalSum] = useState(0)
 	const [items, setItems] = useState<any>()
+	const dispatch = useAppDispatch()
 
 	useEffect(() => {
 		const arrSum: number[] = []
@@ -43,7 +46,7 @@ export const OrderUserForm: FC<IProps> = ({ open, setOpen }) => {
 		fullName: Yup.string()
 			.trim()
 			.required('Full name is required')
-			.matches(/^[a-zA-Z\s]+$/, 'Invalid full name'),
+			.matches(/^[a-zA-Z]+\s+[a-zA-Z]+$/, 'Invalid full name'),
 
 		phone: Yup.string()
 			.required('Phone is required')
@@ -71,7 +74,7 @@ export const OrderUserForm: FC<IProps> = ({ open, setOpen }) => {
 				validationSchema={validateSchema}
 				onSubmit={values => {
 					const shipment = { ...values, country: selectValue }
-					Orders.createOrders({ items, shipment })
+					dispatch(asyncCreateOrder({ items, shipment }))
 				}}
 			>
 				{({ errors, touched }) => (
@@ -108,8 +111,8 @@ export const OrderUserForm: FC<IProps> = ({ open, setOpen }) => {
 								<span>${totalSum}</span>
 							</div>
 						</div>
-						<Button or={true}>
-							<span>Confirms the purchase</span>
+						<Button orange={true} submit={true}>
+							{!loading ? <span>Confirms the purchase</span> : <Spinner size={20} color='white' />}
 						</Button>
 
 						<Button click={() => navigate('/')}>

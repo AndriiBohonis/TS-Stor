@@ -1,17 +1,17 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { Orders } from '../../api/Api'
-import { ICreateOrders, IResponseOrders } from '../Type'
+import { IResponseOrders } from '../Type'
 
 export const asyncGetOrderList = createAsyncThunk<
 	IResponseOrders[],
-	ICreateOrders,
-	{ rejectValue: any }
->('orderListSlice/asyncGetOrderList ', async function (body, { rejectWithValue }) {
+	undefined,
+	{ rejectValue: string }
+>('orderListSlice/asyncGetOrderList ', async (_, { rejectWithValue }) => {
 	try {
-		const response = await Orders.createOrders(body)
+		const response = await Orders.getOrders()
 		return response.data
 	} catch (error) {
-		rejectWithValue(error)
+		return rejectWithValue('')
 	}
 })
 interface IInitialState {

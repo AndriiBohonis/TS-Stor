@@ -56,6 +56,12 @@ const ProductPage = () => {
 			dispatch(addItemToCart(cart))
 		}
 	}
+	const buyNewHandler = () => {
+		if (cart) {
+			dispatch(addItemToCart(cart))
+		}
+		navigate('/cart')
+	}
 
 	return (
 		<Popup path={-1}>
@@ -99,7 +105,7 @@ const ProductPage = () => {
 					<Button click={addFavorite}>
 						<span>ADD TO FAVORITES</span>
 					</Button>
-					<Button>
+					<Button click={buyNewHandler} orange={true}>
 						<span>BUY NOW</span>
 					</Button>
 				</div>
