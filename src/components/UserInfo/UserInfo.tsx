@@ -13,8 +13,7 @@ const UserInfo: FC = () => {
 		setPopup(!popup)
 		event.stopPropagation()
 	}
-	console.log(user)
-	console.log(popup)
+
 	return (
 		<div className={s.container}>
 			<div className={s.user}>Welcome, {user?.fullName}!</div>

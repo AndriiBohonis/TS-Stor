@@ -12,7 +12,6 @@ export const asyncViewer = createAsyncThunk<User, unknown, { rejectValue: string
 			Auth.setToken(token)
 
 			const response = await Account.getUser()
-			console.log(response.data)
 			return response.data
 		} catch (e) {
 			//@ts-ignore

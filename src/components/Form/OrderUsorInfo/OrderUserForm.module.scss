@@ -39,10 +39,10 @@
 	right: 0px;
 	top: 80px;
 	border-radius: 5px;
-	animation: move 1s;
+	animation: moveForm 1s;
 	overflow: auto;
 }
-@keyframes move {
+@keyframes moveForm {
 	from {
 		right: -200px;
 	}

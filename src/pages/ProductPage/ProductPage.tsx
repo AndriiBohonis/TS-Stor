@@ -18,9 +18,7 @@ const ProductPage = () => {
 	const navigate = useNavigate()
 	const dispatch = useAppDispatch()
 	const { id } = useParams()
-
 	const [count, setCount] = useState(0)
-	console.log(cart)
 	useEffect(() => {
 		if (id) {
 			const element = productFromCart.filter(item => item.id === +id)
