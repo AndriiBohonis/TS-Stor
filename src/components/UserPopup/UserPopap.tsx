@@ -27,7 +27,7 @@ export const UserPopup: FC<Props> = ({ user, popup, setPopup }) => {
 			<div className={s.name}>{user?.fullName}</div>
 			<div className={s.email}>{user?.email}</div>
 			<div className={s.line}></div>
-			<Link onClick={() => setPopup(!popup)} to={'settings'}>
+			<Link onClick={() => setPopup(!popup)} to={'/settings/useInfo'}>
 				<div className={s.settings}>Settings</div>
 			</Link>
 			<div className={s.logout}>
