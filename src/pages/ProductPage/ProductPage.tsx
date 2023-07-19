@@ -8,8 +8,7 @@ import { Spinner } from '../../components/Spinners/Spinners'
 import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
 import { addItemToCart, decrementItemFromCart } from '../../store/CartStor/addProductCart'
 import { favoriteProduct, favoriteProductDelete } from '../../store/Product/favoriteSlice'
-import { asyncGetProductCart } from '../../store/Product/getProductCart'
-import { favorite } from '../../store/Product/getProducts'
+import { asyncGetProductCart, favorite } from '../../store/Product/getProductCart'
 import s from './ProductPage.module.scss'
 const ProductPage = () => {
 	const cart = useAppSelector(state => state.productCart.products)
@@ -21,7 +20,7 @@ const ProductPage = () => {
 	const { id } = useParams()
 
 	const [count, setCount] = useState(0)
-
+	console.log(cart)
 	useEffect(() => {
 		if (id) {
 			const element = productFromCart.filter(item => item.id === +id)
@@ -38,12 +37,12 @@ const ProductPage = () => {
 		if (isUserLogin) {
 			if (cart?.id) {
 				if (!cart.favorite) {
-					dispatch(favorite(cart.id))
+					dispatch(favorite())
 					dispatch(favoriteProduct(cart.id))
 				}
 				if (cart.favorite) {
 					dispatch(favoriteProductDelete(cart.id))
-					dispatch(favorite(cart.id))
+					dispatch(favorite())
 				}
 			}
 		} else {
@@ -101,9 +100,16 @@ const ProductPage = () => {
 					<Button click={addCart}>
 						<span>ADD TO CART</span>
 					</Button>
-					<Button click={addFavorite}>
-						<span>ADD TO FAVORITES</span>
-					</Button>
+					{!cart?.favorite ? (
+						<Button click={addFavorite}>
+							<span>ADD TO FAVORITES</span>
+						</Button>
+					) : (
+						<Button orange={true} click={addFavorite}>
+							<span>ADDED TO FAVORITES</span>
+						</Button>
+					)}
+
 					<Button click={buyNewHandler} orange={true}>
 						<span>BUY NOW</span>
 					</Button>

@@ -2,7 +2,6 @@ import { FC, useEffect, useRef } from 'react'
 import { AiOutlineMinusCircle } from 'react-icons/ai'
 import { IoIosAddCircleOutline } from 'react-icons/io'
 import { RiDeleteBin6Fill } from 'react-icons/ri'
-import { Link } from 'react-router-dom'
 import { useAppDispatch } from '../../hook/reduxHook'
 import {
 	IProduct,
@@ -33,45 +32,43 @@ export const CartList: FC<Props> = ({ data }) => {
 		}
 	}, [])
 	return (
-		<Link to={`/product/${data.id}`}>
-			<section ref={ref} className={s.container}>
-				<div className={s.left_block}>
-					<div className={s.block_img}>
-						<div
-							style={{
-								backgroundImage: `url(${data.picture})`,
-								backgroundSize: 'contain',
-								backgroundPositionX: 'center',
-								backgroundPositionY: 'center',
-								backgroundRepeat: 'no-repeat',
-							}}
-							className={s.cart__img}
-						></div>
-					</div>
-					<div className={s.block_info}>
-						<span className={s.title}>{data.title}</span>
-						<div className={s.block_icons}>
-							<RiDeleteBin6Fill className={s.icon} onClick={handlerClick} />
-							<IoIosAddCircleOutline
-								className={s.icon}
-								onClick={() => dispatch(incrementProduct(data.id))}
-							/>
-							<span className={s.count}>{data.quantity}</span>
-							<AiOutlineMinusCircle
-								className={s.icon}
-								onClick={() => dispatch(decrementItemFromCart(data.id))}
-							/>
-						</div>
+		<section ref={ref} className={s.container}>
+			<div className={s.left_block}>
+				<div className={s.block_img}>
+					<div
+						style={{
+							backgroundImage: `url(${data.picture})`,
+							backgroundSize: 'contain',
+							backgroundPositionX: 'center',
+							backgroundPositionY: 'center',
+							backgroundRepeat: 'no-repeat',
+						}}
+						className={s.cart__img}
+					></div>
+				</div>
+				<div className={s.block_info}>
+					<span className={s.title}>{data.title}</span>
+					<div className={s.block_icons}>
+						<RiDeleteBin6Fill className={s.icon} onClick={handlerClick} />
+						<IoIosAddCircleOutline
+							className={s.icon}
+							onClick={() => dispatch(incrementProduct(data.id))}
+						/>
+						<span className={s.count}>{data.quantity}</span>
+						<AiOutlineMinusCircle
+							className={s.icon}
+							onClick={() => dispatch(decrementItemFromCart(data.id))}
+						/>
 					</div>
 				</div>
-				<div className={s.right_block}>
-					<div className={s.divorce}></div>
-					<div className={s.block_prise}>
-						<h3>Price:</h3>
-						<p>${data.totalPrice}</p>
-					</div>
+			</div>
+			<div className={s.right_block}>
+				<div className={s.divorce}></div>
+				<div className={s.block_prise}>
+					<h3>Price:</h3>
+					<p>${data.totalPrice}</p>
 				</div>
-			</section>
-		</Link>
+			</div>
+		</section>
 	)
 }

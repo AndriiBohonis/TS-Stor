@@ -18,7 +18,6 @@ export const MySelect: FC<IProps> = ({ data, selectValue, defaultValue }) => {
 			backgroundColor: 'white',
 			width: '100%',
 			marginTop: 10,
-			marginBottom: 10,
 			height: 40,
 			borderBlockColor: '#707070',
 		}),

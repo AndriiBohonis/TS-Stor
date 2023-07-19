@@ -120,7 +120,7 @@ const getProductsSlice = createSlice({
 			.addCase(getCategoryProducts.fulfilled, (state, action) => {
 				state.error = null
 				state.loading = false
-				state.products.concat(action.payload)
+				state.products = action.payload
 			})
 			.addCase(getCategoryProducts.rejected, (state, action) => {
 				state.loading = false

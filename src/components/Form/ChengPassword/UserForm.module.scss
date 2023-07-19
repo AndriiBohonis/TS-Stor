@@ -27,3 +27,25 @@
 		}
 	}
 }
+.select {
+	height: 40px;
+	margin: 0 0 20px 0;
+	.error {
+		font-size: 14px;
+		padding-left: 10px;
+
+		position: relative;
+		color: rgb(254, 9, 9);
+		animation: move 1s;
+	}
+	@keyframes move {
+		from {
+			right: 100px;
+			opacity: 0;
+		}
+		to {
+			right: 0;
+			opacity: 1;
+		}
+	}
+}

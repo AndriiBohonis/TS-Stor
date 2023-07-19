@@ -1,6 +1,6 @@
 import { Field, Form, Formik } from 'formik'
 import { FC, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 
 import { useAppDispatch, useAppSelector } from '../../../hook/reduxHook'
@@ -22,9 +22,11 @@ export const OrderUserForm: FC<IProps> = ({ open, setOpen }) => {
 	const country = useAppSelector(state => state.getCountry.country)
 	const { loading } = useAppSelector(state => state.createOrderSlice)
 	const [selectValue, setSelectValue] = useState(() => isUser?.country || '')
+	const [isSelect, setIsSelect] = useState(false)
 	const [totalSum, setTotalSum] = useState(0)
 	const [items, setItems] = useState<any>()
 	const dispatch = useAppDispatch()
+	const navigate = useNavigate()
 
 	useEffect(() => {
 		const arrSum: number[] = []
@@ -75,7 +77,15 @@ export const OrderUserForm: FC<IProps> = ({ open, setOpen }) => {
 				validationSchema={validateSchema}
 				onSubmit={values => {
 					const shipment = { ...values, country: selectValue }
-					dispatch(asyncCreateOrder({ items, shipment }))
+					if (!isUser) {
+						navigate('/alert')
+					}
+					if (selectValue) {
+						dispatch(asyncCreateOrder({ items, shipment }))
+						setIsSelect(false)
+					} else {
+						setIsSelect(true)
+					}
 				}}
 			>
 				{({ errors, touched }) => (
@@ -90,9 +100,15 @@ export const OrderUserForm: FC<IProps> = ({ open, setOpen }) => {
 							{touched.phone && <div>{errors.phone}</div>}
 						</Input>
 
-						<MySelect defaultValue={isUser?.country} selectValue={setSelectValue} data={country} />
+						<div className={s.select}>
+							<MySelect
+								defaultValue={isUser?.country}
+								selectValue={setSelectValue}
+								data={country}
+							/>
 
-						{selectValue ? <></> : <div>Country is required </div>}
+							{isSelect ? <div className={s.error}>Country is required </div> : <></>}
+						</div>
 
 						<Input>
 							<Field type='text' name='city' placeholder='City' />
@@ -113,9 +129,22 @@ export const OrderUserForm: FC<IProps> = ({ open, setOpen }) => {
 								<span>${totalSum}</span>
 							</div>
 						</div>
-						<Button orange={true} submit={true}>
-							{!loading ? <span>Confirms the purchase</span> : <Spinner size={20} color='white' />}
-						</Button>
+						{isUser ? (
+							<Button orange={true} submit={true}>
+								{!loading ? (
+									<span>Confirms the purchase</span>
+								) : (
+									<Spinner size={20} color='white' />
+								)}
+							</Button>
+						) : (
+							<Link to='/login'>
+								<Button orange={true}>
+									<span>Sign in to continue</span>
+								</Button>
+							</Link>
+						)}
+
 						<Link to='/'>
 							<Button>
 								<span>Confirms the purchase</span>

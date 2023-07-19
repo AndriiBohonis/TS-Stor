@@ -31,7 +31,7 @@ export const ProductCart: FC<Props> = ({ data }) => {
 	}
 
 	return (
-		<Link className={s.text} to={`/product/${data.id}`}>
+		<Link className={s.text} to={`product/${data.id}`}>
 			<div className={s.wrapper}>
 				<div className={s.cart__container}>
 					<div className={s.wrapper__img}>

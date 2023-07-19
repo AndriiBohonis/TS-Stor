@@ -17,6 +17,7 @@ export const MainInfo: FC = () => {
 	const loading = useAppSelector(state => state.viewer.loading)
 	const [selectValue, setSelectValue] = useState(() => isUser?.country || '')
 	const [select, setSelect] = useState(false)
+	const [isSelect, setIsSelect] = useState(false)
 
 	const dispatch = useAppDispatch()
 
@@ -71,9 +72,15 @@ export const MainInfo: FC = () => {
 							<Field type='phone' name='phone' placeholder='Phone Number' />
 							{touched.phone && <div>{errors.phone}</div>}
 						</Input>
+						<div className={s.select}>
+							<MySelect
+								defaultValue={isUser?.country}
+								selectValue={setSelectValue}
+								data={country}
+							/>
 
-						<MySelect defaultValue={isUser?.country} selectValue={setSelectValue} data={country} />
-						{select && <div>Country is required</div>}
+							{isSelect ? <div className={s.error}>Country is required </div> : <></>}
+						</div>
 
 						<Input>
 							<Field type='text' name='city' placeholder='City' />

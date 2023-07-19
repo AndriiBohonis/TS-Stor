@@ -23,7 +23,6 @@ import UI_Slice from './Ui_Slice'
 import chengPassword from './User/chengePassword'
 import loginSlice from './User/loginSlice'
 import registerSlice from './User/registerSlice'
-import updateUserSlice from './User/updateUser'
 import viewerSlice from './User/viewerSlice'
 import getCountrySlice from './getCountry'
 
@@ -38,7 +37,6 @@ const rootReducer = combineReducers({
 	queryString: querySlice,
 	cartProduct: cartProduct,
 	UI_Slice: UI_Slice,
-	updateUserSlice: updateUserSlice,
 	getCountry: getCountrySlice,
 	createOrderSlice: createOrderSlice,
 	orderListSlice: orderListSlice,
