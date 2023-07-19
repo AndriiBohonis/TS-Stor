@@ -100,13 +100,4 @@
 	justify-content: space-around;
 	color: #707070;
 	font-size: 35px;
-	animation: move 1s;
-}
-@keyframes move {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
 }
