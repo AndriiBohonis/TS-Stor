@@ -109,7 +109,6 @@ const ProductPage = () => {
 					</Button>
 				</div>
 			</div>
-			)
 		</Popup>
 	)
 }

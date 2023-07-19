@@ -1,17 +1,21 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import axios, { AxiosError } from 'axios'
 import { Orders } from '../../api/Api'
 import { ICreateOrders, IResponseOrders } from '../Type'
 
 export const asyncCreateOrder = createAsyncThunk<
 	IResponseOrders,
 	ICreateOrders,
-	{ rejectValue: any }
+	{ rejectValue: AxiosError }
 >(' createOrderSlice/asyncCreateOrder', async function (data, { rejectWithValue }) {
 	try {
 		const response = await Orders.createOrders(data)
 		return response.data
 	} catch (error) {
-		rejectWithValue(error)
+		if (axios.isAxiosError(error)) {
+			console.log(error.message)
+			return rejectWithValue(error)
+		}
 	}
 })
 interface IInitialState {

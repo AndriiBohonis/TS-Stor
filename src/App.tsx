@@ -7,7 +7,7 @@ import { CartPage } from './pages/CartPage/CartPage'
 import { Login } from './pages/UserAuth/Login'
 import { RegisterNewUser } from './pages/UserAuth/RegisterNewUser'
 
-import { AlertLogin } from './components/AlertLogin/AlertLogin'
+import { AlertLogin } from './components/Alert/AlertLogin/AlertLogin'
 import FavoriteProduct from './components/FavoriteProduct/FavoriteProduct'
 import { OrderList } from './components/OrdersList/OrderList'
 import { useAppSelector } from './hook/reduxHook'
@@ -29,8 +29,9 @@ export const App = () => {
 							<Route path='alert' element={<AlertLogin />} />
 							<Route path='login' element={<Login />} />
 							<Route path='register' element={<RegisterNewUser />} />
-							<Route path=':id' element={<ProductPage />} />
+							<Route path='product/:id' element={<ProductPage />} />
 						</Route>
+						<Route path='favorite/product/:id' element={<ProductPage />} />
 						<Route path='cart' element={<CartPage />} />
 						<Route path='settings' element={<Settings />}>
 							<Route path='useInfo' element={<UserInfoPage />} />

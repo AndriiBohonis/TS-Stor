@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { formatStrLogo } from '../../Helpers/Helpers'
 import { Account, Auth } from '../../api/Api'
 import { User } from '../Type'
 
@@ -58,17 +59,10 @@ const viewerSlice = createSlice({
 			})
 			.addCase(asyncViewer.fulfilled, (state, action) => {
 				const words = action.payload.fullName.split(' ')
-				let initials = ''
 				state.user = action.payload
 				state.loading = false
 				state.isUser = true
-				if (words) {
-					for (let i = 0; i < words.length; i++) {
-						const word = words[i]
-						initials += word[0]
-					}
-					state.logo = initials.toUpperCase()
-				}
+				state.logo = formatStrLogo(words)
 			})
 			.addCase(asyncViewer.rejected, (state, action) => {
 				state.loading = false
@@ -78,17 +72,10 @@ const viewerSlice = createSlice({
 			})
 			.addCase(asyncUpdateUser.fulfilled, (state, action) => {
 				const words = action.payload.fullName.split(' ')
-				let initials = ''
 				state.user = action.payload
 				state.loading = false
 				state.isUser = true
-				if (words) {
-					for (let i = 0; i < words.length; i++) {
-						const word = words[i]
-						initials += word[0]
-					}
-					state.logo = initials.toUpperCase()
-				}
+				state.logo = formatStrLogo(words)
 			})
 			.addCase(asyncUpdateUser.rejected, (state, action) => {
 				state.loading = false

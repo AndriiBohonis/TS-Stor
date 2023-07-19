@@ -1,13 +1,9 @@
-import { useEffect } from 'react'
-import { NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { NavLink, Outlet } from 'react-router-dom'
 import { useAppSelector } from '../../hook/reduxHook'
 import s from './Settings.module.scss'
 export const Settings = () => {
 	const { logo, user } = useAppSelector(state => state.viewer)
-	const navigate = useNavigate()
-	useEffect(() => {
-		navigate('useInfo')
-	}, [])
+
 	return (
 		<div className={s.wrapper}>
 			<div className={s.container}>

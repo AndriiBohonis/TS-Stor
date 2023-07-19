@@ -1,6 +1,6 @@
 import { Field, Form, Formik } from 'formik'
 import { FC, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import * as Yup from 'yup'
 
 import { useAppDispatch, useAppSelector } from '../../../hook/reduxHook'
@@ -22,7 +22,6 @@ export const OrderUserForm: FC<IProps> = ({ open, setOpen }) => {
 	const country = useAppSelector(state => state.getCountry.country)
 	const { loading } = useAppSelector(state => state.createOrderSlice)
 	const [selectValue, setSelectValue] = useState(() => isUser?.country || '')
-	const navigate = useNavigate()
 	const [totalSum, setTotalSum] = useState(0)
 	const [items, setItems] = useState<any>()
 	const dispatch = useAppDispatch()
@@ -65,6 +64,7 @@ export const OrderUserForm: FC<IProps> = ({ open, setOpen }) => {
 	return (
 		<div onClick={e => e.stopPropagation()}>
 			{open && <div onClick={handlerClick} className={s.open_modal}></div>}
+
 			<Formik
 				initialValues={{
 					fullName: isUser?.fullName ? isUser?.fullName : '',
@@ -116,10 +116,11 @@ export const OrderUserForm: FC<IProps> = ({ open, setOpen }) => {
 						<Button orange={true} submit={true}>
 							{!loading ? <span>Confirms the purchase</span> : <Spinner size={20} color='white' />}
 						</Button>
-
-						<Button click={() => navigate('/')}>
-							<span>Confirms the purchase</span>
-						</Button>
+						<Link to='/'>
+							<Button>
+								<span>Confirms the purchase</span>
+							</Button>
+						</Link>
 					</Form>
 				)}
 			</Formik>

@@ -1,16 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-// export const getProductCart = createAsyncThunk<any, any, { rejectValue: string }>(
-// 	'addProduct/cart',
-// 	async function (ids: any, { rejectWithValue }) {
-// 		try {
-// 			const response = await Products.getCartProduct(ids)
-// 			return response.data
-// 		} catch (e) {
-// 			// return rejectWithValue(e.message)
-// 		}
-// 	}
-// )
 export interface IProduct {
 	id: number
 	title: string
@@ -20,23 +9,17 @@ export interface IProduct {
 	totalPrice: number
 }
 interface IInitialState {
-	id: string[]
 	products: IProduct[]
-	loading: boolean
-	error: any
 	totalQuantity: number
 }
 
 const initialState: IInitialState = {
-	id: [],
 	products: [],
-	loading: false,
 	totalQuantity: 0,
-	error: '',
 }
 
 const cartProduct = createSlice({
-	name: 'favorite',
+	name: 'cartProduct',
 	initialState,
 	reducers: {
 		addItemToCart(state, action: PayloadAction<IProduct>) {
@@ -83,8 +66,17 @@ const cartProduct = createSlice({
 			state.products = state.products.filter(item => item.id !== id)
 			state.totalQuantity--
 		},
+		deleteAllProductFromCart(state) {
+			state.products = []
+			state.totalQuantity = 0
+		},
 	},
 })
-export const { addItemToCart, decrementItemFromCart, deleteProductFromCart, incrementProduct } =
-	cartProduct.actions
+export const {
+	deleteAllProductFromCart,
+	addItemToCart,
+	decrementItemFromCart,
+	deleteProductFromCart,
+	incrementProduct,
+} = cartProduct.actions
 export default cartProduct.reducer

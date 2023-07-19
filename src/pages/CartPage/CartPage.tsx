@@ -1,25 +1,33 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { BsArrowLeftSquare } from 'react-icons/bs'
-import { Cart } from '../../components/Cart/Cart'
+import { AlertOrder } from '../../components/Alert/AlertOrder/AlertOrder'
+import { CartList } from '../../components/CartList/CartList'
 import { OrderUserForm } from '../../components/Form/OrderUsorInfo/OrderUserForm'
 import Popup from '../../components/Popup/Popup'
-import { useAppSelector } from '../../hook/reduxHook'
+import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
 import { IProduct } from '../../store/CartStor/addProductCart'
 import s from './CartPage.module.scss'
 
 export const CartPage = () => {
 	const products = useAppSelector(state => state.cartProduct.products)
+	const orderResponse = useAppSelector(state => state.createOrderSlice.orderResponse)
 	const [open, setOpen] = useState(false)
+	const [openAlert, setOpenAlert] = useState(false)
+	useEffect(() => {
+		setOpenAlert(!!orderResponse)
+		setOpen(false)
+	}, [orderResponse])
 
 	return (
 		<div className={s.wrapper}>
+			{openAlert && <AlertOrder openAlert={openAlert} setOpenAlert={setOpenAlert} />}
 			<div className={s.container}>
 				<h2 className={s.title}>My Cart</h2>
 				{products.length ? (
 					<div className={s.content}>
 						<div className={s.wrapper_product}>
 							{products.map((product: IProduct) => (
-								<Cart key={product.id} data={product} />
+								<CartList key={product.id} data={product} />
 							))}
 						</div>
 						{!open && (

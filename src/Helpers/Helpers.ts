@@ -7,3 +7,14 @@ export const formatDate = (dateString: string | undefined): string => {
 
 	return `${year}.${month}.${day}`
 }
+
+export const formatStrLogo = (str: string[]): string => {
+	let initials = ''
+	if (str) {
+		for (let i = 0; i < str.length; i++) {
+			const word = str[i]
+			initials += word[0]
+		}
+	}
+	return initials.toUpperCase()
+}
