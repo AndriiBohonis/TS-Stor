@@ -4,7 +4,7 @@ import { AlertOrder } from '../../components/Alert/AlertOrder/AlertOrder'
 import { CartList } from '../../components/CartList/CartList'
 import { OrderUserForm } from '../../components/Form/OrderUsorInfo/OrderUserForm'
 import Popup from '../../components/Popup/Popup'
-import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
+import { useAppSelector } from '../../hook/reduxHook'
 import { IProduct } from '../../store/CartStor/addProductCart'
 import s from './CartPage.module.scss'
 
@@ -17,7 +17,9 @@ export const CartPage = () => {
 		setOpenAlert(!!orderResponse)
 		setOpen(false)
 	}, [orderResponse])
-
+	useEffect(() => {
+		setOpenAlert(false)
+	}, [])
 	return (
 		<div className={s.wrapper}>
 			{openAlert && <AlertOrder openAlert={openAlert} setOpenAlert={setOpenAlert} />}

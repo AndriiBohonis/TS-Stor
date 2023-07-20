@@ -44,7 +44,7 @@
 	margin: 20px 10px;
 	max-width: 300px;
 	font-size: 15px;
-	height: 36px;
+	height: 39px;
 	overflow: hidden;
 	text-transform: uppercase;
 }
@@ -53,18 +53,19 @@
 	padding: 10px;
 	font-size: 14px;
 	max-width: 300px;
-	height: 100px;
+	height: 130px;
 	overflow: auto;
 	color: #707070;
 }
 .wrapper_price {
-	margin-top: 25px;
+	margin-top: 10px;
 	max-width: 200px;
 	padding: 10px;
 	display: flex;
 	justify-content: space-between;
 }
 .price_t {
+	font-size: 15px;
 	text-transform: uppercase;
 	font-weight: 500;
 	color: #707070;
@@ -79,6 +80,7 @@
 	display: flex;
 	font-size: 15px;
 	justify-content: space-around;
+
 	@media (width < 669px) {
 		width: 500px;
 	}
@@ -90,8 +92,15 @@
 		width: 180px;
 	}
 	span {
-		font-size: 12px;
+		display: block;
+		font-size: 10px;
 	}
+}
+.container_add {
+	height: 40px;
+}
+.count {
+	font-size: 20px;
 }
 .block_add_product {
 	max-width: 150px;
@@ -100,4 +109,13 @@
 	justify-content: space-around;
 	color: #707070;
 	font-size: 35px;
+	animation: move 1s;
+}
+@keyframes move {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }

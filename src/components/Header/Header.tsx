@@ -2,7 +2,7 @@ import { FC, useEffect } from 'react'
 
 import s from './Header.module.scss'
 
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
 import { Logouts } from '../UserAuthBar/UserAuthBar'
 import UserInfo from '../UserInfo/UserInfo'
@@ -39,18 +39,17 @@ export const Header: FC = () => {
 
 				<div className={s.product_container}>
 					{
-						<Link to={viewer ? '/' : 'alert'}>
-							<div onClick={favoriteHandler}>
+						<div onClick={favoriteHandler}>
+							<Link to={viewer ? '/' : 'alert'}>
 								<AiFillHeart className={s.selectedProduct} />
-							</div>
-						</Link>
+							</Link>
+						</div>
 					}
 					<Link to='/cart'>
 						<MdShoppingCart className={s.cart} />
 
 						{products ? <div className={s.cart_counter}>{products}</div> : ''}
 					</Link>
-
 					{viewer ? <UserInfo /> : <Logouts />}
 				</div>
 			</div>

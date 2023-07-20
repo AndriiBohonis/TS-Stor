@@ -30,7 +30,7 @@ export const ProductBar = () => {
 			<div className={s.button_pos}>
 				{size % 12 === 0 && size !== 0 && (
 					<button className={s.button} onClick={handelClick}>
-						Moore
+						Load more...
 					</button>
 				)}
 			</div>

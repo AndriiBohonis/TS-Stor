@@ -6,7 +6,6 @@ import { asyncGetProducts, getCategoryProducts } from '../../store/Product/getPr
 import s from './Categories.module.scss'
 export const Categories = () => {
 	const [categoriesId, setCategoriesId] = useState(0)
-	let [searchParams, setSearchParams] = useSearchParams()
 	const productParam = useAppSelector(state => state.queryString)
 	const categories = useAppSelector(state => state.categories.categories)
 	const offset = useAppSelector(state => state.queryString.offset)

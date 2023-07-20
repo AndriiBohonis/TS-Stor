@@ -1,24 +1,25 @@
 .container {
 	display: flex;
 	margin-right: 10px;
-	text-align: center;
+	justify-content: center;
+	align-items: center;
 }
 
 .register {
-	font-size: 12px;
+	font-size: 14px;
 	margin-right: 15px;
 	color: #ffffff;
 	text-decoration: none;
 }
 .line {
-	margin-top: 3px;
+	display: block;
 	width: 2px;
 	height: 13px;
 	background-color: #fd7114;
 }
 
 .login {
-	font-size: 12px;
+	font-size: 14px;
 	margin-left: 15px;
 	color: #ffffff;
 	text-decoration: none;

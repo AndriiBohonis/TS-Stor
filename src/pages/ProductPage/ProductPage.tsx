@@ -83,13 +83,17 @@ const ProductPage = () => {
 								<div className={s.price_t}>Price</div>
 								<div className={s.prise}>${cart?.price}</div>
 							</div>
-							<div className={s.block_add_product}>
-								<IoIosAddCircleOutline className={s.plus_icon} onClick={addCart} />
-								<span className={s.count}>{count || 0}</span>
-								<AiOutlineMinusCircle
-									className={s.minus_icon}
-									onClick={() => dispatch(decrementItemFromCart(cart.id))}
-								/>
+							<div className={s.container_add}>
+								{count && (
+									<div className={s.block_add_product}>
+										<AiOutlineMinusCircle
+											className={s.minus_icon}
+											onClick={() => dispatch(decrementItemFromCart(cart.id))}
+										/>
+										<span className={s.count}>{count}</span>
+										<IoIosAddCircleOutline className={s.plus_icon} onClick={addCart} />
+									</div>
+								)}
 							</div>
 						</div>
 					</div>
