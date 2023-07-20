@@ -28,6 +28,23 @@
 	margin: 4px 4px 6px 4px;
 	border-radius: 4px;
 }
+.cart {
+	font-size: 25px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	z-index: 10;
+	bottom: 20px;
+	right: 15px;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	box-shadow: 2px 5px 12px rgba(0, 0, 0, 0.5);
+	&:hover {
+		box-shadow: 2px 2px 12px rgba(214, 198, 21, 0.3);
+	}
+}
 .cart__like {
 	font-size: 25px;
 	display: flex;
@@ -35,8 +52,8 @@
 	justify-content: center;
 	position: absolute;
 	z-index: 10;
-	bottom: 40px;
-	right: 20px;
+	top: 10px;
+	right: 15px;
 	width: 30px;
 	height: 30px;
 	border-radius: 50%;
