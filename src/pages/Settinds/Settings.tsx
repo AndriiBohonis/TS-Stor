@@ -32,7 +32,7 @@ export const Settings = () => {
 						<div>Favorites</div>
 					</NavLink>
 				</nav>
-				<div className={s.content_blok}>
+				<div className={s.content}>
 					<Outlet />
 				</div>
 			</div>

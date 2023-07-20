@@ -9,7 +9,6 @@ import UserInfo from '../UserInfo/UserInfo'
 
 import { AiFillHeart } from 'react-icons/ai'
 import { MdShoppingCart } from 'react-icons/md'
-import { favoriteProducts } from '../../store/Product/getProducts'
 import { asyncViewer } from '../../store/User/viewerSlice'
 
 export const Header: FC = () => {
@@ -25,22 +24,22 @@ export const Header: FC = () => {
 	}, [isUser, isRegisterUser])
 	const favoriteHandler: React.MouseEventHandler<HTMLDivElement> = () => {
 		if (viewer) {
-			dispatch(favoriteProducts(''))
+			// dispatch(favoriteProducts(''))
 		}
 	}
 	return (
 		<div className={s.wrapper}>
 			<div className={s.wrapper_header}>
 				<div>
-					<Link onClick={window.location.reload} className={s.logo} to='/'>
+					<a className={s.logo} href='/'>
 						Staff
-					</Link>
+					</a>
 				</div>
 
 				<div className={s.product_container}>
 					{
 						<div onClick={favoriteHandler}>
-							<Link to={viewer ? '/' : 'alert'}>
+							<Link to={viewer ? '/favorite' : 'alert'}>
 								<AiFillHeart className={s.selectedProduct} />
 							</Link>
 						</div>

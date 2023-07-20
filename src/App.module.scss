@@ -132,7 +132,8 @@ select {
 	background-color: #e5e5e5;
 }
 .main {
-	display: flex;
+	height: 100%;
+	padding-top: 70px;
 	margin: 0 auto;
 	flex: 1 1 auto;
 }

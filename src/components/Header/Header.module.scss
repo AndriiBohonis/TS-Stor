@@ -3,10 +3,11 @@
 	background-color: #110f21;
 	display: flex;
 	justify-content: center;
-	position: relative;
 	margin-right: 20px;
 	z-index: 11;
 	position: fixed;
+	top: 0;
+	left: 0;
 }
 .logo {
 	padding: 10px;

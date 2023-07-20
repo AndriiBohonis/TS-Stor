@@ -16,8 +16,12 @@ export const FavoriteProduct = () => {
 		<div className={s.container}>
 			{loading ? (
 				<Spinner size={300} color='#fd7114' />
-			) : (
+			) : products.length ? (
 				products.map((product: ProductResponse) => <ProductCart key={product.id} data={product} />)
+			) : (
+				<div className={s.wrapper}>
+					<div className={s.message}>You have not selected anything yet</div>
+				</div>
 			)}
 		</div>
 	)

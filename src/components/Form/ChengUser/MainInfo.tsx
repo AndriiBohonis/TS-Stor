@@ -16,9 +16,7 @@ export const MainInfo: FC = () => {
 	const country = useAppSelector(state => state.getCountry.country)
 	const loading = useAppSelector(state => state.viewer.loading)
 	const [selectValue, setSelectValue] = useState(() => isUser?.country || '')
-	const [select, setSelect] = useState(false)
 	const [isSelect, setIsSelect] = useState(false)
-
 	const dispatch = useAppDispatch()
 
 	const validateSchema = Yup.object().shape({
@@ -52,7 +50,7 @@ export const MainInfo: FC = () => {
 				onSubmit={values => {
 					const data = { ...values, country: selectValue }
 					if (!selectValue) {
-						setSelect(true)
+						setIsSelect(true)
 					} else {
 						dispatch(asyncUpdateUser(data))
 					}
@@ -74,7 +72,7 @@ export const MainInfo: FC = () => {
 						</Input>
 						<div className={s.select}>
 							<MySelect
-								defaultValue={isUser?.country}
+								defaultValue={isUser?.country || ''}
 								selectValue={setSelectValue}
 								data={country}
 							/>

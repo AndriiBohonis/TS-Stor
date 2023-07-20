@@ -4,12 +4,9 @@
 
 .container {
 	margin: 0 auto;
-	padding-top: 100px;
+	padding: 90px 0;
 	max-width: 900px;
 	height: 100%;
-	// display: flex;
-	// flex-direction: column;
-	// align-items: center;
 	background-color: white;
 }
 .name_block {
@@ -37,7 +34,7 @@
 	padding: 0 5px;
 	max-width: 700px;
 	height: 74px;
-	margin: 40px auto;
+	margin: 30px auto;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -68,4 +65,7 @@
 		border-bottom: 0;
 		border-left: 10px solid transparent;
 	}
+}
+.content {
+	min-height: 130px;
 }

@@ -38,8 +38,8 @@ export const ProductCart: FC<Props> = ({ data }) => {
 	}
 
 	return (
-		<Link className={s.text} to={`/product/${data.id}`}>
-			<div className={s.wrapper}>
+		<div className={s.wrapper}>
+			<Link className={s.text} to={`/product/${data.id}`}>
 				<div className={s.cart__container}>
 					<div className={s.wrapper__img}>
 						<div
@@ -59,13 +59,12 @@ export const ProductCart: FC<Props> = ({ data }) => {
 					<div onClick={addToCartClick} className={s.cart}>
 						<MdShoppingCart className={''} />
 					</div>
-
 					<h2 className={s.cart__title}>{data.title}</h2>
 					<div className={s.cart__price}>
 						<> $ {data.price}</>
 					</div>
 				</div>
-			</div>
-		</Link>
+			</Link>
+		</div>
 	)
 }

@@ -14,8 +14,8 @@ export const asyncLoginUser = createAsyncThunk<UserResponse, UserLogin, { reject
 			const response = await Auth.login(email, password)
 
 			return response.data
-		} catch (e) {
-			return rejectWithValue(e)
+		} catch (error) {
+			return rejectWithValue(error)
 		}
 	}
 )
@@ -53,7 +53,7 @@ const loginSlice = createSlice({
 			})
 			.addCase(asyncLoginUser.rejected, (state, action) => {
 				state.loading = false
-				state.error = action.payload
+				state.error = action.payload.response.status
 			})
 	},
 	reducers: {

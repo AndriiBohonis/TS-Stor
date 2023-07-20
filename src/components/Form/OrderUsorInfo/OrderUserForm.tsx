@@ -82,7 +82,6 @@ export const OrderUserForm: FC<IProps> = ({ open, setOpen }) => {
 					}
 					if (selectValue) {
 						dispatch(asyncCreateOrder({ items, shipment }))
-						console.log(items)
 						setIsSelect(false)
 					} else {
 						setIsSelect(true)
@@ -103,7 +102,7 @@ export const OrderUserForm: FC<IProps> = ({ open, setOpen }) => {
 
 						<div className={s.select}>
 							<MySelect
-								defaultValue={isUser?.country}
+								defaultValue={isUser?.country || ''}
 								selectValue={setSelectValue}
 								data={country}
 							/>

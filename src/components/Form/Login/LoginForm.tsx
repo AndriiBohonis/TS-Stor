@@ -1,5 +1,5 @@
 import { Field, Form, Formik } from 'formik'
-import { FC, useEffect, useRef } from 'react'
+import { FC, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 import { asyncLoginUser } from '../../../store/User/loginSlice'
@@ -13,12 +13,12 @@ import { InputPassword } from '../../Input/InputPassword'
 import { Spinner } from '../../Spinners/Spinners'
 
 export const LoginForm: FC = () => {
-	const isLoading = useAppSelector(state => state.login.loading)
+	const { loading, error } = useAppSelector(state => state.login)
 	const isLoadingViewer = useAppSelector(state => state.viewer.loading)
 	const isUser = useAppSelector(state => state.viewer.isUser)
 	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
-
+	console.log(error)
 	useEffect(() => {
 		dispatch(switchScrollOF())
 
@@ -40,6 +40,7 @@ export const LoginForm: FC = () => {
 			.max(35, 'Too Long!')
 			.required('Password is required'),
 	})
+
 	return (
 		<div>
 			<Formik
@@ -56,15 +57,19 @@ export const LoginForm: FC = () => {
 					<Form className={s.form}>
 						<Input>
 							<Field name='email' placeholder='Email' />
+							{error === 401 && <div>Incorrect login or password</div>}
 							{errors.email && touched.email && <div>{errors.email}</div>}
 						</Input>
 
 						<Input>
 							<Field as={InputPassword} name='password' placeholder='Password' />
+							{error === 401 && <div>Incorrect login or password</div>}
 							{errors.password && touched.password && <div>{errors.password}</div>}
 						</Input>
 						<Button orange={true} submit={true}>
-							<span>{isLoading ? <Spinner size={20} color='white' /> : 'Login'}</span>
+							<span>
+								{loading || isLoadingViewer ? <Spinner size={20} color='white' /> : 'Login'}
+							</span>
 						</Button>
 					</Form>
 				)}

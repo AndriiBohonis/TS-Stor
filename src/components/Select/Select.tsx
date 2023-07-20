@@ -7,10 +7,10 @@ import { asyncGetCountry } from '../../store/getCountry'
 interface IProps {
 	data: Country[]
 	selectValue: (str: string) => void
-	defaultValue: any
+	defaultValue?: string
 }
 
-export const MySelect: FC<IProps> = ({ data, selectValue, defaultValue }) => {
+export const MySelect: FC<IProps> = ({ data, selectValue, defaultValue = '' }) => {
 	const dispatch = useAppDispatch()
 	const colourStyles: StylesConfig<any> = {
 		control: styles => ({
