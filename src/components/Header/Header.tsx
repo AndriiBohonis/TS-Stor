@@ -9,6 +9,7 @@ import UserInfo from '../UserInfo/UserInfo'
 
 import { AiFillHeart } from 'react-icons/ai'
 import { MdShoppingCart } from 'react-icons/md'
+import { Auth } from '../../api/Api'
 import { asyncViewer } from '../../store/User/viewerSlice'
 
 export const Header: FC = () => {
@@ -20,11 +21,15 @@ export const Header: FC = () => {
 	const dispatch = useAppDispatch()
 
 	useEffect(() => {
-		dispatch(asyncViewer(''))
+		const token = localStorage.getItem('token')
+
+		Auth.setToken(token)
+		if (token) {
+			dispatch(asyncViewer(''))
+		}
 	}, [isUser, isRegisterUser])
 	const favoriteHandler: React.MouseEventHandler<HTMLDivElement> = () => {
 		if (viewer) {
-			// dispatch(favoriteProducts(''))
 		}
 	}
 	return (

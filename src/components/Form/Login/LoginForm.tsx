@@ -18,7 +18,7 @@ export const LoginForm: FC = () => {
 	const isUser = useAppSelector(state => state.viewer.isUser)
 	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
-	console.log(error)
+
 	useEffect(() => {
 		dispatch(switchScrollOF())
 

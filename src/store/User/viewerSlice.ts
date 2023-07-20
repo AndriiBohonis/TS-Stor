@@ -7,10 +7,6 @@ export const asyncViewer = createAsyncThunk<User, unknown, { rejectValue: string
 	'login/asyncViewer',
 	async function (_, { rejectWithValue }) {
 		try {
-			const token = localStorage.getItem('token')
-
-			Auth.setToken(token)
-
 			const response = await Account.getUser()
 			return response.data
 		} catch (e) {

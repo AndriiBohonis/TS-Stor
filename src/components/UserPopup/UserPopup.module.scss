@@ -2,12 +2,11 @@
 	z-index: 3;
 	background-color: white;
 	width: 234px;
-	height: 160px;
+	height: 170px;
 	border-radius: 4px;
 	position: absolute;
 	top: 60px;
 	right: 0px;
-
 	box-shadow: 1px 2px 4px rgba(18, 18, 17, 0.6);
 	padding-left: 20px;
 	margin-right: 20px;
@@ -26,7 +25,7 @@
 .name {
 	text-transform: capitalize;
 	margin-top: 17px;
-	font-size: 13px;
+	font-size: 14px;
 	color: black;
 }
 .email {
@@ -46,5 +45,5 @@
 	margin-top: 15px;
 }
 .logout {
-	margin-top: 20px;
+	margin: 10px 0;
 }
