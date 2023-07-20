@@ -82,6 +82,7 @@ export const OrderUserForm: FC<IProps> = ({ open, setOpen }) => {
 					}
 					if (selectValue) {
 						dispatch(asyncCreateOrder({ items, shipment }))
+						console.log(items)
 						setIsSelect(false)
 					} else {
 						setIsSelect(true)

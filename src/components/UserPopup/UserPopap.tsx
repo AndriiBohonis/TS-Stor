@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { User } from '../../store/Type'
+import { User } from '../../Type/Type'
 import { Logout } from '../Logout/Signout'
 import s from './UserPopup.module.scss'
 type Props = {

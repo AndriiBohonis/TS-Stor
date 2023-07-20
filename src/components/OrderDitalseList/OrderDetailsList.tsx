@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { IItemOrder } from '../../store/Type'
+import { IItemOrder } from '../../Type/Type'
 import s from './OrderDetailsList.module.scss'
 type Props = {
 	data: IItemOrder

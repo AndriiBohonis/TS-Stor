@@ -2,6 +2,7 @@ import { FC, useEffect, useRef } from 'react'
 import { AiOutlineMinusCircle } from 'react-icons/ai'
 import { IoIosAddCircleOutline } from 'react-icons/io'
 import { RiDeleteBin6Fill } from 'react-icons/ri'
+import { Link } from 'react-router-dom'
 import { useAppDispatch } from '../../hook/reduxHook'
 import {
 	IProduct,
@@ -47,7 +48,9 @@ export const CartList: FC<Props> = ({ data }) => {
 					></div>
 				</div>
 				<div className={s.block_info}>
-					<span className={s.title}>{data.title}</span>
+					<Link to={`/product/${data.id}`}>
+						<span className={s.title}>{data.title}</span>
+					</Link>
 					<div className={s.block_icons}>
 						<RiDeleteBin6Fill className={s.icon} onClick={handlerClick} />
 						<IoIosAddCircleOutline

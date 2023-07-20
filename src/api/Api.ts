@@ -7,7 +7,7 @@ import {
 	ProductResponse,
 	User,
 	UserResponse,
-} from '../store/Type'
+} from '../Type/Type'
 
 axios.defaults.baseURL = 'https://demo-api.apiko.academy/'
 export const Auth = {

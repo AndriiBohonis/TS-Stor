@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { formatDate } from '../../Helpers/Helpers'
+import { IResponseOrders } from '../../Type/Type'
 import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
 import { asyncGetOrderList } from '../../store/Orders/getOrdersListSlice'
-import { IResponseOrders } from '../../store/Type'
 import { Spinner } from '../Spinners/Spinners'
 import s from './OrderList.module.scss'
 export const OrderList = () => {

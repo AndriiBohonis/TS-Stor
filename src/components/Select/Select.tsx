@@ -1,7 +1,7 @@
 import { FC, useEffect } from 'react'
 import Select, { StylesConfig } from 'react-select'
+import { Country } from '../../Type/Type'
 import { useAppDispatch } from '../../hook/reduxHook'
-import { Country } from '../../store/Type'
 import { asyncGetCountry } from '../../store/getCountry'
 
 interface IProps {

@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
+import { ProductResponse } from '../../Type/Type'
 import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
 import { favoriteProducts } from '../../store/Product/getProducts'
-import { ProductResponse } from '../../store/Type'
 import { ProductCart } from '../ProductCart/ProductCart'
 import { Spinner } from '../Spinners/Spinners'
 import s from './FavoriteProduct.module.scss'

@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
 import { offset } from '../../store/Product/QuerySlice'
-import { ProductResponse } from '../../store/Type'
+import { ProductResponse } from '../../Type/Type'
 import { ProductCart } from '../ProductCart/ProductCart'
 import { Spinner } from '../Spinners/Spinners'
 
