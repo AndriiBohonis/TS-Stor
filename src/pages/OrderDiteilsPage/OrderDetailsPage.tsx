@@ -2,12 +2,12 @@ import { useEffect } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useNavigate, useParams } from 'react-router-dom'
 import { formatDate } from '../../Helpers/Helpers'
+import { IItemOrder } from '../../Type/Type'
 import { OrderDetailsList } from '../../components/OrderDitalseList/OrderDetailsList'
 import Popup from '../../components/Popup/Popup'
 import { Spinner } from '../../components/Spinners/Spinners'
 import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
 import { asyncCurrentOrder } from '../../store/Orders/getCurrentOrdersSlice'
-import { IItemOrder } from '../../store/Type'
 import s from './OrderDetailsPage.module.scss'
 
 const OrderDetailsPage = () => {
