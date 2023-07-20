@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { formatStrLogo } from '../../Helpers/Helpers'
+import { User } from '../../Type/Type'
 import { Account, Auth } from '../../api/Api'
-import { User } from '../Type'
 
 export const asyncViewer = createAsyncThunk<User, unknown, { rejectValue: string }>(
 	'login/asyncViewer',

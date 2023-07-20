@@ -1,13 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { ParametersType, ProductResponse } from '../../Type/Type'
 import { Products } from '../../api/Api'
-import { ProductResponse } from '../Type'
-
-export type ParametersType = {
-	category?: number
-	offset: number
-	limit: number
-	sortBy: string
-}
 
 export const asyncGetProducts = createAsyncThunk<
 	ProductResponse[],
@@ -65,7 +58,7 @@ export const searchGetProducts = createAsyncThunk<ProductResponse[], string, { r
 
 interface IInitialState {
 	loading: boolean
-	error: null | any
+	error: any
 	products: ProductResponse[]
 }
 const initialState: IInitialState = {

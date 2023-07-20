@@ -1,23 +1,22 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { Country } from '../Type/Type'
 import { country } from '../api/Api'
-import { Country } from './Type'
-// import { Categories } from '../Type'
 
-export const asyncGetCountry = createAsyncThunk<string[], unknown, { rejectValue: any }>(
+export const asyncGetCountry = createAsyncThunk<string[], unknown, { rejectValue: string }>(
 	'getCountry',
 	async function (_, { rejectWithValue }) {
 		try {
 			const response = await country.getCountry()
 			return response.data
 		} catch (error) {
-			rejectWithValue(error)
+			return rejectWithValue('Error')
 		}
 	}
 )
 interface IInitialState {
 	country: Country[]
 	loading: boolean
-	error: null | any
+	error: any
 }
 const initialState: IInitialState = {
 	country: [],

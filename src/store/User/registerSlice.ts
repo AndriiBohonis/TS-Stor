@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { UserResponse } from '../../Type/Type'
 import { Auth } from '../../api/Api'
-import { UserResponse } from '../Type'
 import { IInitialState } from './loginSlice'
 
 interface IUser {

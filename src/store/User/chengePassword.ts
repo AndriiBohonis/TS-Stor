@@ -1,13 +1,15 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { Auth } from '../../api/Api'
-import { UserResponse } from '../Type'
 
-type Password = {
-	oldPassword: ''
-	password: ''
+interface Password {
+	oldPassword: string
+	password: string
+}
+interface Response {
+	success: boolean
 }
 
-export const asyncChengPassword = createAsyncThunk<UserResponse, any, { rejectValue: any }>(
+export const asyncChengPassword = createAsyncThunk<Response, Password, { rejectValue: any }>(
 	'chengPassword/asyncChengPassword',
 	async function (password, { rejectWithValue }) {
 		try {
@@ -21,13 +23,13 @@ export const asyncChengPassword = createAsyncThunk<UserResponse, any, { rejectVa
 )
 
 export interface IInitialState {
-	response: any
+	response: Response | null
 	loading: boolean
-	error: null | any
+	error: any
 }
 
 const initialState: IInitialState = {
-	response: false,
+	response: null,
 	loading: false,
 	error: false,
 }
