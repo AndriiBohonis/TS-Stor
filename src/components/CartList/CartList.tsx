@@ -53,14 +53,14 @@ export const CartList: FC<Props> = ({ data }) => {
 					</Link>
 					<div className={s.block_icons}>
 						<RiDeleteBin6Fill className={s.icon} onClick={handlerClick} />
-						<IoIosAddCircleOutline
-							className={s.icon}
-							onClick={() => dispatch(incrementProduct(data.id))}
-						/>
-						<span className={s.count}>{data.quantity}</span>
 						<AiOutlineMinusCircle
 							className={s.icon}
 							onClick={() => dispatch(decrementItemFromCart(data.id))}
+						/>
+						<span className={s.count}>{data.quantity}</span>
+						<IoIosAddCircleOutline
+							className={s.icon}
+							onClick={() => dispatch(incrementProduct(data.id))}
 						/>
 					</div>
 				</div>
