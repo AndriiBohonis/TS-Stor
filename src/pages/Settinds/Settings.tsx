@@ -1,11 +1,12 @@
 import { NavLink, Outlet } from 'react-router-dom'
+import { Wrapper } from '../../components/Wrapper/Wrapper'
 import { useAppSelector } from '../../hook/reduxHook'
 import s from './Settings.module.scss'
 export const Settings = () => {
 	const { logo, user } = useAppSelector(state => state.viewer)
 
 	return (
-		<div className={s.wrapper}>
+		<Wrapper>
 			<div className={s.container}>
 				<div className={s.name_block}>
 					<div className={s.logo}>{logo}</div>
@@ -36,6 +37,6 @@ export const Settings = () => {
 					<Outlet />
 				</div>
 			</div>
-		</div>
+		</Wrapper>
 	)
 }

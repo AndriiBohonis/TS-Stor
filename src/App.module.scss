@@ -130,10 +130,11 @@ select {
 	flex-direction: column;
 	overflow: auto;
 	background-color: #e5e5e5;
+	min-height: 100vh;
 }
 .main {
-	height: 100%;
 	padding-top: 70px;
 	margin: 0 auto;
 	flex: 1 1 auto;
+	display: grid;
 }

@@ -1,21 +1,20 @@
 import { Route, Routes } from 'react-router-dom'
 import s from './App.module.scss'
-import { Footer } from './components/Footer/Footer'
-import { Header } from './components/Header/Header'
-
-import { CartPage } from './pages/CartPage/CartPage'
-import { Login } from './pages/UserAuth/Login'
-import { RegisterNewUser } from './pages/UserAuth/RegisterNewUser'
-
 import { AlertLogin } from './components/Alert/AlertLogin/AlertLogin'
 import FavoriteProduct from './components/FavoriteProduct/FavoriteProduct'
+import { Footer } from './components/Footer/Footer'
+import { Header } from './components/Header/Header'
 import { OrderList } from './components/OrdersList/OrderList'
 import { PrivateRout } from './components/PrivatRout/PrivatRout'
 import { useAppSelector } from './hook/reduxHook'
+import { CartPage } from './pages/CartPage/CartPage'
+import { Error } from './pages/Error/Error'
 import { HomePage } from './pages/Home/HomePage'
 import OrderDetailsPage from './pages/OrderDiteilsPage/OrderDetailsPage'
 import ProductPage from './pages/ProductPage/ProductPage'
 import { Settings } from './pages/Settinds/Settings'
+import { Login } from './pages/UserAuth/Login'
+import { RegisterNewUser } from './pages/UserAuth/RegisterNewUser'
 import UserInfoPage from './pages/UserInfo/UserInfoPage'
 export const App = () => {
 	const isScroll = useAppSelector(state => state.UI_Slice.scroll)
@@ -31,6 +30,7 @@ export const App = () => {
 							<Route path='login' element={<Login />} />
 							<Route path='register' element={<RegisterNewUser />} />
 						</Route>
+						<Route path='product/:id' element={<ProductPage />} />
 						<Route
 							path='/favorite'
 							element={
@@ -39,7 +39,6 @@ export const App = () => {
 								</PrivateRout>
 							}
 						/>
-						<Route path='product/:id' element={<ProductPage />} />
 						<Route path='cart' element={<CartPage />} />
 						<Route
 							path='settings'
@@ -82,6 +81,7 @@ export const App = () => {
 								}
 							/>
 						</Route>
+						<Route path='*' element={<Error />} />
 					</Routes>
 				</main>
 				<Footer />
