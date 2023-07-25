@@ -29,8 +29,9 @@ export const App = () => {
 							<Route path='alert' element={<AlertLogin />} />
 							<Route path='login' element={<Login />} />
 							<Route path='register' element={<RegisterNewUser />} />
+							<Route path=':id' element={<ProductPage />} />
 						</Route>
-						<Route path='product/:id' element={<ProductPage />} />
+						<Route path='/product/:id' element={<ProductPage />} />
 						<Route
 							path='/favorite'
 							element={

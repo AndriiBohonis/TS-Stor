@@ -9,7 +9,7 @@ import { SearchProduct } from './SearchProduct'
 export const SearchBar = () => {
 	const dispatch = useAppDispatch()
 	useEffect(() => {
-		dispatch(asyncGetCategories('_'))
+		dispatch(asyncGetCategories(''))
 	}, [])
 
 	return (

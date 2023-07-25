@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { AiOutlineHeart } from 'react-icons/ai'
 import { MdShoppingCart } from 'react-icons/md'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { ProductResponse } from '../../Type/Type'
 import { useAppDispatch, useAppSelector } from '../../hook/reduxHook'
 import { addItemToCart } from '../../store/CartStor/addProductCart'
@@ -13,6 +13,7 @@ type Props = {
 }
 
 export const ProductCart: FC<Props> = ({ data }) => {
+	const { pathname } = useLocation()
 	const isUser = useAppSelector(state => state.viewer.user)
 	const navigate = useNavigate()
 	const dispatch = useAppDispatch()
@@ -37,21 +38,19 @@ export const ProductCart: FC<Props> = ({ data }) => {
 		dispatch(addItemToCart({ ...data, quantity: 1, totalPrice: data.price }))
 	}
 
+	const cartImg = {
+		backgroundImage: `url(${data.picture})`,
+		backgroundSize: 'contain',
+		backgroundPositionX: 'center',
+		backgroundPositionY: 'center',
+		backgroundRepeat: 'no-repeat',
+	}
 	return (
 		<div className={s.wrapper}>
-			<Link className={s.text} to={`/product/${data.id}`}>
+			<Link className={s.link} to={pathname === '/' ? `${data.id}` : `/product/${data.id}`}>
 				<div className={s.cart__container}>
 					<div className={s.wrapper__img}>
-						<div
-							style={{
-								backgroundImage: `url(${data.picture})`,
-								backgroundSize: 'contain',
-								backgroundPositionX: 'center',
-								backgroundPositionY: 'center',
-								backgroundRepeat: 'no-repeat',
-							}}
-							className={s.cart__img}
-						></div>
+						<div style={cartImg} className={s.cart__img}></div>
 					</div>
 					<div onClick={handleProduct} className={s.cart__like}>
 						<AiOutlineHeart className={data.favorite ? s.hart : ''} />

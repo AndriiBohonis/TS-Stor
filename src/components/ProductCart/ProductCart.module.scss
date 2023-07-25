@@ -10,10 +10,13 @@
 	width: 209px;
 	height: 212px;
 	position: relative;
-	border: solid 2 px color #e4e4e4;
 	border-radius: 4px;
+	transition: 0.4s;
 	@media (width< 470px) {
 		width: 280px;
+	}
+	&:hover {
+		box-shadow: 1px 3px 7px rgba(0, 0, 0, 0.5);
 	}
 }
 .wrapper__img {
@@ -40,6 +43,7 @@
 	width: 30px;
 	height: 30px;
 	border-radius: 50%;
+	transition: 0.4s;
 	box-shadow: 2px 5px 12px rgba(0, 0, 0, 0.5);
 	&:hover {
 		box-shadow: 2px 2px 12px rgba(214, 198, 21, 0.3);
@@ -57,6 +61,7 @@
 	width: 30px;
 	height: 30px;
 	border-radius: 50%;
+	transition: 0.4s;
 	box-shadow: 2px 5px 12px rgba(0, 0, 0, 0.5);
 	&:hover {
 		box-shadow: 2px 2px 12px rgba(214, 198, 21, 0.3);
@@ -74,13 +79,9 @@
 		height: 19px;
 	}
 }
-.text {
+.link {
 	font-family: Heebo;
 	color: #707070;
-	&:hover {
-		color: #060000;
-	}
-	// height: 212px;
 }
 .cart__price {
 	font-size: 18px;
